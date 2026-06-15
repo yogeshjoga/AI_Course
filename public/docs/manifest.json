@@ -1,0 +1,83 @@
+[
+  {
+    "id": "day8_capstone_project",
+    "title": "Capstone Project Architecture & Deployment",
+    "topic": "Capstone Project",
+    "date": "2026-06-17",
+    "description": "Test your understanding of building production-ready AI agents, selecting database backends, and deployment architectures.",
+    "file": "day8_capstone_project.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day7_intro_to_llms_ml_dl_ds",
+    "title": "LLMs, ML, DL & DS Concepts",
+    "topic": "Intro to LLMs, ML, DL, DS",
+    "date": "2026-06-16",
+    "description": "Test your baseline understanding of Machine Learning, Deep Learning neural networks, and Large Language Model architectures.",
+    "file": "day7_intro_to_llms_ml_dl_ds.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day6_agentic_ai_workflows",
+    "title": "Multi-Agent Workflows",
+    "topic": "Agentic AI workflows",
+    "date": "2026-06-15",
+    "description": "Learn how to design robust Agentic AI routing, state orchestration, and structured multi-agent collaboration flows.",
+    "file": "day6_agentic_ai_workflows.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day5_python_basics",
+    "title": "Python Structures & Lists",
+    "topic": "Python",
+    "date": "2026-06-14",
+    "description": "Test your comprehension of Python built-in data types, list comprehensions, and generators.",
+    "file": "day5_python_basics.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day4_databases_sql",
+    "title": "Relational Databases & SQL",
+    "topic": "Databases",
+    "date": "2026-06-13",
+    "description": "Master relational databases, index optimizations, ACID transaction properties, and SQL execution strategies.",
+    "file": "day4_databases_sql.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day3_python_fastapi_async",
+    "title": "Python & FastAPI Deep Dive",
+    "topic": "FastAPI",
+    "date": "2026-06-12",
+    "description": "Master FastAPI concepts including async/await concurrency, Pydantic data validation, and dependency injection patterns.",
+    "file": "day3_python_fastapi_async.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day2_ai_agents_intro",
+    "title": "AI Agents & Agentic Workflows",
+    "topic": "AI Agents with memory",
+    "date": "2026-06-11",
+    "description": "Learn about agent architectures, routing, planning, tool usage, reflection, and multi-agent collaboration frameworks.",
+    "file": "day2_ai_agents_intro.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day9_hld_scaling",
+    "title": "System Scaling & High-Level Architecture",
+    "topic": "HLD",
+    "date": "2026-06-10",
+    "description": "Learn scaling strategies, load balancing algorithms, database replication, and CDN mechanics.",
+    "file": "day9_hld_scaling.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day1_agentic_ai_foundations",
+    "title": "Agentic AI Foundations Assessment",
+    "topic": "Intro Module",
+    "date": "2026-06-09",
+    "description": "Learn the core differences between traditional software, machine learning, generative AI, LLMs, and multi-step Agentic AI workflows.",
+    "file": "day1_agentic_ai_foundations.md",
+    "questionCount": 15
+  }
+]
