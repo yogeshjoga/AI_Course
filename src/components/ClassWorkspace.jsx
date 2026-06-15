@@ -19,9 +19,10 @@ export default function ClassWorkspace({
   const answersRecord = quizHistory.answersRecord || [];
   const solvedCount = answersRecord.filter(r => r.isCorrect).length;
 
-  const currentQuizIndex = manifest.findIndex(q => q.id === quiz.id);
-  const prevQuiz = currentQuizIndex < manifest.length - 1 ? manifest[currentQuizIndex + 1] : null;
-  const nextQuiz = currentQuizIndex > 0 ? manifest[currentQuizIndex - 1] : null;
+  const moduleQuizzes = manifest.filter(q => q.topic === quiz.topic);
+  const currentQuizIndex = moduleQuizzes.findIndex(q => q.id === quiz.id);
+  const prevQuiz = currentQuizIndex < moduleQuizzes.length - 1 ? moduleQuizzes[currentQuizIndex + 1] : null;
+  const nextQuiz = currentQuizIndex > 0 ? moduleQuizzes[currentQuizIndex - 1] : null;
 
   // Format date nicely
   const formatDate = (dateStr) => {
@@ -193,7 +194,9 @@ export default function ClassWorkspace({
                 <span>{prevQuiz.title}</span>
               </div>
             ) : (
-              <div style={{ visibility: 'hidden' }} />
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                First class in module
+              </div>
             )}
 
             {/* Next Day Link */}
@@ -209,7 +212,9 @@ export default function ClassWorkspace({
                 <ChevronRight size={16} />
               </div>
             ) : (
-              <div style={{ visibility: 'hidden' }} />
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                No more classes in this module
+              </div>
             )}
 
           </div>
