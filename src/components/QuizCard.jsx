@@ -23,8 +23,10 @@ export default function QuizCard({ quiz, historyItem, onSelect }) {
   // Format date nicely
   const formatDate = (dateStr) => {
     try {
-      const options = { year: 'numeric', month: 'short', day: 'numeric' };
-      return new Date(dateStr).toLocaleDateString(undefined, options);
+      const [year, month, day] = dateStr.split('-').map(Number);
+      const date = new Date(year, month - 1, day);
+      const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
     } catch (e) {
       return dateStr;
     }
@@ -91,23 +93,31 @@ export default function QuizCard({ quiz, historyItem, onSelect }) {
       </div>
 
       {/* Footer Info */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '16px', marginTop: '12px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', borderTop: '1px solid #eef2f6', paddingTop: '14px', marginTop: '12px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <Calendar size={14} />
             <span>{formatDate(quiz.date)}</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <HelpCircle size={14} />
             <span>{quiz.questionCount} Questions</span>
           </div>
+          {quiz.timing && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontWeight: '500', color: 'var(--color-primary)' }}>
+              <span>🕒</span>
+              <span>{quiz.timing}</span>
+            </div>
+          )}
         </div>
         
-        <div style={{ color: 'var(--color-primary)', display: 'flex', alignItems: 'center' }}>
-          <span style={{ fontSize: '0.82rem', fontWeight: '600', marginRight: '2px' }}>
-            {isCompleted ? 'Retry' : 'Solve'}
-          </span>
-          <ChevronRight size={16} />
+        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+          <div style={{ color: 'var(--color-primary)', display: 'flex', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.82rem', fontWeight: '600', marginRight: '2px' }}>
+              {isCompleted ? 'Retry' : 'Solve'}
+            </span>
+            <ChevronRight size={16} />
+          </div>
         </div>
       </div>
     </div>

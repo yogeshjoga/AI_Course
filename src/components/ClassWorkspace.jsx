@@ -21,14 +21,16 @@ export default function ClassWorkspace({
 
   const moduleQuizzes = manifest.filter(q => q.topic === quiz.topic);
   const currentQuizIndex = moduleQuizzes.findIndex(q => q.id === quiz.id);
-  const prevQuiz = currentQuizIndex < moduleQuizzes.length - 1 ? moduleQuizzes[currentQuizIndex + 1] : null;
-  const nextQuiz = currentQuizIndex > 0 ? moduleQuizzes[currentQuizIndex - 1] : null;
+  const prevQuiz = currentQuizIndex > 0 ? moduleQuizzes[currentQuizIndex - 1] : null;
+  const nextQuiz = currentQuizIndex < moduleQuizzes.length - 1 ? moduleQuizzes[currentQuizIndex + 1] : null;
 
   // Format date nicely
   const formatDate = (dateStr) => {
     try {
-      const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
-      return new Date(dateStr).toLocaleDateString('en-US', options);
+      const [year, month, day] = dateStr.split('-').map(Number);
+      const date = new Date(year, month - 1, day);
+      const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
     } catch (e) {
       return dateStr;
     }

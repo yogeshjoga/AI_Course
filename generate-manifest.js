@@ -58,12 +58,14 @@ const generateManifest = () => {
       const topic = metadata.topic || 'General';
       const date = metadata.date || new Date().toISOString().split('T')[0];
       const description = metadata.description || `Class MCQ test for ${topic}`;
+      const timing = metadata.timing || '9:00 AM - 10:00 AM IST';
 
       manifest.push({
         id,
         title,
         topic,
         date,
+        timing,
         description,
         file,
         questionCount
@@ -72,8 +74,8 @@ const generateManifest = () => {
       console.log(`✅ Indexed: ${file} [Topic: ${topic}] [Questions: ${questionCount}]`);
     });
 
-    // Sort quizzes by date descending
-    manifest.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // Sort quizzes by date ascending
+    manifest.sort((a, b) => new Date(a.date) - new Date(b.date));
 
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
     console.log(`🎉 Manifest compiled successfully! Saved ${manifest.length} quizzes to ${manifestPath}`);

@@ -1,83 +1,212 @@
 [
   {
-    "id": "day8_capstone_project",
-    "title": "Capstone Project Architecture & Deployment",
-    "topic": "Capstone Project",
-    "date": "2026-06-17",
-    "description": "Test your understanding of building production-ready AI agents, selecting database backends, and deployment architectures.",
-    "file": "day8_capstone_project.md",
-    "questionCount": 3
-  },
-  {
-    "id": "day7_intro_to_llms_ml_dl_ds",
-    "title": "LLMs, ML, DL & DS Concepts",
-    "topic": "Intro to LLMs, ML, DL, DS",
-    "date": "2026-06-16",
-    "description": "Test your baseline understanding of Machine Learning, Deep Learning neural networks, and Large Language Model architectures.",
-    "file": "day7_intro_to_llms_ml_dl_ds.md",
-    "questionCount": 3
-  },
-  {
-    "id": "day6_agentic_ai_workflows",
-    "title": "Multi-Agent Workflows",
-    "topic": "Agentic AI workflows",
-    "date": "2026-06-15",
-    "description": "Learn how to design robust Agentic AI routing, state orchestration, and structured multi-agent collaboration flows.",
-    "file": "day6_agentic_ai_workflows.md",
-    "questionCount": 3
-  },
-  {
-    "id": "day5_python_basics",
-    "title": "Python Structures & Lists",
-    "topic": "Python",
-    "date": "2026-06-14",
-    "description": "Test your comprehension of Python built-in data types, list comprehensions, and generators.",
-    "file": "day5_python_basics.md",
-    "questionCount": 3
-  },
-  {
-    "id": "day4_databases_sql",
-    "title": "Relational Databases & SQL",
-    "topic": "Databases",
-    "date": "2026-06-13",
-    "description": "Master relational databases, index optimizations, ACID transaction properties, and SQL execution strategies.",
-    "file": "day4_databases_sql.md",
-    "questionCount": 3
-  },
-  {
-    "id": "day3_python_fastapi_async",
-    "title": "Python & FastAPI Deep Dive",
-    "topic": "FastAPI",
-    "date": "2026-06-12",
-    "description": "Master FastAPI concepts including async/await concurrency, Pydantic data validation, and dependency injection patterns.",
-    "file": "day3_python_fastapi_async.md",
-    "questionCount": 3
-  },
-  {
-    "id": "day2_ai_agents_intro",
-    "title": "AI Agents & Agentic Workflows",
-    "topic": "AI Agents with memory",
-    "date": "2026-06-11",
-    "description": "Learn about agent architectures, routing, planning, tool usage, reflection, and multi-agent collaboration frameworks.",
-    "file": "day2_ai_agents_intro.md",
-    "questionCount": 3
-  },
-  {
-    "id": "day9_hld_scaling",
-    "title": "System Scaling & High-Level Architecture",
-    "topic": "HLD",
-    "date": "2026-06-10",
-    "description": "Learn scaling strategies, load balancing algorithms, database replication, and CDN mechanics.",
-    "file": "day9_hld_scaling.md",
-    "questionCount": 3
-  },
-  {
-    "id": "day1_agentic_ai_foundations",
-    "title": "Agentic AI Foundations Assessment",
+    "id": "day1_day_1_course_introduction_ai_revolution",
+    "title": "Day 1 - Course Introduction & AI Revolution",
     "topic": "Intro Module",
-    "date": "2026-06-09",
-    "description": "Learn the core differences between traditional software, machine learning, generative AI, LLMs, and multi-step Agentic AI workflows.",
-    "file": "day1_agentic_ai_foundations.md",
-    "questionCount": 15
+    "date": "2026-06-13",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Introduction to the course, the AI revolution, and the career roadmap.",
+    "file": "day1_day_1_course_introduction_ai_revolution.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day2_day_2_introduction_to_computers_ai_hardware",
+    "title": "Day 2 - Introduction to Computers & AI Hardware",
+    "topic": "Intro Module",
+    "date": "2026-06-16",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Understanding CPUs, GPUs, TPUs, VRAMs, NPUs, CUDA Cores, and NVIDIA GPU architectures.",
+    "file": "day2_day_2_introduction_to_computers_ai_hardware.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day3_day_3_internet_basics_apis",
+    "title": "Day 3 - Internet Basics & APIs",
+    "topic": "Intro Module",
+    "date": "2026-06-17",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Understanding browsers, client-server architectures, DNS, and APIs.",
+    "file": "day3_day_3_internet_basics_apis.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day4_day_4_sdlc_product_thinking_business_problems",
+    "title": "Day 4 - SDLC, Product Thinking, & Business Problems",
+    "topic": "Intro Module",
+    "date": "2026-06-18",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Deep dive into Software Development Lifecycle, Product Thinking, and solving Business Problems.",
+    "file": "day4_day_4_sdlc_product_thinking_business_problems.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day5_day_5_introduction_to_hld_components",
+    "title": "Day 5 - Introduction to HLD & Components",
+    "topic": "HLD",
+    "date": "2026-06-19",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Understanding High Level Design (HLD) importance and key components (Frontend, Backend, Database, APIs).",
+    "file": "day5_day_5_introduction_to_hld_components.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day6_day_6_data_exchange_api_architectures",
+    "title": "Day 6 - Data Exchange & API Architectures",
+    "topic": "HLD",
+    "date": "2026-06-20",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Understanding data exchange types, REST APIs, WebSockets, HTTP methods, and JSON.",
+    "file": "day6_day_6_data_exchange_api_architectures.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day7_day_7_hld_problem_solving_prerequisites",
+    "title": "Day 7 - HLD Problem Solving Prerequisites",
+    "topic": "HLD",
+    "date": "2026-06-23",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Learn HLD problem-solving basics, Back-of-the-Envelope (BOE) calculations, and design assumptions.",
+    "file": "day7_day_7_hld_problem_solving_prerequisites.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day8_day_8_schema_design_sql_databases",
+    "title": "Day 8 - Schema Design & SQL Databases",
+    "topic": "Databases",
+    "date": "2026-06-24",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Introduction to schema, ACID compliance, SQL databases, and PostgreSQL.",
+    "file": "day8_day_8_schema_design_sql_databases.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day9_day_9_cache_systems_messaging_baselines",
+    "title": "Day 9 - Cache Systems & Messaging Baselines",
+    "topic": "Databases",
+    "date": "2026-06-25",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Deep dive into caching with Redis and message queue systems like Kafka.",
+    "file": "day9_day_9_cache_systems_messaging_baselines.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day10_day_10_scaling_load_balancer_cdn_cap_paelc",
+    "title": "Day 10 - Scaling, Load Balancer, CDN, & CAP/PAELC",
+    "topic": "HLD",
+    "date": "2026-06-26",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Understanding CDN, Load Balancers, CAP and PAELC Theorems, and service discovery.",
+    "file": "day10_day_10_scaling_load_balancer_cdn_cap_paelc.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day11_day_11_database_replication_models",
+    "title": "Day 11 - Database Replication Models",
+    "topic": "HLD",
+    "date": "2026-06-27",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Comparing Synchronous vs Asynchronous replication, replication lag, multi-leader, and leaderless setups.",
+    "file": "day11_day_11_database_replication_models.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day12_day_12_database_partitioning_routing",
+    "title": "Day 12 - Database Partitioning & Routing",
+    "topic": "HLD",
+    "date": "2026-06-30",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Understanding partitioning keys, secondary indexes, rebalancing, and request routing.",
+    "file": "day12_day_12_database_partitioning_routing.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day13_day_13_distributed_transactions_in_hld",
+    "title": "Day 13 - Distributed Transactions in HLD",
+    "topic": "Databases",
+    "date": "2026-07-01",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Deep dive into transaction management and ACID properties in high-level distributed systems.",
+    "file": "day13_day_13_distributed_transactions_in_hld.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day14_day_14_hld_revision_problem_prerequisites",
+    "title": "Day 14 - HLD Revision & Problem Prerequisites",
+    "topic": "HLD",
+    "date": "2026-07-02",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Comprehensive HLD review session before solving complex system design challenges.",
+    "file": "day14_day_14_hld_revision_problem_prerequisites.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day15_day_15_designing_whatsapp_part_1",
+    "title": "Day 15 - Designing WhatsApp: Part 1",
+    "topic": "HLD",
+    "date": "2026-07-03",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Designing high-level real-time messaging architecture, user presence, and connection flows.",
+    "file": "day15_day_15_designing_whatsapp_part_1.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day16_day_16_designing_whatsapp_part_2",
+    "title": "Day 16 - Designing WhatsApp: Part 2",
+    "topic": "HLD",
+    "date": "2026-07-04",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Designing database schema for messages, media storage, group chats, and message delivery states.",
+    "file": "day16_day_16_designing_whatsapp_part_2.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day17_day_17_designing_youtube_part_1",
+    "title": "Day 17 - Designing YouTube: Part 1",
+    "topic": "HLD",
+    "date": "2026-07-07",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Designing high-level video upload pipelines, encoding/transcoding architectures.",
+    "file": "day17_day_17_designing_youtube_part_1.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day18_day_18_designing_youtube_part_2",
+    "title": "Day 18 - Designing YouTube: Part 2",
+    "topic": "HLD",
+    "date": "2026-07-08",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Designing YouTube content delivery (CDN), video streaming protocols, caching, and view-count scaling.",
+    "file": "day18_day_18_designing_youtube_part_2.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day19_day_19_designing_uber_ola_ride_hailing_part_1",
+    "title": "Day 19 - Designing Uber/Ola Ride-Hailing: Part 1",
+    "topic": "HLD",
+    "date": "2026-07-09",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "High-level architecture for ride-hailing, geo-spatial indexing (H3, S2), and real-time driver tracking.",
+    "file": "day19_day_19_designing_uber_ola_ride_hailing_part_1.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day20_day_20_designing_uber_ola_ride_hailing_part_2",
+    "title": "Day 20 - Designing Uber/Ola Ride-Hailing: Part 2",
+    "topic": "HLD",
+    "date": "2026-07-10",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Ride matching algorithms, trip state management, database write scaling, and ETA computation.",
+    "file": "day20_day_20_designing_uber_ola_ride_hailing_part_2.md",
+    "questionCount": 3
+  },
+  {
+    "id": "day21_day_21_designing_amazon_aws_s3_storage",
+    "title": "Day 21 - Designing Amazon AWS S3 Storage",
+    "topic": "HLD",
+    "date": "2026-07-11",
+    "timing": "9:00 AM - 10:00 AM IST",
+    "description": "Designing highly-durable object storage (AWS S3) with metadata databases, data partitioning, and replicas.",
+    "file": "day21_day_21_designing_amazon_aws_s3_storage.md",
+    "questionCount": 3
   }
 ]
