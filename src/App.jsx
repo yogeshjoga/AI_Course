@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { parseQuizMarkdown } from './utils/quizParser';
 import QuizCard from './components/QuizCard';
 import ClassWorkspace from './components/ClassWorkspace';
-import { Search, GraduationCap, RefreshCw, ArrowLeft } from 'lucide-react';
+import { Search, GraduationCap, RefreshCw, ArrowLeft, Download } from 'lucide-react';
 
 export default function App() {
   const [manifest, setManifest] = useState([]);
@@ -149,15 +149,37 @@ export default function App() {
               Online Agentic AI course by Yogesh
             </span>
           </div>
-          {(view === 'dashboard' || view === 'classes') && Object.keys(history).length > 0 && (
-            <button 
-              className="btn-scaler btn-scaler-secondary" 
-              onClick={handleResetProgress}
-              style={{ padding: '6px 12px', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '6px' }}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <a 
+              href="/syllabus.pdf"
+              download="Agentic_AI_Course_Syllabus.pdf"
+              className="btn-scaler btn-scaler-secondary"
+              style={{ 
+                padding: '6px 14px', 
+                fontSize: '0.78rem', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '6px',
+                textDecoration: 'none',
+                border: '1px solid var(--color-primary)',
+                color: 'var(--color-primary)',
+                backgroundColor: 'transparent',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
             >
-              <RefreshCw size={12} /> Clear Progress
-            </button>
-          )}
+              <Download size={13} /> Download Syllabus
+            </a>
+            {(view === 'dashboard' || view === 'classes') && Object.keys(history).length > 0 && (
+              <button 
+                className="btn-scaler btn-scaler-secondary" 
+                onClick={handleResetProgress}
+                style={{ padding: '6px 12px', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '6px' }}
+              >
+                <RefreshCw size={12} /> Clear Progress
+              </button>
+            )}
+          </div>
         </div>
       </header>
 
