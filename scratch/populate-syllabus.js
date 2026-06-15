@@ -12,37 +12,169 @@ const days = [
     description: 'Introduction to the course, the AI revolution, and the career roadmap.',
     questions: [
       {
-        q: 'What is the primary focus of this course?',
+        q: 'What is the primary goal of this course?',
         options: [
-          'A. Excel formatting and equations',
-          'B. Traditional web page designs only',
-          'C. Building AI-powered systems and Agentic AI workflows',
-          'D. Learning only basic chat commands'
+          'A. Learn only ChatGPT commands',
+          'B. Become an expert in Excel',
+          'C. Learn to build AI-powered systems and Agentic AI solutions',
+          'D. Learn web development only'
         ],
         ans: 'C',
-        exp: 'The course focuses on building production-ready AI-powered systems and Agentic workflows.'
+        exp: 'The course focuses on AI, LLMs, AI Agents, Agentic AI, workflows, HLD, and solving real-world business problems using AI.'
       },
       {
-        q: 'Which career milestone comes immediately after "AI User" in the course career roadmap?',
+        q: 'Which statement is most accurate?',
         options: [
-          'A. Workflow Builder',
-          'B. Prompt Engineer',
-          'C. AI Agent Developer',
-          'D. Agentic Architect'
+          'A. AI will replace all humans',
+          'B. Humans will replace AI',
+          'C. People using AI will replace people not using AI',
+          'D. AI will stop software development'
+        ],
+        ans: 'C',
+        exp: 'AI acts as a productivity multiplier. Individuals who effectively leverage AI can perform work faster and more efficiently.'
+      },
+      {
+        q: 'During the Industrial Revolution, machines mainly:',
+        options: [
+          'A. Removed farming completely',
+          'B. Reduced productivity',
+          'C. Multiplied human productivity',
+          'D. Replaced all workers'
+        ],
+        ans: 'C',
+        exp: 'Machines helped farmers cultivate significantly more land, increasing output rather than eliminating farming.'
+      },
+      {
+        q: 'What is Artificial Intelligence (AI)?',
+        options: [
+          'A. A faster computer',
+          'B. Software that can make decisions based on data',
+          'C. A database system',
+          'D. A programming language'
         ],
         ans: 'B',
+        exp: 'AI systems analyze data and make predictions or decisions, unlike traditional software that follows fixed rules.'
+      },
+      {
+        q: 'Which of the following is an example of AI?',
+        options: [
+          'A. Calculator',
+          'B. Notepad',
+          'C. Face Unlock on a smartphone',
+          'D. Paint'
+        ],
+        ans: 'C',
+        exp: 'Face Unlock uses machine learning and computer vision to recognize faces and authenticate users.'
+      },
+      {
+        q: 'Why is a calculator generally NOT considered AI?',
+        options: [
+          'A. It uses electricity',
+          'B. It follows fixed rules and does not learn',
+          'C. It is too small',
+          'D. It has no screen'
+        ],
+        ans: 'B',
+        exp: 'Calculators execute predefined mathematical operations and do not learn from data or experience.'
+      },
+      {
+        q: 'What is the correct formula for traditional software?',
+        options: [
+          'A. Input + Output = Rules',
+          'B. Input + Rules = Output',
+          'C. Data + AI = Output',
+          'D. Input + AI = Software'
+        ],
+        ans: 'B',
+        exp: 'Developers explicitly define the rules, and software follows those rules to generate outputs.'
+      },
+      {
+        q: 'What is the correct formula for Machine Learning?',
+        options: [
+          'A. Input + Output = Rules',
+          'B. Input + Rules = Output',
+          'C. Rules + Output = Input',
+          'D. AI + Data = Hardware'
+        ],
+        ans: 'A',
+        exp: 'Machine learning algorithms learn the underlying rules by analyzing input and expected output examples.'
+      },
+      {
+        q: 'Which technology creates new content such as text, images, audio, and code?',
+        options: [
+          'A. SQL',
+          'B. Operating System',
+          'C. Generative AI',
+          'D. Firewall'
+        ],
+        ans: 'C',
+        exp: 'Generative AI can generate original content including emails, code, images, videos, and documents.'
+      },
+      {
+        q: 'Which is an example of Generative AI?',
+        options: [
+          'A. Google Maps Navigation',
+          'B. ChatGPT generating an email',
+          'C. Calculator solving 2+2',
+          'D. Hard Disk storing files'
+        ],
+        ans: 'B',
+        exp: 'Generating new content is the core capability of Generative AI systems.'
+      },
+      {
+        q: 'What is the best way to describe an LLM?',
+        options: [
+          'A. A database',
+          'B. A browser',
+          'C. A brain that can reason and generate content',
+          'D. A hard disk'
+        ],
+        ans: 'C',
+        exp: 'Large Language Models process information, understand context, and generate responses.'
+      },
+      {
+        q: 'What is the main difference between an LLM and an AI Agent?',
+        options: [
+          'A. No difference',
+          'B. LLM thinks; Agent thinks and acts',
+          'C. Agent only stores data',
+          'D. LLM is hardware'
+        ],
+        ans: 'B',
+        exp: 'An LLM generates responses. An AI Agent can additionally use tools, APIs, databases, and workflows to perform actions.'
+      },
+      {
+        q: 'Which of the following is an example of Agentic AI?',
+        options: [
+          'A. ChatGPT answering a question',
+          'B. A calculator performing arithmetic',
+          'C. An AI system that searches flights, compares prices, books tickets, and emails confirmation automatically',
+          'D. Microsoft Word opening a document'
+        ],
+        ans: 'C',
+        exp: 'Agentic AI performs multi-step tasks using reasoning, tools, and automation with minimal human intervention.'
+      },
+      {
+        q: 'Which level comes immediately after "AI User" in the career roadmap?',
+        options: [
+          'A. AI Founder',
+          'B. Agentic Architect',
+          'C. Prompt Engineer',
+          'D. AI Agent Developer'
+        ],
+        ans: 'C',
         exp: 'The roadmap flows: AI User -> Prompt Engineer -> Workflow Builder -> AI Agent Developer -> Agentic Architect.'
       },
       {
-        q: 'What characterizes Agentic AI compared to standard Generative AI?',
+        q: 'What is the most important mindset after completing this course?',
         options: [
-          'A. It runs on local CPUs only',
-          'B. It performs actions, uses tools, and evaluates progress autonomously',
-          'C. It only generates plain text responses without APIs',
-          'D. It requires constant user prompts for every single action'
+          'A. I need a certificate only',
+          'B. AI will do everything for me',
+          'C. I can solve real-world problems using AI',
+          'D. I no longer need to learn technology'
         ],
-        ans: 'B',
-        exp: 'Agentic AI uses autonomous loops, planning, reflection, and external tools to complete tasks with minimal user intervention.'
+        ans: 'C',
+        exp: 'Organizations pay for problem-solving capabilities, automation skills, and business value—not merely certificates.'
       }
     ]
   },
