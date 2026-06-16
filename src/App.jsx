@@ -2,18 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { parseQuizMarkdown } from './utils/quizParser';
 import QuizCard from './components/QuizCard';
 import ClassWorkspace from './components/ClassWorkspace';
-import { Search, GraduationCap, RefreshCw, ArrowLeft, Download } from 'lucide-react';
+import { Search, GraduationCap, RefreshCw, ArrowLeft, Download, BookOpen } from 'lucide-react';
+import TerminologyView from './components/TerminologyView';
 
 export default function App() {
   const [manifest, setManifest] = useState([]);
   const [history, setHistory] = useState({});
   const [activeQuiz, setActiveQuiz] = useState(null);
   const [questions, setQuestions] = useState([]);
-  const [view, setView] = useState('dashboard'); // 'dashboard', 'workspace'
+  const [view, setView] = useState('dashboard'); // 'dashboard', 'workspace', 'classes', 'terminology'
   const [filterTopic, setFilterTopic] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [viewBeforeTerminology, setViewBeforeTerminology] = useState('dashboard');
+
+  const handleOpenTerminology = () => {
+    setViewBeforeTerminology(view);
+    setView('terminology');
+  };
+
+  const handleCloseTerminology = () => {
+    setView(viewBeforeTerminology);
+  };
 
   // Load manifest on mount
   useEffect(() => {
@@ -150,6 +161,24 @@ export default function App() {
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <button 
+              onClick={handleOpenTerminology}
+              className="btn-scaler btn-scaler-secondary"
+              style={{ 
+                padding: '6px 14px', 
+                fontSize: '0.78rem', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '6px',
+                border: '1px solid var(--color-primary)',
+                color: 'var(--color-primary)',
+                backgroundColor: 'transparent',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              <BookOpen size={13} /> Course Terminology
+            </button>
             <a 
               href="/syllabus.pdf"
               download="Agentic_AI_Course_Syllabus.pdf"
@@ -384,6 +413,12 @@ export default function App() {
                 onBack={handleBackToDashboard}
                 onNavigateQuiz={handleSelectQuiz}
                 onSubmitAnswer={handleSubmitQuizAnswer}
+              />
+            )}
+
+            {view === 'terminology' && (
+              <TerminologyView 
+                onBack={handleCloseTerminology}
               />
             )}
           </>
