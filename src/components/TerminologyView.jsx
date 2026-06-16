@@ -1,6 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { 
   ArrowLeft, 
+  ArrowRight,
+  ArrowDown,
   Search, 
   BookOpen, 
   Layers, 
@@ -660,7 +662,7 @@ const ConvergentLayout = ({ inputs, processNode, outputNode }) => {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px', padding: '10px 0', minWidth: '600px' }}>
       {/* Inputs Column */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', flex: 1, flexShrink: 0, alignItems: 'center' }}>
         {inputs.map((input, idx) => (
           <div key={idx} className="flow-node-hover" style={{
             backgroundColor: '#f8fafc',
@@ -671,16 +673,32 @@ const ConvergentLayout = ({ inputs, processNode, outputNode }) => {
             fontWeight: '700',
             color: '#334155',
             textAlign: 'center',
-            boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+            boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+            flexShrink: 0,
+            width: 'fit-content',
+            minWidth: 'max-content',
+            whiteSpace: 'nowrap'
           }}>
-            {input}
+            {stripEmojis(input)}
           </div>
         ))}
       </div>
       
-      {/* Connectors */}
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <span style={{ color: '#3b82f6', fontSize: '1.3rem', fontWeight: 'bold' }}>➔</span>
+      {/* Connector */}
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        width: '32px', 
+        height: '32px', 
+        borderRadius: '50%', 
+        backgroundColor: '#eff6ff', 
+        border: '1px solid #bfdbfe', 
+        color: '#2563eb', 
+        flexShrink: 0,
+        boxShadow: '0 2px 4px rgba(37, 99, 235, 0.06)'
+      }}>
+        <ArrowRight size={14} />
       </div>
 
       {/* Middle Process Node */}
@@ -695,13 +713,31 @@ const ConvergentLayout = ({ inputs, processNode, outputNode }) => {
         textAlign: 'center',
         boxShadow: '0 4px 6px -1px rgba(26, 115, 232, 0.1)',
         minWidth: '130px',
-        flex: 1.2
+        flex: 1.2,
+        flexShrink: 0,
+        width: 'fit-content',
+        minWidth: 'max-content',
+        whiteSpace: 'nowrap'
       }}>
-        {processNode}
+        {stripEmojis(processNode)}
       </div>
 
       {/* Connector */}
-      <div style={{ color: '#3b82f6', fontSize: '1.3rem', fontWeight: 'bold' }}>➔</div>
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        width: '32px', 
+        height: '32px', 
+        borderRadius: '50%', 
+        backgroundColor: '#eff6ff', 
+        border: '1px solid #bfdbfe', 
+        color: '#2563eb', 
+        flexShrink: 0,
+        boxShadow: '0 2px 4px rgba(37, 99, 235, 0.06)'
+      }}>
+        <ArrowRight size={14} />
+      </div>
 
       {/* Output Node */}
       <div className="flow-node-hover" style={{
@@ -714,9 +750,13 @@ const ConvergentLayout = ({ inputs, processNode, outputNode }) => {
         color: '#064e3b',
         textAlign: 'center',
         boxShadow: '0 4px 6px -1px rgba(16, 185, 129, 0.1)',
-        flex: 1.2
+        flex: 1.2,
+        flexShrink: 0,
+        width: 'fit-content',
+        minWidth: 'max-content',
+        whiteSpace: 'nowrap'
       }}>
-        {outputNode}
+        {stripEmojis(outputNode)}
       </div>
     </div>
   );
@@ -736,15 +776,33 @@ const BranchingMergeLayout = ({ startNode, branches, endNode }) => {
         color: '#334155',
         textAlign: 'center',
         boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
-        minWidth: '160px'
+        minWidth: '160px',
+        flexShrink: 0,
+        width: 'fit-content',
+        minWidth: 'max-content',
+        whiteSpace: 'nowrap'
       }}>
-        {startNode}
+        {stripEmojis(startNode)}
       </div>
 
-      <div style={{ color: '#3b82f6', fontSize: '1.1rem', margin: '-6px 0' }}>↓</div>
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        width: '28px', 
+        height: '28px', 
+        borderRadius: '50%', 
+        backgroundColor: '#eff6ff', 
+        border: '1px solid #bfdbfe', 
+        color: '#2563eb', 
+        margin: '-4px 0',
+        flexShrink: 0
+      }}>
+        <ArrowDown size={13} />
+      </div>
 
       {/* Branches row */}
-      <div style={{ display: 'flex', justifyContent: 'space-around', gap: '20px', width: '100%' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-around', gap: '20px', width: '100%', flexShrink: 0 }}>
         {branches.map((branch, idx) => (
           <div key={idx} style={{
             display: 'flex',
@@ -756,11 +814,16 @@ const BranchingMergeLayout = ({ startNode, branches, endNode }) => {
             borderRadius: '10px',
             padding: '14px',
             textAlign: 'center',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.02)'
+            boxShadow: '0 2px 4px rgba(0,0,0,0.02)',
+            flexShrink: 0
           }}>
             {branch.steps.map((step, sIdx) => (
               <React.Fragment key={sIdx}>
-                {sIdx > 0 && <div style={{ color: '#3b82f6', fontSize: '0.9rem', margin: '4px 0' }}>↓</div>}
+                {sIdx > 0 && (
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', margin: '4px 0', flexShrink: 0 }}>
+                    <ArrowDown size={12} />
+                  </div>
+                )}
                 <span className="flow-node-hover" style={{ 
                   fontSize: '0.78rem', 
                   fontWeight: '700', 
@@ -769,9 +832,12 @@ const BranchingMergeLayout = ({ startNode, branches, endNode }) => {
                   border: '1px solid #d0dbe5',
                   padding: '6px 10px',
                   borderRadius: '6px',
-                  width: '90%'
+                  flexShrink: 0,
+                  width: 'fit-content',
+                  minWidth: 'max-content',
+                  whiteSpace: 'nowrap'
                 }}>
-                  {step}
+                  {stripEmojis(step)}
                 </span>
               </React.Fragment>
             ))}
@@ -781,7 +847,21 @@ const BranchingMergeLayout = ({ startNode, branches, endNode }) => {
 
       {endNode && (
         <>
-          <div style={{ color: '#3b82f6', fontSize: '1.1rem', margin: '-6px 0' }}>↓</div>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            width: '28px', 
+            height: '28px', 
+            borderRadius: '50%', 
+            backgroundColor: '#eff6ff', 
+            border: '1px solid #bfdbfe', 
+            color: '#2563eb', 
+            margin: '-4px 0',
+            flexShrink: 0
+          }}>
+            <ArrowDown size={13} />
+          </div>
           {/* End Node */}
           <div className="flow-node-hover" style={{
             backgroundColor: '#ecfdf4',
@@ -793,9 +873,13 @@ const BranchingMergeLayout = ({ startNode, branches, endNode }) => {
             color: '#064e3b',
             textAlign: 'center',
             boxShadow: '0 2px 4px rgba(0,0,0,0.02)',
-            minWidth: '180px'
+            minWidth: '180px',
+            flexShrink: 0,
+            width: 'fit-content',
+            minWidth: 'max-content',
+            whiteSpace: 'nowrap'
           }}>
-            {endNode}
+            {stripEmojis(endNode)}
           </div>
         </>
       )}
@@ -807,10 +891,10 @@ const OutlierLayout = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', padding: '10px 0' }}>
       {/* Stream row */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', justifyContent: 'center' }}>
-        <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Data Stream:</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', justifyContent: 'center', flexShrink: 0 }}>
+        <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.05em', flexShrink: 0 }}>Data Stream:</span>
         {['$30k', '$35k', '$40k'].map((val, idx) => (
-          <div key={idx} className="flow-node-hover" style={{ backgroundColor: '#ffffff', border: '1.5px solid #cbd5e1', borderRadius: '6px', padding: '8px 12px', fontSize: '0.8rem', color: '#475569', fontWeight: '700' }}>
+          <div key={idx} className="flow-node-hover" style={{ backgroundColor: '#ffffff', border: '1.5px solid #cbd5e1', borderRadius: '6px', padding: '8px 12px', fontSize: '0.8rem', color: '#475569', fontWeight: '700', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>
             {val}
           </div>
         ))}
@@ -823,16 +907,35 @@ const OutlierLayout = () => {
           fontWeight: '800',
           color: '#991b1b',
           boxShadow: '0 0 8px rgba(239, 68, 68, 0.15)',
-          cursor: 'default'
+          cursor: 'default',
+          flexShrink: 0,
+          width: 'fit-content',
+          minWidth: 'max-content',
+          whiteSpace: 'nowrap'
         }}>
           $10M (Outlier)
         </div>
-        <div style={{ backgroundColor: '#ffffff', border: '1.5px solid #cbd5e1', borderRadius: '6px', padding: '8px 12px', fontSize: '0.8rem', color: '#475569', fontWeight: '700' }}>
+        <div style={{ backgroundColor: '#ffffff', border: '1.5px solid #cbd5e1', borderRadius: '6px', padding: '8px 12px', fontSize: '0.8rem', color: '#475569', fontWeight: '700', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>
           $45k
         </div>
       </div>
 
-      <div style={{ color: '#ef4444', fontSize: '1.2rem', margin: '-10px 0' }}>↓</div>
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        width: '32px', 
+        height: '32px', 
+        borderRadius: '50%', 
+        backgroundColor: '#fee2e2', 
+        border: '1px solid #fca5a5', 
+        color: '#ef4444', 
+        margin: '-6px 0',
+        flexShrink: 0,
+        boxShadow: '0 2px 4px rgba(239, 68, 68, 0.06)'
+      }}>
+        <ArrowDown size={14} />
+      </div>
 
       {/* Action Node */}
       <div className="flow-node-hover" style={{
@@ -844,12 +947,13 @@ const OutlierLayout = () => {
         fontWeight: '700',
         color: '#92400e',
         textAlign: 'center',
-        maxWidth: '320px'
+        maxWidth: '320px',
+        flexShrink: 0
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginBottom: '6px', color: '#b45309', fontWeight: '800', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '0.03em' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginBottom: '6px', color: '#b45309', fontWeight: '800', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '0.03em', flexShrink: 0 }}>
           <AlertTriangle size={13} /> Action Required
         </div>
-        <span style={{ fontWeight: '500', fontSize: '0.78rem', color: '#b45309', display: 'block', lineHeight: '1.4' }}>
+        <span style={{ fontWeight: '500', fontSize: '0.78rem', color: '#b45309', display: 'block', lineHeight: '1.4', flexShrink: 0 }}>
           Remove, Cap, or Investigate the outlier to prevent skewing model weights.
         </span>
       </div>
@@ -861,35 +965,41 @@ const GpuVsCpuLayout = () => {
   return (
     <div style={{ display: 'flex', gap: '24px', width: '100%', flexWrap: 'wrap', minWidth: '600px' }}>
       {/* CPU Column */}
-      <div style={{ flex: 1, border: '1.5px solid var(--border-color)', borderRadius: '10px', padding: '16px', backgroundColor: '#f8fafc' }}>
-        <h5 style={{ fontSize: '0.82rem', fontWeight: '800', color: '#475569', marginBottom: '14px', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <div style={{ flex: 1, border: '1.5px solid var(--border-color)', borderRadius: '10px', padding: '16px', backgroundColor: '#f8fafc', flexShrink: 0 }}>
+        <h5 style={{ fontSize: '0.82rem', fontWeight: '800', color: '#475569', marginBottom: '14px', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
           <Cpu size={14} /> CPU (Sequential)
         </h5>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center', flexShrink: 0 }}>
           {['Task 1', 'Task 2', 'Task 3'].map((task, idx) => (
             <React.Fragment key={idx}>
-              {idx > 0 && <div style={{ color: '#94a3b8', fontSize: '0.78rem' }}>↓</div>}
-              <div className="flow-node-hover" style={{ backgroundColor: '#ffffff', border: '1.5px solid #cbd5e1', padding: '8px 12px', borderRadius: '6px', fontSize: '0.78rem', width: '85%', textAlign: 'center', fontWeight: '700', color: '#475569' }}>{task}</div>
+              {idx > 0 && (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8', margin: '2px 0', flexShrink: 0 }}>
+                  <ArrowDown size={12} />
+                </div>
+              )}
+              <div className="flow-node-hover" style={{ backgroundColor: '#ffffff', border: '1.5px solid #cbd5e1', padding: '8px 12px', borderRadius: '6px', fontSize: '0.78rem', width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap', textAlign: 'center', fontWeight: '700', color: '#475569', flexShrink: 0 }}>{task}</div>
             </React.Fragment>
           ))}
-          <div style={{ fontSize: '0.7rem', color: '#64748b', marginTop: '10px', fontWeight: '500' }}>
+          <div style={{ fontSize: '0.7rem', color: '#64748b', marginTop: '10px', fontWeight: '500', flexShrink: 0 }}>
             Slow for massive matrix algebra
           </div>
         </div>
       </div>
 
       {/* GPU Column */}
-      <div style={{ flex: 1, border: '2.5px solid var(--color-primary)', borderRadius: '10px', padding: '16px', backgroundColor: '#f0f7ff' }}>
-        <h5 style={{ fontSize: '0.82rem', fontWeight: '800', color: 'var(--color-primary)', marginBottom: '14px', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <div style={{ flex: 1, border: '2.5px solid var(--color-primary)', borderRadius: '10px', padding: '16px', backgroundColor: '#f0f7ff', flexShrink: 0 }}>
+        <h5 style={{ fontSize: '0.82rem', fontWeight: '800', color: 'var(--color-primary)', marginBottom: '14px', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
           <Zap size={14} /> GPU (Parallel)
         </h5>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
-          <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', width: '100%' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center', flexShrink: 0 }}>
+          <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', width: '100%', flexShrink: 0 }}>
             {['Task 1', 'Task 2', 'Task 3'].map((task, idx) => (
-              <div key={idx} className="flow-node-hover" style={{ backgroundColor: '#ffffff', border: '1.5px solid #bfdbfe', padding: '6px 8px', borderRadius: '6px', fontSize: '0.72rem', flex: 1, textAlign: 'center', fontWeight: '700', color: '#1e3a8a' }}>{task}</div>
+              <div key={idx} className="flow-node-hover" style={{ backgroundColor: '#ffffff', border: '1.5px solid #bfdbfe', padding: '6px 8px', borderRadius: '6px', fontSize: '0.72rem', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap', textAlign: 'center', fontWeight: '700', color: '#1e3a8a' }}>{task}</div>
             ))}
           </div>
-          <div style={{ color: '#3b82f6', fontSize: '0.78rem' }}>↓</div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', margin: '2px 0', flexShrink: 0 }}>
+            <ArrowDown size={12} />
+          </div>
           <div className="flow-node-hover" style={{
             backgroundColor: '#1e3a8a',
             color: '#ffffff',
@@ -897,13 +1007,18 @@ const GpuVsCpuLayout = () => {
             borderRadius: '8px',
             fontSize: '0.78rem',
             fontWeight: '800',
-            width: '90%',
-            textAlign: 'center'
+            textAlign: 'center',
+            flexShrink: 0,
+            width: 'fit-content',
+            minWidth: 'max-content',
+            whiteSpace: 'nowrap'
           }}>
             Thousands of Parallel Cores
           </div>
-          <div style={{ color: '#3b82f6', fontSize: '0.78rem' }}>↓</div>
-          <div className="flow-node-hover" style={{ backgroundColor: '#10b981', color: '#ffffff', padding: '8px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '800', width: '80%', textAlign: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', margin: '2px 0', flexShrink: 0 }}>
+            <ArrowDown size={12} />
+          </div>
+          <div className="flow-node-hover" style={{ backgroundColor: '#10b981', color: '#ffffff', padding: '8px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '800', textAlign: 'center', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>
             Simultaneous Output
           </div>
         </div>
@@ -916,28 +1031,32 @@ const ParallelismLayout = ({ type }) => {
   const isData = type === 'data';
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', minWidth: '600px' }}>
-      <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: '700', textAlign: 'center', textTransform: 'uppercase', letterSpacing: '0.03em' }}>
+      <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: '700', textAlign: 'center', textTransform: 'uppercase', letterSpacing: '0.03em', flexShrink: 0 }}>
         {isData ? 'Splitting batches across GPU copies' : 'Splitting model weights across GPU layers'}
       </div>
-      <div style={{ display: 'flex', gap: '16px', width: '100%' }}>
-        <div style={{ flex: 1, backgroundColor: '#f0f7ff', border: '1.5px solid #bfdbfe', borderRadius: '8px', padding: '14px', textAlign: 'center' }}>
-          <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#1e3a8a', marginBottom: '8px' }}>GPU 1</div>
-          <div style={{ backgroundColor: '#ffffff', border: '1px solid #d0dbe5', borderRadius: '6px', padding: '6px', fontSize: '0.75rem', color: '#334155', fontWeight: '700' }}>
+      <div style={{ display: 'flex', gap: '16px', width: '100%', flexShrink: 0 }}>
+        <div style={{ flex: 1, backgroundColor: '#f0f7ff', border: '1.5px solid #bfdbfe', borderRadius: '8px', padding: '14px', textAlign: 'center', flexShrink: 0 }}>
+          <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#1e3a8a', marginBottom: '8px', flexShrink: 0 }}>GPU 1</div>
+          <div style={{ backgroundColor: '#ffffff', border: '1px solid #d0dbe5', borderRadius: '6px', padding: '6px', fontSize: '0.75rem', color: '#334155', fontWeight: '700', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap', margin: '0 auto' }}>
             {isData ? 'Model Copy' : 'Layers 1 - 10'}
           </div>
-          <div style={{ color: '#3b82f6', fontSize: '0.7rem', margin: '4px 0' }}>➔</div>
-          <div className="flow-node-hover" style={{ fontSize: '0.72rem', color: '#1e3a8a', fontWeight: '700', backgroundColor: '#ffffff', padding: '6px', borderRadius: '4px', border: '1px solid #bfdbfe' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', margin: '6px 0', flexShrink: 0 }}>
+            <ArrowDown size={12} />
+          </div>
+          <div className="flow-node-hover" style={{ fontSize: '0.72rem', color: '#1e3a8a', fontWeight: '700', backgroundColor: '#ffffff', padding: '6px', borderRadius: '4px', border: '1px solid #bfdbfe', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap', margin: '0 auto' }}>
             {isData ? 'Processes Batch A' : 'Forward Pass Part 1'}
           </div>
         </div>
         
-        <div style={{ flex: 1, backgroundColor: '#f0f7ff', border: '1.5px solid #bfdbfe', borderRadius: '8px', padding: '14px', textAlign: 'center' }}>
-          <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#1e3a8a', marginBottom: '8px' }}>GPU 2</div>
-          <div style={{ backgroundColor: '#ffffff', border: '1px solid #d0dbe5', borderRadius: '6px', padding: '6px', fontSize: '0.75rem', color: '#334155', fontWeight: '700' }}>
+        <div style={{ flex: 1, backgroundColor: '#f0f7ff', border: '1.5px solid #bfdbfe', borderRadius: '8px', padding: '14px', textAlign: 'center', flexShrink: 0 }}>
+          <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#1e3a8a', marginBottom: '8px', flexShrink: 0 }}>GPU 2</div>
+          <div style={{ backgroundColor: '#ffffff', border: '1px solid #d0dbe5', borderRadius: '6px', padding: '6px', fontSize: '0.75rem', color: '#334155', fontWeight: '700', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap', margin: '0 auto' }}>
             {isData ? 'Model Copy' : 'Layers 11 - 20'}
           </div>
-          <div style={{ color: '#3b82f6', fontSize: '0.7rem', margin: '4px 0' }}>➔</div>
-          <div className="flow-node-hover" style={{ fontSize: '0.72rem', color: '#1e3a8a', fontWeight: '700', backgroundColor: '#ffffff', padding: '6px', borderRadius: '4px', border: '1px solid #bfdbfe' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', margin: '6px 0', flexShrink: 0 }}>
+            <ArrowDown size={12} />
+          </div>
+          <div className="flow-node-hover" style={{ fontSize: '0.72rem', color: '#1e3a8a', fontWeight: '700', backgroundColor: '#ffffff', padding: '6px', borderRadius: '4px', border: '1px solid #bfdbfe', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap', margin: '0 auto' }}>
             {isData ? 'Processes Batch B' : 'Forward Pass Part 2'}
           </div>
         </div>
@@ -950,30 +1069,30 @@ const BackpropLayout = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', minWidth: '600px' }}>
       {/* Forward Pass */}
-      <div style={{ border: '1.5px solid #cbd5e1', borderRadius: '8px', padding: '14px', backgroundColor: '#f8fafc' }}>
-        <div style={{ fontSize: '0.75rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px', letterSpacing: '0.03em' }}>
+      <div style={{ border: '1.5px solid #cbd5e1', borderRadius: '8px', padding: '14px', backgroundColor: '#f8fafc', flexShrink: 0 }}>
+        <div style={{ fontSize: '0.75rem', fontWeight: '800', color: '#475569', textTransform: 'uppercase', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px', letterSpacing: '0.03em', flexShrink: 0 }}>
           <Play size={12} /> Forward Pass
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', gap: '10px' }}>
-          <span className="flow-node-hover" style={{ backgroundColor: '#ffffff', border: '1px solid #cbd5e1', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#334155' }}>Features</span>
-          <span style={{ color: '#94a3b8' }}>➔</span>
-          <span className="flow-node-hover" style={{ backgroundColor: '#dbeafe', border: '1.5px solid #3b82f6', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#1d4ed8' }}>Model</span>
-          <span style={{ color: '#94a3b8' }}>➔</span>
-          <span className="flow-node-hover" style={{ backgroundColor: '#fee2e2', border: '1.5px solid #f87171', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#b91c1c' }}>Loss (Error)</span>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', gap: '10px', flexShrink: 0 }}>
+          <span className="flow-node-hover" style={{ backgroundColor: '#ffffff', border: '1px solid #cbd5e1', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#334155', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>Features</span>
+          <ArrowRight size={14} style={{ color: '#94a3b8', flexShrink: 0 }} />
+          <span className="flow-node-hover" style={{ backgroundColor: '#dbeafe', border: '1.5px solid #3b82f6', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#1d4ed8', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>Model</span>
+          <ArrowRight size={14} style={{ color: '#94a3b8', flexShrink: 0 }} />
+          <span className="flow-node-hover" style={{ backgroundColor: '#fee2e2', border: '1.5px solid #f87171', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#b91c1c', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>Loss (Error)</span>
         </div>
       </div>
 
       {/* Backward Pass */}
-      <div style={{ border: '1.5px solid #bfdbfe', borderRadius: '8px', padding: '14px', backgroundColor: '#f0f7ff' }}>
-        <div style={{ fontSize: '0.75rem', fontWeight: '800', color: '#1e3a8a', textTransform: 'uppercase', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px', letterSpacing: '0.03em' }}>
+      <div style={{ border: '1.5px solid #bfdbfe', borderRadius: '8px', padding: '14px', backgroundColor: '#f0f7ff', flexShrink: 0 }}>
+        <div style={{ fontSize: '0.75rem', fontWeight: '800', color: '#1e3a8a', textTransform: 'uppercase', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px', letterSpacing: '0.03em', flexShrink: 0 }}>
           <RefreshCw size={12} /> Backward Pass
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', gap: '10px' }}>
-          <span className="flow-node-hover" style={{ backgroundColor: '#fee2e2', border: '1.5px solid #f87171', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#b91c1c' }}>Loss (Error)</span>
-          <span style={{ color: '#3b82f6' }}>➔</span>
-          <span className="flow-node-hover" style={{ backgroundColor: '#fef3c7', border: '1.5px solid #f59e0b', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#b45309' }}>Gradients</span>
-          <span style={{ color: '#3b82f6' }}>➔</span>
-          <span className="flow-node-hover" style={{ backgroundColor: '#dcfce7', border: '1.5px solid #10b981', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#15803d' }}>Update Weights</span>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', gap: '10px', flexShrink: 0 }}>
+          <span className="flow-node-hover" style={{ backgroundColor: '#fee2e2', border: '1.5px solid #f87171', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#b91c1c', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>Loss (Error)</span>
+          <ArrowRight size={14} style={{ color: '#3b82f6', flexShrink: 0 }} />
+          <span className="flow-node-hover" style={{ backgroundColor: '#fef3c7', border: '1.5px solid #f59e0b', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#b45309', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>Gradients</span>
+          <ArrowRight size={14} style={{ color: '#3b82f6', flexShrink: 0 }} />
+          <span className="flow-node-hover" style={{ backgroundColor: '#dcfce7', border: '1.5px solid #10b981', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', color: '#15803d', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>Update Weights</span>
         </div>
       </div>
     </div>
@@ -985,7 +1104,7 @@ const LinearFlowLayout = ({ nodes, labels }) => {
     <div style={{ 
       display: 'flex', 
       alignItems: 'center', 
-      gap: '12px', 
+      gap: '16px', 
       padding: '16px 8px', 
       overflowX: 'auto',
       width: '100%',
@@ -1004,27 +1123,35 @@ const LinearFlowLayout = ({ nodes, labels }) => {
                 backgroundColor: idx === 0 ? '#f8fafc' : (isLast ? '#ecfdf5' : '#f0f7ff'),
                 border: `1.5px solid ${idx === 0 ? '#cbd5e1' : (isLast ? '#10b981' : '#3b82f6')}`,
                 borderRadius: '8px',
-                padding: '10px 14px',
+                padding: '12px 18px',
                 fontSize: '0.78rem',
                 fontWeight: '700',
                 color: idx === 0 ? '#475569' : (isLast ? '#064e3b' : '#1e3a8a'),
                 boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
                 whiteSpace: 'nowrap',
                 textAlign: 'center',
-                minWidth: '110px'
+                flexShrink: 0,
+                width: 'fit-content',
+                minWidth: 'max-content'
               }}
             >
-              {node}
+              {stripEmojis(node)}
             </div>
 
             {/* Connecting Arrow */}
             {!isLast && (
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', minWidth: '60px' }}>
-                <span style={{ color: '#3b82f6', fontSize: '1.2rem', fontWeight: 'bold' }}>➔</span>
-                {arrowLabel && (
+              <div style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                gap: '6px',
+                minWidth: arrowLabel ? '90px' : '50px',
+                padding: '0 4px',
+                flexShrink: 0 
+              }}>
+                {arrowLabel ? (
                   <span style={{
-                    position: 'absolute',
-                    top: '-16px',
                     fontSize: '0.62rem',
                     fontWeight: '800',
                     color: '#2563eb',
@@ -1033,11 +1160,29 @@ const LinearFlowLayout = ({ nodes, labels }) => {
                     borderRadius: '4px',
                     whiteSpace: 'nowrap',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.03em'
+                    letterSpacing: '0.03em',
+                    flexShrink: 0,
+                    lineHeight: '1.2'
                   }}>
                     {stripEmojis(arrowLabel)}
                   </span>
+                ) : (
+                  <div style={{ height: '14px' }} />
                 )}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '50%',
+                  backgroundColor: '#eff6ff',
+                  border: '1px solid #bfdbfe',
+                  color: '#2563eb',
+                  flexShrink: 0
+                }}>
+                  <ArrowRight size={13} />
+                </div>
               </div>
             )}
           </React.Fragment>
@@ -1068,7 +1213,8 @@ const VerticalFlowLayout = ({ steps }) => {
                 width: '85%',
                 maxWidth: '420px',
                 boxShadow: '0 1px 2px rgba(0,0,0,0.01)',
-                position: 'relative'
+                position: 'relative',
+                flexShrink: 0
               }}
             >
               <span style={{
@@ -1081,18 +1227,34 @@ const VerticalFlowLayout = ({ steps }) => {
                 backgroundColor: idx === 0 ? '#cbd5e1' : (isLast ? '#d1e7dd' : '#dbeafe'),
                 color: idx === 0 ? '#475569' : (isLast ? '#0f5132' : '#1d4ed8'),
                 fontSize: '0.72rem',
-                fontWeight: '800'
+                fontWeight: '800',
+                flexShrink: 0
               }}>
                 {idx + 1}
               </span>
-              <span style={{ fontSize: '0.8rem', fontWeight: '700', color: '#334155' }}>
+              <span style={{ fontSize: '0.8rem', fontWeight: '700', color: '#334155', flexShrink: 0 }}>
                 {stripEmojis(step)}
               </span>
             </div>
 
             {/* Down Arrow */}
             {!isLast && (
-              <div style={{ color: '#3b82f6', fontSize: '1rem', margin: '-2px 0' }}>↓</div>
+              <div style={{ 
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '28px',
+                height: '28px',
+                borderRadius: '50%',
+                backgroundColor: '#eff6ff',
+                border: '1px solid #bfdbfe',
+                color: '#2563eb',
+                margin: '2px 0',
+                flexShrink: 0,
+                boxShadow: '0 1px 2px rgba(37, 99, 235, 0.05)'
+              }}>
+                <ArrowDown size={13} />
+              </div>
             )}
           </React.Fragment>
         );
@@ -1157,6 +1319,246 @@ const InteractiveDiagram = ({ term, diagram }) => {
         processNode='Weighted Sum: ∑(w_i * x_i) + b' 
         outputNode='Activation Function' 
       />
+    );
+  }
+
+  if (termLower === 'loss function') {
+    return (
+      <ConvergentLayout 
+        inputs={['Actual Label (Y)', 'Predicted (Y_pred)']} 
+        processNode='Loss Function' 
+        outputNode='Loss Score (Error Distance)' 
+      />
+    );
+  }
+
+  if (termLower === 'retriever') {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', minWidth: '600px' }}>
+        {/* Step 1: Query to Retriever to Docs */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', justifyContent: 'center' }}>
+          <div className="flow-node-hover" style={{ backgroundColor: '#f8fafc', border: '1.5px solid #cbd5e1', borderRadius: '8px', padding: '10px 14px', fontSize: '0.8rem', fontWeight: '700', color: '#334155', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>
+            Query (User Question)
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '28px', height: '28px', borderRadius: '50%', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', color: '#2563eb', flexShrink: 0 }}>
+            <ArrowRight size={13} />
+          </div>
+          <div className="flow-node-hover" style={{ backgroundColor: 'var(--color-primary-bg)', border: '2px solid var(--color-primary)', borderRadius: '10px', padding: '12px 18px', fontSize: '0.82rem', fontWeight: '800', color: 'var(--color-primary)', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>
+            Retriever
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '28px', height: '28px', borderRadius: '50%', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', color: '#2563eb', flexShrink: 0 }}>
+            <ArrowRight size={13} />
+          </div>
+          <div className="flow-node-hover" style={{ backgroundColor: '#ecfdf5', border: '2.5px solid #10b981', borderRadius: '10px', padding: '12px 18px', fontSize: '0.82rem', fontWeight: '800', color: '#064e3b', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>
+            Retrieved Docs
+          </div>
+        </div>
+
+        {/* Step 2: Merge Query & Docs into Generator */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', margin: '-4px 0', flexShrink: 0 }}>
+          <ArrowDown size={14} />
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}>
+            <div className="flow-node-hover" style={{ backgroundColor: '#f8fafc', border: '1.5px solid #cbd5e1', borderRadius: '8px', padding: '8px 12px', fontSize: '0.75rem', fontWeight: '700', color: '#475569', textAlign: 'center', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>
+              Original Query
+            </div>
+            <div className="flow-node-hover" style={{ backgroundColor: '#ecfdf5', border: '1.5px solid #10b981', borderRadius: '8px', padding: '8px 12px', fontSize: '0.75rem', fontWeight: '700', color: '#064e3b', textAlign: 'center', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>
+              Retrieved Docs
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '28px', height: '28px', borderRadius: '50%', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', color: '#2563eb', flexShrink: 0 }}>
+            <ArrowRight size={13} />
+          </div>
+          <div className="flow-node-hover" style={{ backgroundColor: '#fdf2f8', border: '2px solid #db2777', borderRadius: '10px', padding: '14px 20px', fontSize: '0.82rem', fontWeight: '800', color: '#9d174d', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>
+            Generator (LLM)
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '28px', height: '28px', borderRadius: '50%', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', color: '#2563eb', flexShrink: 0 }}>
+            <ArrowRight size={13} />
+          </div>
+          <div className="flow-node-hover" style={{ backgroundColor: '#f0fdf4', border: '2.5px solid #15803d', borderRadius: '10px', padding: '14px 20px', fontSize: '0.82rem', fontWeight: '800', color: '#14532d', flexShrink: 0, width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>
+            Grounded Answer
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (termLower === 'batch') {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', width: '100%', minWidth: '600px' }}>
+        {/* Start Node */}
+        <div className="flow-node-hover" style={{
+          backgroundColor: '#f8fafc',
+          border: '1.5px solid #cbd5e1',
+          borderRadius: '8px',
+          padding: '12px 18px',
+          fontSize: '0.82rem',
+          fontWeight: '700',
+          color: '#334155',
+          textAlign: 'center',
+          boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+          minWidth: '180px',
+          flexShrink: 0,
+          width: 'fit-content',
+          minWidth: 'max-content',
+          whiteSpace: 'nowrap'
+        }}>
+          Dataset: 1000 samples
+        </div>
+
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          width: '28px', 
+          height: '28px', 
+          borderRadius: '50%', 
+          backgroundColor: '#eff6ff', 
+          border: '1px solid #bfdbfe', 
+          color: '#2563eb', 
+          margin: '-4px 0',
+          flexShrink: 0
+        }}>
+          <ArrowDown size={13} />
+        </div>
+
+        {/* Batches row */}
+        <div style={{ display: 'flex', justifyContent: 'space-around', gap: '16px', width: '100%', flexShrink: 0 }}>
+          {['Batch 1 (100 samples)', 'Batch 2 (100 samples)', 'Batch 10 (100 samples)'].map((batchText, idx) => (
+            <div key={idx} style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              flex: 1,
+              backgroundColor: '#f8fafc',
+              border: '1.5px solid #e2e8f0',
+              borderRadius: '10px',
+              padding: '14px',
+              textAlign: 'center',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.02)',
+              flexShrink: 0
+            }}>
+              <span className="flow-node-hover" style={{ 
+                fontSize: '0.78rem', 
+                fontWeight: '700', 
+                color: '#334155',
+                backgroundColor: '#ffffff',
+                border: '1px solid #cbd5e1',
+                padding: '6px 10px',
+                borderRadius: '6px',
+                flexShrink: 0,
+                width: 'fit-content',
+                minWidth: 'max-content',
+                whiteSpace: 'nowrap'
+              }}>
+                {batchText}
+              </span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', margin: '6px 0', flexShrink: 0 }}>
+                <ArrowDown size={12} />
+              </div>
+              <span className="flow-node-hover" style={{ 
+                fontSize: '0.75rem', 
+                fontWeight: '700', 
+                color: '#1e3a8a',
+                backgroundColor: '#eff6ff',
+                border: '1.5px solid #bfdbfe',
+                padding: '6px 10px',
+                borderRadius: '6px',
+                flexShrink: 0,
+                width: 'fit-content',
+                minWidth: 'max-content',
+                whiteSpace: 'nowrap'
+              }}>
+                Update Weights
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          width: '28px', 
+          height: '28px', 
+          borderRadius: '50%', 
+          backgroundColor: '#ecfdf5', 
+          border: '1px solid #a7f3d0', 
+          color: '#059669', 
+          margin: '-4px 0',
+          flexShrink: 0
+        }}>
+          <ArrowDown size={13} />
+        </div>
+
+        {/* End Node */}
+        <div className="flow-node-hover" style={{
+          backgroundColor: '#ecfdf4',
+          border: '2px solid #10b981',
+          borderRadius: '10px',
+          padding: '12px 18px',
+          fontSize: '0.82rem',
+          fontWeight: '800',
+          color: '#064e3b',
+          textAlign: 'center',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.02)',
+          flexShrink: 0,
+          width: 'fit-content',
+          minWidth: 'max-content',
+          whiteSpace: 'nowrap'
+        }}>
+          Complete 10 batches = 1 Epoch
+        </div>
+      </div>
+    );
+  }
+
+  if (termLower === 'attention mechanism') {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', padding: '10px', width: '100%', minWidth: '500px' }}>
+        <div style={{ 
+          display: 'flex', 
+          flexWrap: 'wrap', 
+          gap: '6px', 
+          justifyContent: 'center', 
+          backgroundColor: '#f8fafc', 
+          padding: '16px', 
+          borderRadius: '8px', 
+          border: '1px solid #e2e8f0', 
+          width: '100%' 
+        }}>
+          {["The", "cat", "sat", "on", "the", "mat", "because", "it", "was", "tired"].map((word, idx) => {
+            const isCat = word.toLowerCase() === 'cat';
+            const isIt = word.toLowerCase() === 'it';
+            return (
+              <span 
+                key={idx} 
+                className="flow-node-hover"
+                style={{
+                  fontSize: '0.88rem',
+                  fontWeight: isCat || isIt ? '800' : '500',
+                  color: isCat ? '#b91c1c' : (isIt ? '#2563eb' : '#475569'),
+                  backgroundColor: isCat ? '#fee2e2' : (isIt ? '#dbeafe' : 'transparent'),
+                  border: isCat ? '1px solid #f87171' : (isIt ? '1px solid #60a5fa' : '1px solid transparent'),
+                  padding: '4px 8px',
+                  borderRadius: '4px',
+                  cursor: 'default'
+                }}
+              >
+                {word}
+              </span>
+            );
+          })}
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center', backgroundColor: '#f0f7ff', border: '1.5px solid #bfdbfe', borderRadius: '8px', padding: '10px 16px', width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>
+          <span style={{ fontSize: '0.8rem', fontWeight: '800', color: '#1e3a8a' }}>Attention weight: 0.92</span>
+          <ArrowRight size={14} style={{ color: '#3b82f6' }} />
+          <span style={{ fontSize: '0.78rem', fontWeight: '600', color: '#2563eb', width: 'fit-content', minWidth: 'max-content', whiteSpace: 'nowrap' }}>Connects "it" to "cat"</span>
+        </div>
+      </div>
     );
   }
 
@@ -1247,7 +1649,6 @@ const InteractiveDiagram = ({ term, diagram }) => {
     </pre>
   );
 };
-
 
 export default function TerminologyView({ onBack }) {
   const [activeCategory, setActiveCategory] = useState('All');
