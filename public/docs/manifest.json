@@ -17,7 +17,7 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Understanding CPUs, GPUs, TPUs, VRAMs, NPUs, CUDA Cores, and NVIDIA GPU architectures.",
     "file": "day2_day_2_introduction_to_computers_ai_hardware.md",
-    "questionCount": 3
+    "questionCount": 21
   },
   {
     "id": "day3_day_3_internet_basics_apis",

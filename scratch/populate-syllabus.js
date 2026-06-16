@@ -186,37 +186,235 @@ const days = [
     description: 'Understanding CPUs, GPUs, TPUs, VRAMs, NPUs, CUDA Cores, and NVIDIA GPU architectures.',
     questions: [
       {
-        q: 'Why are GPUs preferred over CPUs for training deep learning models?',
+        q: 'What is the primary responsibility of a CPU?',
         options: [
-          'A. CPUs do not support arithmetic operations.',
-          'B. GPUs excel at parallel execution of matrix multiplications across thousands of cores.',
-          'C. GPUs have larger sequential cache systems than CPUs.',
-          'D. GPUs run single-threaded tasks faster.'
-        ],
-        ans: 'B',
-        exp: 'GPUs are designed for highly parallel matrix computations, which are the core mathematical operations in deep learning.'
-      },
-      {
-        q: 'What is the function of CUDA Cores in NVIDIA GPUs?',
-        options: [
-          'A. They compile python code into binary executables.',
-          'B. They manage browser API requests.',
-          'C. They perform parallel floating-point mathematical computations.',
-          'D. They act as central databases for storage.'
+          'A. Store files permanently',
+          'B. Display graphics only',
+          'C. Execute instructions and manage system operations',
+          'D. Train AI models only'
         ],
         ans: 'C',
-        exp: 'CUDA cores are the parallel processing units on NVIDIA GPUs responsible for executing mathematical calculations.'
+        exp: 'The CPU is the general-purpose processor that executes programs, runs operating systems, handles business logic, and coordinates other hardware components.'
       },
       {
-        q: 'Which processor is purpose-built by Google specifically for machine learning workloads?',
+        q: 'Why are GPUs preferred over CPUs for AI workloads?',
         options: [
-          'A. Central Processing Unit (CPU)',
-          'B. Tensor Processing Unit (TPU)',
-          'C. Network Processing Unit (NPU)',
-          'D. CUDA Hub'
+          'A. GPUs have larger screens',
+          'B. GPUs consume no power',
+          'C. GPUs can perform many calculations simultaneously',
+          'D. GPUs replace RAM'
+        ],
+        ans: 'C',
+        exp: 'AI involves billions of similar mathematical operations. GPUs excel at parallel processing, allowing thousands of calculations to happen simultaneously.'
+      },
+      {
+        q: 'Which statement best describes parallel processing?',
+        options: [
+          'A. Tasks executed one after another',
+          'B. Multiple tasks executed simultaneously',
+          'C. Storing data permanently',
+          'D. Compressing files'
         ],
         ans: 'B',
-        exp: 'TPUs (Tensor Processing Units) are custom ASICs developed by Google to accelerate machine learning workloads.'
+        exp: 'Parallel processing allows many calculations to run at the same time, significantly speeding up AI workloads.'
+      },
+      {
+        q: 'What is a CUDA Core?',
+        options: [
+          'A. GPU Storage Device',
+          'B. Small processing unit inside NVIDIA GPUs',
+          'C. CPU Cache Memory',
+          'D. Operating System Module'
+        ],
+        ans: 'B',
+        exp: 'CUDA Cores are the workers inside NVIDIA GPUs that perform mathematical operations in parallel.'
+      },
+      {
+        q: 'Why is CUDA important for AI?',
+        options: [
+          'A. It increases monitor resolution',
+          'B. It allows developers to use GPUs for general-purpose computing and AI',
+          'C. It stores model files',
+          'D. It replaces CPUs'
+        ],
+        ans: 'B',
+        exp: 'CUDA transformed GPUs from graphics-only processors into programmable devices for AI, ML, and scientific computing.'
+      },
+      {
+        q: 'Which company created CUDA?',
+        options: [
+          'A. Google',
+          'B. AMD',
+          'C. Intel',
+          'D. NVIDIA'
+        ],
+        ans: 'D',
+        exp: "CUDA (Compute Unified Device Architecture) is NVIDIA's platform for GPU computing."
+      },
+      {
+        q: 'What is VRAM?',
+        options: [
+          'A. CPU Memory',
+          'B. Permanent Storage',
+          'C. GPU Memory',
+          'D. Network Cache'
+        ],
+        ans: 'C',
+        exp: 'VRAM stores AI model weights, tensors, and intermediate calculations directly on the GPU.'
+      },
+      {
+        q: 'Why can\'t a 70B parameter model run on many laptops?',
+        options: [
+          'A. Laptop screens are too small',
+          'B. Insufficient VRAM and compute power',
+          'C. CPU is missing',
+          'D. Windows does not support AI'
+        ],
+        ans: 'B',
+        exp: 'Large models require massive GPU memory and computational resources.'
+      },
+      {
+        q: 'What does RAM primarily store?',
+        options: [
+          'A. Permanent Files',
+          'B. Temporary Working Data',
+          'C. GPU Drivers Only',
+          'D. Internet Connections'
+        ],
+        ans: 'B',
+        exp: 'RAM holds currently active applications and data while the system is running.'
+      },
+      {
+        q: 'Which memory loses its contents when power is removed?',
+        options: [
+          'A. SSD',
+          'B. HDD',
+          'C. ROM',
+          'D. RAM'
+        ],
+        ans: 'D',
+        exp: 'RAM is volatile memory, meaning its data disappears when power is lost.'
+      },
+      {
+        q: 'What is ROM?',
+        options: [
+          'A. Read Only Memory',
+          'B. Random Operations Memory',
+          'C. Runtime Optimization Module',
+          'D. Rapid Output Machine'
+        ],
+        ans: 'A',
+        exp: 'ROM stores firmware and startup instructions required for system booting.'
+      },
+      {
+        q: 'What is a TPU?',
+        options: [
+          'A. Temporary Processing Unit',
+          'B. Tensor Processing Unit',
+          'C. Training Power Unit',
+          'D. Task Processing Unit'
+        ],
+        ans: 'B',
+        exp: 'TPUs are specialized chips designed specifically for AI and machine learning workloads.'
+      },
+      {
+        q: 'Which company developed TPUs?',
+        options: [
+          'A. Microsoft',
+          'B. NVIDIA',
+          'C. Google',
+          'D. AMD'
+        ],
+        ans: 'C',
+        exp: 'Google developed TPUs to accelerate AI training and inference for products such as Gemini.'
+      },
+      {
+        q: 'What is an NPU?',
+        options: [
+          'A. Neural Processing Unit',
+          'B. Network Processing Unit',
+          'C. Numeric Processing Unit',
+          'D. Node Processing Unit'
+        ],
+        ans: 'A',
+        exp: 'NPUs are specialized AI accelerators commonly found in modern laptops and smartphones.'
+      },
+      {
+        q: 'Which chip is commonly used for running AI locally on laptops and mobile devices?',
+        options: [
+          'A. TPU',
+          'B. GPU Cluster',
+          'C. NPU',
+          'D. HDD'
+        ],
+        ans: 'C',
+        exp: 'NPUs provide efficient AI processing with lower power consumption.'
+      },
+      {
+        q: 'Why is Matrix Multiplication important in AI?',
+        options: [
+          'A. It creates databases',
+          'B. It performs the core mathematical computations in neural networks',
+          'C. It stores images',
+          'D. It manages operating systems'
+        ],
+        ans: 'B',
+        exp: 'Most AI computations are based on matrix and tensor operations.'
+      },
+      {
+        q: 'During LLM inference, what is happening internally?',
+        options: [
+          'A. Files are copied repeatedly',
+          'B. Massive matrix and tensor calculations occur to predict the next token',
+          'C. Only storage devices are used',
+          'D. The monitor generates responses'
+        ],
+        ans: 'B',
+        exp: 'Every generated token requires neural network computations involving billions of parameters.'
+      },
+      {
+        q: 'What is a Tensor?',
+        options: [
+          'A. A database table',
+          'B. A multidimensional array used in AI computations',
+          'C. A programming language',
+          'D. A network protocol'
+        ],
+        ans: 'B',
+        exp: 'Tensors are the fundamental data structures used by frameworks like PyTorch and TensorFlow.'
+      },
+      {
+        q: 'Which comparison is most accurate?',
+        options: [
+          'A. CPU = Thousands of workers, GPU = Manager',
+          'B. CPU = Manager, GPU = Thousands of workers',
+          'C. CPU = Storage, GPU = RAM',
+          'D. CPU = Internet, GPU = Database'
+        ],
+        ans: 'B',
+        exp: 'The CPU coordinates and controls tasks, while the GPU performs large-scale parallel computations.'
+      },
+      {
+        q: 'When ChatGPT generates a response, which sequence best represents the hardware stack?',
+        options: [
+          'A. Monitor → Keyboard → RAM',
+          'B. Storage → Internet → Mouse',
+          'C. CPU + RAM + GPU + VRAM working together',
+          'D. SSD only'
+        ],
+        ans: 'C',
+        exp: 'The CPU manages execution, RAM stores active data, GPU performs AI calculations, and VRAM stores model weights and tensors.'
+      },
+      {
+        q: 'Which component will most likely limit running a very large LLM?',
+        options: [
+          'A. CPU cores',
+          'B. Keyboard',
+          'C. VRAM',
+          'D. Monitor'
+        ],
+        ans: 'C',
+        exp: 'For modern LLMs, GPU memory (VRAM) is usually the primary bottleneck because model weights must fit inside GPU memory for efficient inference.'
       }
     ]
   },
