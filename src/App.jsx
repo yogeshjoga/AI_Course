@@ -10,6 +10,7 @@ export default function App() {
   const [history, setHistory] = useState({});
   const [activeQuiz, setActiveQuiz] = useState(null);
   const [questions, setQuestions] = useState([]);
+  const [quizIntro, setQuizIntro] = useState('');
   const [view, setView] = useState('dashboard'); // 'dashboard', 'workspace', 'classes', 'terminology'
   const [filterTopic, setFilterTopic] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -55,6 +56,16 @@ export default function App() {
         throw new Error('No valid questions could be parsed from this file. Check the format.');
       }
       
+      // Extract intro block (everything between frontmatter and the first Q1. / ## Question 1)
+      const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---/;
+      const cleanContent = text.replace(frontmatterRegex, '');
+      const questionIndex = cleanContent.search(/^(?:##\s+)?(?:Question|Q)\s*\d+[\.:-\s]/im);
+      let intro = '';
+      if (questionIndex !== -1) {
+        intro = cleanContent.substring(0, questionIndex).trim();
+      }
+      
+      setQuizIntro(intro);
       setQuestions(parsedQuestions);
       setActiveQuiz(quiz);
       setView('workspace');
@@ -408,6 +419,7 @@ export default function App() {
               <ClassWorkspace
                 quiz={activeQuiz}
                 questions={questions}
+                quizIntro={quizIntro}
                 manifest={manifest}
                 history={history}
                 onBack={handleBackToDashboard}
