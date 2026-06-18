@@ -346,7 +346,7 @@ export default function ClassWorkspace({
           className={`subtab-item${activeSubtab === 'Resources' ? ' active' : ''}`}
           onClick={() => setActiveSubtab('Resources')}
         >
-          Resources
+          Resources ({quiz.resourceCount || 0})
         </div>
       </div>
 

@@ -7,7 +7,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Introduction to the course, the AI revolution, and the career roadmap.",
     "file": "day1_day_1_course_introduction_ai_revolution.md",
-    "questionCount": 15
+    "questionCount": 15,
+    "resourceCount": 0
   },
   {
     "id": "day2_day_2_introduction_to_computers_ai_hardware",
@@ -17,7 +18,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Understanding CPUs, GPUs, TPUs, VRAMs, NPUs, CUDA Cores, and NVIDIA GPU architectures.",
     "file": "day2_day_2_introduction_to_computers_ai_hardware.md",
-    "questionCount": 21
+    "questionCount": 21,
+    "resourceCount": 0
   },
   {
     "id": "day3_day_3_internet_basics_apis",
@@ -27,7 +29,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Understanding browsers, client-server architectures, DNS, and APIs.",
     "file": "day3_day_3_internet_basics_apis.md",
-    "questionCount": 40
+    "questionCount": 40,
+    "resourceCount": 1
   },
   {
     "id": "day4_day_4_sdlc_product_thinking_business_problems",
@@ -37,7 +40,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Deep dive into Software Development Lifecycle, Product Thinking, and solving Business Problems.",
     "file": "day4_day_4_sdlc_product_thinking_business_problems.md",
-    "questionCount": 40
+    "questionCount": 40,
+    "resourceCount": 2
   },
   {
     "id": "day5_day_5_introduction_to_hld_components",
@@ -47,7 +51,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Understanding High Level Design (HLD) importance and key components (Frontend, Backend, Database, APIs).",
     "file": "day5_day_5_introduction_to_hld_components.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day6_day_6_data_exchange_api_architectures",
@@ -57,7 +62,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Understanding data exchange types, REST APIs, WebSockets, HTTP methods, and JSON.",
     "file": "day6_day_6_data_exchange_api_architectures.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day7_day_7_hld_problem_solving_prerequisites",
@@ -67,7 +73,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Learn HLD problem-solving basics, Back-of-the-Envelope (BOE) calculations, and design assumptions.",
     "file": "day7_day_7_hld_problem_solving_prerequisites.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day8_day_8_schema_design_sql_databases",
@@ -77,7 +84,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Introduction to schema, ACID compliance, SQL databases, and PostgreSQL.",
     "file": "day8_day_8_schema_design_sql_databases.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day9_day_9_cache_systems_messaging_baselines",
@@ -87,7 +95,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Deep dive into caching with Redis and message queue systems like Kafka.",
     "file": "day9_day_9_cache_systems_messaging_baselines.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day10_day_10_scaling_load_balancer_cdn_cap_paelc",
@@ -97,7 +106,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Understanding CDN, Load Balancers, CAP and PAELC Theorems, and service discovery.",
     "file": "day10_day_10_scaling_load_balancer_cdn_cap_paelc.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day11_day_11_database_replication_models",
@@ -107,7 +117,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Comparing Synchronous vs Asynchronous replication, replication lag, multi-leader, and leaderless setups.",
     "file": "day11_day_11_database_replication_models.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day12_day_12_database_partitioning_routing",
@@ -117,7 +128,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Understanding partitioning keys, secondary indexes, rebalancing, and request routing.",
     "file": "day12_day_12_database_partitioning_routing.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day13_day_13_distributed_transactions_in_hld",
@@ -127,7 +139,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Deep dive into transaction management and ACID properties in high-level distributed systems.",
     "file": "day13_day_13_distributed_transactions_in_hld.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day14_day_14_hld_revision_problem_prerequisites",
@@ -137,7 +150,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Comprehensive HLD review session before solving complex system design challenges.",
     "file": "day14_day_14_hld_revision_problem_prerequisites.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day15_day_15_designing_whatsapp_part_1",
@@ -147,7 +161,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Designing high-level real-time messaging architecture, user presence, and connection flows.",
     "file": "day15_day_15_designing_whatsapp_part_1.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day16_day_16_designing_whatsapp_part_2",
@@ -157,7 +172,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Designing database schema for messages, media storage, group chats, and message delivery states.",
     "file": "day16_day_16_designing_whatsapp_part_2.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day17_day_17_designing_youtube_part_1",
@@ -167,7 +183,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Designing high-level video upload pipelines, encoding/transcoding architectures.",
     "file": "day17_day_17_designing_youtube_part_1.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day18_day_18_designing_youtube_part_2",
@@ -177,7 +194,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Designing YouTube content delivery (CDN), video streaming protocols, caching, and view-count scaling.",
     "file": "day18_day_18_designing_youtube_part_2.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day19_day_19_designing_uber_ola_ride_hailing_part_1",
@@ -187,7 +205,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "High-level architecture for ride-hailing, geo-spatial indexing (H3, S2), and real-time driver tracking.",
     "file": "day19_day_19_designing_uber_ola_ride_hailing_part_1.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day20_day_20_designing_uber_ola_ride_hailing_part_2",
@@ -197,7 +216,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Ride matching algorithms, trip state management, database write scaling, and ETA computation.",
     "file": "day20_day_20_designing_uber_ola_ride_hailing_part_2.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   },
   {
     "id": "day21_day_21_designing_amazon_aws_s3_storage",
@@ -207,6 +227,7 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Designing highly-durable object storage (AWS S3) with metadata databases, data partitioning, and replicas.",
     "file": "day21_day_21_designing_amazon_aws_s3_storage.md",
-    "questionCount": 3
+    "questionCount": 3,
+    "resourceCount": 0
   }
 ]

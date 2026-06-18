@@ -38,6 +38,19 @@ const countQuestions = (body) => {
   return matches ? matches.length : 0;
 };
 
+const countResources = (body) => {
+  const questionIndex = body.search(/^(?:##\s+)?(?:Question|Q)\s*\d+[\.:-\s]/im);
+  const intro = questionIndex !== -1 ? body.substring(0, questionIndex) : body;
+  const lines = intro.split('\n');
+  const headings = lines.filter(line => {
+    const trimmed = line.trim();
+    return trimmed.startsWith('### ') && 
+           !trimmed.toLowerCase().includes('class timing') && 
+           !trimmed.toLowerCase().includes('welcome to');
+  });
+  return headings.length;
+};
+
 const generateManifest = () => {
   try {
     const files = fs.readdirSync(docsDir);
@@ -51,6 +64,7 @@ const generateManifest = () => {
       
       const { metadata, rawBody } = parseFrontmatter(content);
       const questionCount = countQuestions(rawBody);
+      const resourceCount = countResources(rawBody);
 
       // Construct a default metadata structure if not provided in frontmatter
       const id = file.replace('.md', '');
@@ -68,7 +82,8 @@ const generateManifest = () => {
         timing,
         description,
         file,
-        questionCount
+        questionCount,
+        resourceCount
       });
 
       console.log(`✅ Indexed: ${file} [Topic: ${topic}] [Questions: ${questionCount}]`);

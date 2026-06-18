@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, HelpCircle, Check, ChevronRight } from 'lucide-react';
+import { Calendar, HelpCircle, Check, ChevronRight, BookOpen } from 'lucide-react';
 
 export default function QuizCard({ quiz, historyItem, onSelect }) {
   const isCompleted = historyItem?.completed;
@@ -102,6 +102,12 @@ export default function QuizCard({ quiz, historyItem, onSelect }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <HelpCircle size={14} />
             <span>{quiz.questionCount} Questions</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <BookOpen size={14} style={{ color: quiz.resourceCount > 0 ? 'var(--color-primary)' : 'inherit' }} />
+            <span style={{ color: quiz.resourceCount > 0 ? 'var(--color-primary)' : 'inherit', fontWeight: quiz.resourceCount > 0 ? '600' : 'normal' }}>
+              {quiz.resourceCount || 0} Resources
+            </span>
           </div>
           {quiz.timing && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontWeight: '500', color: 'var(--color-primary)' }}>
