@@ -9,6 +9,7 @@ export default function QuestionSolver({ question, questionIdx, answersRecord, o
   const [submitted, setSubmitted] = useState(false);
   const [isWrongAnswer, setIsWrongAnswer] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [hintUsed, setHintUsed] = useState(false);
 
   // Sync state when question changes
   useEffect(() => {
@@ -16,10 +17,12 @@ export default function QuestionSolver({ question, questionIdx, answersRecord, o
       setSelectedOption(record.selectedOption);
       setSubmitted(true);
       setIsWrongAnswer(!record.isCorrect);
+      setHintUsed(record.hintUsed || false);
     } else {
       setSelectedOption(null);
       setSubmitted(false);
       setIsWrongAnswer(false);
+      setHintUsed(false);
     }
     setShowHint(false); // Reset hint state on question change
   }, [questionIdx, record]);
@@ -55,7 +58,7 @@ export default function QuestionSolver({ question, questionIdx, answersRecord, o
     setSubmitted(true);
     setIsWrongAnswer(!isCorrect);
 
-    onSubmitAnswer(questionIdx, selectedOption, isCorrect);
+    onSubmitAnswer(questionIdx, selectedOption, isCorrect, hintUsed);
   };
 
   const correctOption = question.options?.find(o => o.id === question.correctAnswer);
@@ -100,7 +103,11 @@ export default function QuestionSolver({ question, questionIdx, answersRecord, o
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <HelpCircle size={16} style={{ color: 'var(--color-primary)' }} />
-            <span>Using hints except Complete Solution is Penalty free now</span>
+            <span>
+              {hintUsed 
+                ? 'Hint used. This question is worth 0 points.' 
+                : 'Warning: Using the hint for this problem will reduce your score to 0 points.'}
+            </span>
           </div>
           <button 
             className="btn-scaler btn-scaler-secondary" 
@@ -113,7 +120,10 @@ export default function QuestionSolver({ question, questionIdx, answersRecord, o
               cursor: 'pointer',
               transition: 'all 0.2s ease'
             }}
-            onClick={() => setShowHint(!showHint)}
+            onClick={() => {
+              setShowHint(!showHint);
+              setHintUsed(true);
+            }}
           >
             {showHint ? 'Hide Hint' : 'Use Hint'}
           </button>

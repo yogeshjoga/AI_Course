@@ -259,7 +259,7 @@ export default function ClassWorkspace({
     setActiveTab(index);
   };
 
-  const handleSubmitAnswer = (questionIdx, selectedOption, isCorrect) => {
+  const handleSubmitAnswer = (questionIdx, selectedOption, isCorrect, hintUsed) => {
     // Compile updated answers record
     let updatedAnswers = [...answersRecord];
     const existingIndex = updatedAnswers.findIndex(r => r.questionIndex === questionIdx);
@@ -271,17 +271,24 @@ export default function ClassWorkspace({
       correctAnswer: questions[questionIdx].correctAnswer,
       selectedOption,
       isCorrect,
-      explanation: questions[questionIdx].explanation
+      explanation: questions[questionIdx].explanation,
+      hintUsed: hintUsed || false
     };
 
     if (existingIndex > -1) {
-      updatedAnswers[existingIndex] = newRecordItem;
+      updatedAnswers[existingIndex] = {
+        ...updatedAnswers[existingIndex],
+        ...newRecordItem
+      };
     } else {
       updatedAnswers.push(newRecordItem);
     }
 
-    const newScore = updatedAnswers.filter(r => r.isCorrect).length;
-    const isQuizComplete = newScore === questions.length;
+    const solvedCount = updatedAnswers.filter(r => r.isCorrect).length;
+    const isQuizComplete = solvedCount === questions.length;
+
+    // Score is the count of correct answers solved without hint usage
+    const newScore = updatedAnswers.filter(r => r.isCorrect && !r.hintUsed).length;
 
     onSubmitAnswer(quiz.id, {
       completed: isQuizComplete,

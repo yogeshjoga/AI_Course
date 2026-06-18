@@ -4,9 +4,9 @@ import { Check } from 'lucide-react';
 export default function ProblemListTable({ questions, answersRecord, onSolveQuestion }) {
   // Helper to determine difficulty
   const getDifficulty = (index) => {
-    if (index % 3 === 0) return { text: 'Easy', className: 'easy', color: '#198754' };
-    if (index % 3 === 1) return { text: 'Medium', className: 'medium', color: '#ea580c' };
-    return { text: 'Hard', className: 'hard', color: '#dc3545' };
+    if (index % 3 === 0) return { text: 'Easy', className: 'easy', color: '#198754', points: 25 };
+    if (index % 3 === 1) return { text: 'Medium', className: 'medium', color: '#ca8a04', points: 50 };
+    return { text: 'Hard', className: 'hard', color: '#dc3545', points: 75 };
   };
 
   return (
@@ -107,8 +107,8 @@ export default function ProblemListTable({ questions, answersRecord, onSolveQues
                 </td>
                 
                 {/* Score */}
-                <td style={{ padding: '18px 20px', border: 'none', color: '#4e5d78', fontWeight: '500', fontSize: '0.88rem' }}>
-                  {isSolved ? '75.0/75' : '0.0/75'}
+                <td style={{ padding: '18px 20px', border: 'none', color: '#4e5d78', fontWeight: 500, fontSize: '0.88rem' }}>
+                  {isSolved && !record?.hintUsed ? `${difficulty.points}.0/${difficulty.points}` : `0.0/${difficulty.points}`}
                 </td>
                 
                 {/* Status */}
