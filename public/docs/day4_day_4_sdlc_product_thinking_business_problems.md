@@ -25,6 +25,325 @@ description: "Deep dive into Software Development Lifecycle, Product Thinking, a
 
 *Students who understand this will find HLD, System Design, Startups, AI Products, and Agentic AI much easier in the coming classes.*
 
+### Choosing Tech Stack
+
+#### Golden Rule
+
+Don't start with technology.
+
+Start with:
+
+Problem → Users → Scale → Data Type → Latency Requirement → Architecture → Technology
+
+Most beginners do:
+- I know React → Let's use React
+
+Architects do:
+- Business Problem → Requirements → Choose Technology
+
+#### 1. CRUD Application
+
+- **Examples:** Employee Management, Student Management, HR Portal, CRM, Inventory System
+- **Characteristics:** Forms, Reports, Login, Dashboard, Moderate Traffic
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Frontend | React |
+| Backend | Spring Boot |
+| Database | PostgreSQL |
+| Cache | Redis |
+| Deployment | Docker |
+
+- **Why?** Relational data, Transactions, Stability, Enterprise friendly
+
+#### 2. E-Commerce
+
+- **Examples:** Amazon, Flipkart, Myntra
+- **Characteristics:** Product Catalog, Search, Payments, Orders
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Frontend | React / Next.js |
+| Backend | Spring Boot |
+| Database | PostgreSQL |
+| Search | OpenSearch |
+| Cache | Redis |
+| Queue | Kafka |
+
+- **Why?** Need Search, Scalability, and Order Processing.
+
+#### 3. Chat Applications
+
+- **Examples:** WhatsApp, Slack, Discord
+- **Characteristics:** Real-Time Messaging, Online Status, Notifications
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Frontend | React |
+| Backend | Node.js |
+| Database | MongoDB |
+| Realtime | WebSockets |
+| Cache | Redis |
+
+- **Why?** Need Low Latency, Realtime updates, and handling Millions of messages.
+
+#### 4. Video Streaming
+
+- **Examples:** YouTube, Netflix
+- **Characteristics:** Large Videos, High Bandwidth, Recommendations
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Frontend | React |
+| Backend | Go / Java |
+| Storage | Object Storage (e.g. S3) |
+| CDN | CloudFront |
+| Metadata DB | PostgreSQL |
+
+- **Why?** Need Fast streaming, Massive storage, and Global delivery.
+
+#### 5. Ride Booking
+
+- **Examples:** Uber, Ola
+- **Characteristics:** GPS, Realtime Tracking, Payments
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Frontend | Flutter |
+| Backend | Spring Boot |
+| Database | PostgreSQL |
+| Location Cache | Redis |
+| Messaging | Kafka |
+
+- **Why?** Need Realtime location tracking and Event processing.
+
+#### 6. Social Media
+
+- **Examples:** Instagram, Facebook, Threads
+- **Characteristics:** Images, Likes, Followers, Feed Generation
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Frontend | React |
+| Backend | Java / Go |
+| DB | PostgreSQL |
+| Feed Cache | Redis |
+| Search | OpenSearch |
+| Queue | Kafka |
+
+- **Why?** Huge scale. Feed generation is computationally expensive.
+
+#### 7. AI Chatbot
+
+- **Examples:** ChatGPT, Customer Support Bot
+- **Characteristics:** Prompt Input, LLM Calls, Context Memory
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Frontend | React |
+| Backend | FastAPI |
+| LLM | OpenAI / Claude |
+| Vector DB | Qdrant |
+| Cache | Redis |
+
+- **Why?** Python ecosystem dominates AI development.
+
+#### 8. RAG Applications
+
+- **Examples:** Talk to PDF, Knowledge Assistant, Company Chatbot
+- **Characteristics:** Search Documents, Retrieve Context, LLM Generation
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Frontend | React |
+| Backend | FastAPI |
+| Embeddings | OpenAI |
+| Vector DB | Qdrant |
+| LLM | GPT / Claude |
+
+- **Why?** Vector search is the core requirement.
+
+#### 9. Agentic AI Systems
+
+- **Examples:** AI Employee, Support Agent, Sales Agent
+- **Characteristics:** Tool Calling, Memory, Planning, Multi-Step Reasoning
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Frontend | React |
+| Backend | FastAPI |
+| Agent Framework | LangGraph |
+| Memory | PostgreSQL |
+| Vector DB | Qdrant |
+| LLM | GPT / Claude |
+
+- **Why?** Need Agent workflows, Memory, and Tool execution.
+
+#### 10. Multi-Agent Systems
+
+- **Examples:** AI Software Team, AI Research Team
+- **Characteristics:** Agent Communication, Agent Orchestration, Long Running Tasks
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Orchestration | LangGraph |
+| Messaging | Kafka |
+| Database | PostgreSQL |
+| Vector DB | Qdrant |
+| LLM | GPT / Claude |
+
+- **Why?** Need coordinate orchestration and communication between agents.
+
+#### 11. Analytics Platform
+
+- **Examples:** Power BI, Business Reports
+- **Characteristics:** Large Queries, Aggregations, Dashboards
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Frontend | React |
+| Backend | Spring Boot |
+| Data Warehouse | BigQuery |
+| Visualization | Apache Superset |
+
+- **Why?** Optimized for analytical queries.
+
+#### 12. IoT Systems
+
+- **Examples:** Smart Home, Factory Sensors
+- **Characteristics:** Millions of Events, Sensor Data
+- **Recommended Stack:**
+
+| Layer | Tech |
+| :--- | :--- |
+| Backend | Go |
+| Broker | MQTT |
+| Queue | Kafka |
+| DB | TimescaleDB |
+
+- **Why?** Handles time-series efficiently.
+
+#### Database Selection Cheat Sheet
+
+| Requirement | Database |
+| :--- | :--- |
+| Banking | PostgreSQL |
+| E-Commerce | PostgreSQL |
+| ERP | PostgreSQL |
+| Logs | OpenSearch |
+| Chat Messages | MongoDB |
+| Analytics | BigQuery |
+| AI Memory | PostgreSQL |
+| Vector Search | Qdrant |
+| Graph Relationships | Neo4j |
+| Time Series | TimescaleDB |
+
+#### API Selection Cheat Sheet
+
+| Requirement | API Type |
+| :--- | :--- |
+| CRUD APIs | REST |
+| Mobile Apps | REST |
+| Internal Microservices | gRPC |
+| Banking | SOAP |
+| Flexible Frontend Queries | GraphQL |
+| Live Chat | WebSocket |
+| Stock Market Feed | WebSocket |
+| Event Notifications | Webhook |
+| AI Agent Tool Calling | REST |
+| Multi-Agent Communication | gRPC |
+
+#### Backend Selection Cheat Sheet
+
+| Requirement | Technology |
+| :--- | :--- |
+| Enterprise Software | Spring Boot |
+| AI Systems | FastAPI |
+| Realtime Systems | Node.js |
+| High Performance APIs | Go |
+| Data Science Apps | Python |
+| Agentic AI | FastAPI + LangGraph |
+
+#### Queue Selection Cheat Sheet
+
+| Requirement | Technology |
+| :--- | :--- |
+| Enterprise Events | Kafka |
+| Simple Queue | RabbitMQ |
+| Cloud Native | SQS |
+| Agent Workflows | Kafka |
+
+#### Cache Selection Cheat Sheet
+
+| Requirement | Technology |
+| :--- | :--- |
+| Session Storage | Redis |
+| API Caching | Redis |
+| Feed Caching | Redis |
+| AI Context Cache | Redis |
+
+#### Architect's Decision Tree
+
+```text
+Is it AI?
+│
+├── No
+│   │
+│   ├── CRUD?
+│   │   └── Spring Boot + PostgreSQL
+│   │
+│   ├── Chat?
+│   │   └── Node.js + MongoDB + WebSocket
+│   │
+│   ├── E-Commerce?
+│   │   └── Spring Boot + PostgreSQL + Redis
+│   │
+│   └── Analytics?
+│       └── BigQuery
+│
+└── Yes
+    │
+    ├── Chatbot?
+    │   └── FastAPI + OpenAI
+    │
+    ├── RAG?
+    │   └── FastAPI + Qdrant
+    │
+    ├── Agent?
+    │   └── LangGraph + FastAPI
+    │
+    └── Multi-Agent?
+        └── LangGraph + Kafka
+```
+
+#### One-Line Rule
+
+| Requirement | Technology Stack |
+| :--- | :--- |
+| CRUD | Spring Boot + PostgreSQL |
+| Realtime Chat | Node.js + MongoDB + WebSocket |
+| E-Commerce | Spring Boot + PostgreSQL + Redis |
+| Search | OpenSearch |
+| AI Chatbot | FastAPI + LLM |
+| RAG | FastAPI + Qdrant |
+| Agentic AI | LangGraph + FastAPI |
+| Multi-Agent | LangGraph + Kafka |
+| Analytics | BigQuery |
+| IoT | MQTT + Kafka + TimescaleDB |
+
+*This cheat sheet is sufficient for beginners to make 80% of HLD technology decisions correctly before learning deeper topics like scalability, load balancing, sharding, caching, CQRS, event-driven architectures, and Agentic AI HLD.*
+
 ---
 
 Q1. Why does software exist?

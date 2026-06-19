@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProblemListTable from './ProblemListTable';
 import QuestionSolver from './QuestionSolver';
-import { ArrowLeft, CheckCircle, ChevronLeft, ChevronRight, HelpCircle, Bell, GraduationCap, BookOpen } from 'lucide-react';
+import { ArrowLeft, CheckCircle, ChevronLeft, ChevronRight, HelpCircle, Bell, GraduationCap, BookOpen, ChevronDown } from 'lucide-react';
 
 export default function ClassWorkspace({ 
   quiz, 
@@ -15,6 +15,7 @@ export default function ClassWorkspace({
 }) {
   const [activeTab, setActiveTab] = useState('All'); // 'All' or number (0, 1, 2...)
   const [activeSubtab, setActiveSubtab] = useState('Assignment'); // 'Assignment' or 'Resources'
+  const [openSectionIndex, setOpenSectionIndex] = useState(0); // For resources accordion
 
   // Helper to parse markdown tables
   const parseMarkdownTable = (introText) => {
@@ -53,7 +54,66 @@ export default function ClassWorkspace({
     return null;
   };
 
-  // Helper to parse and render dynamic markdown intro elements
+  // Helper to parse inline markdown (bold ** and links [text](url))
+  const parseInlineMarkdown = (text) => {
+    if (!text) return "";
+    
+    // Split by bold markdown "**"
+    const boldParts = text.split('**');
+    const result = [];
+    
+    boldParts.forEach((part, index) => {
+      const isBold = index % 2 === 1;
+      const elements = [];
+      let remainingText = part;
+      let linkMatch;
+      let keyCounter = 0;
+      
+      while ((linkMatch = remainingText.match(/\[([^\]]+)\]\(([^)]+)\)/))) {
+        const startIndex = linkMatch.index;
+        const matchStr = linkMatch[0];
+        const label = linkMatch[1];
+        const url = linkMatch[2];
+        
+        if (startIndex > 0) {
+          elements.push(remainingText.substring(0, startIndex));
+        }
+        
+        elements.push(
+          <a 
+            key={`link-${index}-${keyCounter++}`} 
+            href={url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            style={{ color: 'var(--color-primary)', fontWeight: '600', textDecoration: 'underline' }}
+          >
+            {label}
+          </a>
+        );
+        
+        remainingText = remainingText.substring(startIndex + matchStr.length);
+      }
+      
+      if (remainingText.length > 0) {
+        elements.push(remainingText);
+      }
+      
+      if (isBold) {
+        result.push(
+          <strong key={`bold-${index}`} style={{ fontWeight: '700', color: '#1e293b' }}>
+            {elements}
+          </strong>
+        );
+      } else {
+        elements.forEach((el) => {
+          result.push(el);
+        });
+      }
+    });
+    
+    return result;
+  };
+
   // Helper to parse and render dynamic markdown intro elements
   const renderIntroResources = (introText) => {
     if (!introText) {
@@ -86,19 +146,23 @@ export default function ClassWorkspace({
       );
     }
 
-    const elements = [];
+    const sections = [];
+    let currentSection = { title: "", elements: [] };
+
     let tableLines = [];
     let inTable = false;
     let listItems = [];
     let inList = false;
+    let codeLines = [];
+    let inCodeBlock = false;
 
     // Helper to flush current list
     const flushList = (key) => {
       if (listItems.length > 0) {
-        elements.push(
+        currentSection.elements.push(
           <ul key={`list-${key}`} style={{ marginLeft: '20px', marginBottom: '20px', color: '#334155', lineHeight: '1.6', listStyleType: 'disc' }}>
             {listItems.map((item, idx) => (
-              <li key={idx} style={{ marginBottom: '6px' }}>{item}</li>
+              <li key={idx} style={{ marginBottom: '6px' }}>{parseInlineMarkdown(item)}</li>
             ))}
           </ul>
         );
@@ -112,14 +176,14 @@ export default function ClassWorkspace({
       if (tableLines.length > 0) {
         const tableData = parseMarkdownTable(tableLines.join('\n'));
         if (tableData) {
-          elements.push(
+          currentSection.elements.push(
             <div key={`table-wrapper-${key}`} style={{ overflowX: 'auto', borderRadius: '6px', border: '1px solid #e2e8f0', marginBottom: '24px', boxShadow: 'var(--shadow-sm)' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem' }}>
                 <thead>
                   <tr style={{ backgroundColor: '#f8fafc', borderBottom: '2px solid #e2e8f0' }}>
                     {tableData.headers.map((h, i) => (
                       <th key={i} style={{ padding: '12px 16px', textAlign: 'left', fontWeight: '600', color: '#475569' }}>
-                        {h}
+                        {parseInlineMarkdown(h)}
                       </th>
                     ))}
                   </tr>
@@ -138,7 +202,7 @@ export default function ClassWorkspace({
                     >
                       {row.map((cell, colIndex) => (
                         <td key={colIndex} style={{ padding: '12px 16px', color: '#334155', fontWeight: colIndex === 1 ? '600' : 'normal' }}>
-                          {cell}
+                          {parseInlineMarkdown(cell)}
                         </td>
                       ))}
                     </tr>
@@ -153,9 +217,133 @@ export default function ClassWorkspace({
       }
     };
 
+    // Helper to colorize decision tree segments
+    const renderSegmentText = (text) => {
+      const trimmed = text.trim();
+      const leadingSpaces = text.length - text.trimStart().length;
+      const trailingSpaces = text.length - text.trimEnd().length;
+      const spacePrefix = ' '.repeat(leadingSpaces);
+      const spaceSuffix = ' '.repeat(trailingSpaces);
+      
+      let style = { color: '#e2e8f0' }; // default off-white
+      
+      if (trimmed === 'Yes') {
+        style = { color: '#4ade80', fontWeight: 'bold' }; // bright green
+      } else if (trimmed === 'No') {
+        style = { color: '#f87171', fontWeight: 'bold' }; // bright red
+      } else if (trimmed === 'Is it AI?') {
+        style = { color: '#c084fc', fontWeight: 'bold' }; // bright purple
+      } else if (trimmed.endsWith('?')) {
+        style = { color: '#60a5fa', fontWeight: 'bold' }; // light blue questions
+      } else if (trimmed.includes('+') || trimmed.includes('→')) {
+        style = { color: '#fbbf24', fontWeight: '600' }; // amber/gold for technology solutions
+      } else if (trimmed !== '') {
+        style = { color: '#38bdf8' }; // cyan for leaf endpoints
+      }
+      
+      return (
+        <span key={text} style={style}>
+          {spacePrefix}{trimmed}{spaceSuffix}
+        </span>
+      );
+    };
+
+    // Helper to flush current code block
+    const flushCodeBlock = (key) => {
+      if (codeLines.length > 0) {
+        const codeText = codeLines.join('\n');
+        
+        // Check if this is the decision tree or a diagram
+        const isDecisionTree = codeLines.some(line => line.includes('Is it AI?') || line.includes('├──') || line.includes('└──'));
+        
+        let renderedContent;
+        if (isDecisionTree) {
+          // Colorize the decision tree for maximum visual appeal
+          renderedContent = codeLines.map((line, lineIdx) => {
+            const colorizedLine = [];
+            let segment = "";
+            
+            for (let char of line) {
+              if (['│', '├', '└', '─', '┌', '┬', '┐'].includes(char)) {
+                if (segment && !['│', '├', '└', '─', '┌', '┬', '┐'].includes(segment[0])) {
+                  colorizedLine.push(renderSegmentText(segment));
+                  segment = "";
+                }
+                segment += char;
+              } else {
+                if (segment && ['│', '├', '└', '─', '┌', '┬', '┐'].includes(segment[0])) {
+                  colorizedLine.push(<span key={colorizedLine.length} style={{ color: '#38bdf8', opacity: 0.8, fontWeight: 'bold' }}>{segment}</span>);
+                  segment = "";
+                }
+                segment += char;
+              }
+            }
+            if (segment) {
+              if (['│', '├', '└', '─', '┌', '┬', '┐'].includes(segment[0])) {
+                colorizedLine.push(<span key={colorizedLine.length} style={{ color: '#38bdf8', opacity: 0.8, fontWeight: 'bold' }}>{segment}</span>);
+              } else {
+                colorizedLine.push(renderSegmentText(segment));
+              }
+            }
+            
+            return (
+              <div key={lineIdx} style={{ minHeight: '1.4em', fontFamily: 'Fira Code, Courier New, monospace' }}>
+                {colorizedLine}
+              </div>
+            );
+          });
+        } else {
+          // Normal code block
+          renderedContent = (
+            <code style={{ color: '#e2e8f0', backgroundColor: 'transparent', padding: 0 }}>
+              {codeText}
+            </code>
+          );
+        }
+
+        currentSection.elements.push(
+          <pre key={`code-${key}`} style={{ 
+            backgroundColor: '#0f172a', 
+            color: '#e2e8f0', 
+            padding: '20px', 
+            borderRadius: '8px', 
+            fontFamily: 'Fira Code, Courier New, monospace', 
+            fontSize: '0.88rem', 
+            overflowX: 'auto',
+            marginBottom: '20px',
+            lineHeight: '1.6',
+            whiteSpace: 'pre-wrap',
+            border: '1px solid #1e293b',
+            boxShadow: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)'
+          }}>
+            {renderedContent}
+          </pre>
+        );
+        codeLines = [];
+        inCodeBlock = false;
+      }
+    };
+
     for (let i = 0; i < cleanLines.length; i++) {
       const line = cleanLines[i];
       const trimmed = line.trim();
+
+      // Code block start/end
+      if (trimmed.startsWith('```')) {
+        flushList(i);
+        flushTable(i);
+        if (inCodeBlock) {
+          flushCodeBlock(i);
+        } else {
+          inCodeBlock = true;
+        }
+        continue;
+      }
+
+      if (inCodeBlock) {
+        codeLines.push(line);
+        continue;
+      }
 
       // Table line
       if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
@@ -192,45 +380,135 @@ export default function ClassWorkspace({
           marginTop: '24px',
           marginBottom: '12px'
         };
+
+        if (level === 3) {
+          flushList(i);
+          flushTable(i);
+          flushCodeBlock(i);
+          if (currentSection.title !== "" || currentSection.elements.length > 0) {
+            sections.push(currentSection);
+          }
+          currentSection = {
+            title: text,
+            elements: []
+          };
+          continue;
+        }
+
         if (level === 1) {
-          elements.push(<h1 key={i} style={{ ...headingStyle, fontSize: '1.5rem', borderBottom: '2px solid #e2e8f0', paddingBottom: '8px', marginTop: '12px' }}>{text}</h1>);
+          currentSection.elements.push(<h1 key={i} style={{ ...headingStyle, fontSize: '1.5rem', borderBottom: '2px solid #e2e8f0', paddingBottom: '8px', marginTop: '12px' }}>{parseInlineMarkdown(text)}</h1>);
         } else if (level === 2) {
-          elements.push(<h2 key={i} style={{ ...headingStyle, fontSize: '1.25rem' }}>{text}</h2>);
+          currentSection.elements.push(<h2 key={i} style={{ ...headingStyle, fontSize: '1.25rem' }}>{parseInlineMarkdown(text)}</h2>);
         } else {
-          elements.push(<h3 key={i} style={{ ...headingStyle, fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <BookOpen size={16} style={{ color: 'var(--color-primary)' }} />
-            {text}
-          </h3>);
+          currentSection.elements.push(
+            <h4 key={i} style={{ 
+              fontWeight: '700', 
+              color: '#334155', 
+              fontSize: '1.05rem',
+              marginTop: '20px', 
+              marginBottom: '10px' 
+            }}>
+              {parseInlineMarkdown(text)}
+            </h4>
+          );
         }
         continue;
       }
 
       // Normal paragraph with potential inline links
-      const linkMatch = trimmed.match(/\[([^\]]+)\]\(([^)]+)\)/);
-      if (linkMatch) {
-        elements.push(
-          <p key={i} style={{ marginBottom: '14px', color: '#475569', fontSize: '0.9rem', lineHeight: '1.6' }}>
-            {trimmed.substring(0, linkMatch.index)}
-            <a href={linkMatch[2]} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: '600', textDecoration: 'underline' }}>
-              {linkMatch[1]}
-            </a>
-            {trimmed.substring(linkMatch.index + linkMatch[0].length)}
-          </p>
-        );
-      } else {
-        elements.push(
-          <p key={i} style={{ marginBottom: '14px', color: '#475569', fontSize: '0.9rem', lineHeight: '1.6' }}>
-            {trimmed}
-          </p>
-        );
-      }
+      currentSection.elements.push(
+        <p key={i} style={{ marginBottom: '14px', color: '#475569', fontSize: '0.9rem', lineHeight: '1.6' }}>
+          {parseInlineMarkdown(trimmed)}
+        </p>
+      );
     }
 
     // Flush remaining
     if (inTable) flushTable('end');
     if (inList) flushList('end');
+    if (inCodeBlock) flushCodeBlock('end');
 
-    return elements;
+    if (currentSection.title !== "" || currentSection.elements.length > 0) {
+      sections.push(currentSection);
+    }
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        {sections.map((section, index) => {
+          if (section.title === "") {
+            return (
+              <div key={`flat-${index}`} style={{ marginBottom: '16px' }}>
+                {section.elements}
+              </div>
+            );
+          }
+
+          const isExpanded = openSectionIndex === index;
+
+          return (
+            <div 
+              key={`section-${index}`} 
+              style={{ 
+                border: '1px solid #e2e8f0', 
+                borderRadius: '8px', 
+                overflow: 'hidden', 
+                backgroundColor: '#ffffff',
+                boxShadow: isExpanded ? 'var(--shadow-md)' : 'var(--shadow-sm)',
+                transition: 'all 0.2s ease-in-out'
+              }}
+            >
+              <button
+                onClick={() => setOpenSectionIndex(isExpanded ? null : index)}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '16px 20px',
+                  backgroundColor: isExpanded ? '#f8fafc' : '#ffffff',
+                  border: 'none',
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  if (!isExpanded) e.currentTarget.style.backgroundColor = '#f8fafc';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isExpanded) e.currentTarget.style.backgroundColor = '#ffffff';
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <BookOpen size={18} style={{ color: 'var(--color-primary)' }} />
+                  <span style={{ fontWeight: '700', fontSize: '1rem', color: '#1e293b' }}>
+                    {section.title}
+                  </span>
+                </div>
+                <div style={{ 
+                  transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', 
+                  transition: 'transform 0.2s ease',
+                  color: '#64748b',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  <ChevronDown size={18} />
+                </div>
+              </button>
+              
+              {isExpanded && (
+                <div style={{ 
+                  padding: '24px 20px', 
+                  borderTop: '1px solid #e2e8f0',
+                  backgroundColor: '#ffffff'
+                }}>
+                  {section.elements}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
   };
 
   // Calculate solved stats for the current quiz
