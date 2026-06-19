@@ -344,6 +344,10 @@ Is it AI?
 
 *This cheat sheet is sufficient for beginners to make 80% of HLD technology decisions correctly before learning deeper topics like scalability, load balancing, sharding, caching, CQRS, event-driven architectures, and Agentic AI HLD.*
 
+### Cheatsheets
+
+![HLD System Design Cheatsheet](/docs/hld_cheatsheet.png)
+
 ---
 
 Q1. Why does software exist?

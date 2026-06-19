@@ -5,6 +5,8 @@ import { ArrowLeft, CheckCircle, ChevronLeft, ChevronRight, HelpCircle, Bell, Gr
 
 export default function ClassWorkspace({ 
   quiz, 
+  resolvedDate,
+  onUpdateCustomDate,
   questions, 
   quizIntro,
   manifest, 
@@ -16,6 +18,7 @@ export default function ClassWorkspace({
   const [activeTab, setActiveTab] = useState('All'); // 'All' or number (0, 1, 2...)
   const [activeSubtab, setActiveSubtab] = useState('Assignment'); // 'Assignment' or 'Resources'
   const [openSectionIndex, setOpenSectionIndex] = useState(0); // For resources accordion
+  const [isEditingDate, setIsEditingDate] = useState(false);
 
   // Helper to parse markdown tables
   const parseMarkdownTable = (introText) => {
@@ -415,6 +418,36 @@ export default function ClassWorkspace({
         continue;
       }
 
+      // Image line check
+      const imgMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+      if (imgMatch) {
+        flushList(i);
+        flushTable(i);
+        flushCodeBlock(i);
+        currentSection.elements.push(
+          <div key={`img-${i}`} style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>
+            <img 
+              src={imgMatch[2]} 
+              alt={imgMatch[1]} 
+              style={{ 
+                maxWidth: '100%', 
+                borderRadius: '8px', 
+                border: '1px solid #e2e8f0',
+                boxShadow: 'var(--shadow-md)',
+                display: 'block',
+                margin: '0 auto'
+              }} 
+            />
+            {imgMatch[1] && (
+              <span style={{ fontSize: '0.85rem', color: '#64748b', marginTop: '10px', display: 'inline-block', fontWeight: '500' }}>
+                {imgMatch[1]}
+              </span>
+            )}
+          </div>
+        );
+        continue;
+      }
+
       // Normal paragraph with potential inline links
       currentSection.elements.push(
         <p key={i} style={{ marginBottom: '14px', color: '#475569', fontSize: '0.9rem', lineHeight: '1.6' }}>
@@ -605,9 +638,49 @@ export default function ClassWorkspace({
               Mandatory
             </span>
           </div>
-          <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginLeft: '32px' }}>
-            {formatDate(quiz.date)}
-          </span>
+          <div style={{ marginLeft: '32px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            {isEditingDate ? (
+              <input 
+                type="date"
+                value={resolvedDate || quiz.date}
+                onChange={(e) => {
+                  onUpdateCustomDate(quiz.id, e.target.value);
+                  setIsEditingDate(false);
+                }}
+                onBlur={() => setIsEditingDate(false)}
+                autoFocus
+                style={{
+                  fontSize: '0.8rem',
+                  padding: '2px 6px',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: 'var(--radius-sm)',
+                  outline: 'none',
+                  backgroundColor: 'var(--bg-surface)',
+                  color: 'var(--text-primary)'
+                }}
+              />
+            ) : (
+              <span 
+                onClick={() => setIsEditingDate(true)}
+                style={{ 
+                  fontSize: '0.8rem', 
+                  color: 'var(--text-muted)', 
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  cursor: 'pointer',
+                  padding: '2px 6px',
+                  borderRadius: 'var(--radius-sm)',
+                  backgroundColor: '#f1f5f9',
+                  transition: 'background-color 0.2s'
+                }}
+                title="Click to adjust class date"
+              >
+                <span>📅 {formatDate(resolvedDate || quiz.date)}</span>
+                <span style={{ fontSize: '0.7rem', color: 'var(--color-primary)', fontWeight: '600' }}>✏️ Edit</span>
+              </span>
+            )}
+          </div>
         </div>
 
       </div>

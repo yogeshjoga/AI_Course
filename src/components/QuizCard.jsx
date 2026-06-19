@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Calendar, HelpCircle, Check, ChevronRight, BookOpen } from 'lucide-react';
 
-export default function QuizCard({ quiz, historyItem, onSelect }) {
+export default function QuizCard({ quiz, resolvedDate, onUpdateCustomDate, historyItem, onSelect }) {
+  const [isEditingDate, setIsEditingDate] = useState(false);
   const isCompleted = historyItem?.completed;
   const score = historyItem?.score;
   const total = historyItem?.total;
@@ -94,10 +95,52 @@ export default function QuizCard({ quiz, historyItem, onSelect }) {
 
       {/* Footer Info */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', borderTop: '1px solid #eef2f6', paddingTop: '14px', marginTop: '12px' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '0.78rem', color: 'var(--text-muted)', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <Calendar size={14} />
-            <span>{formatDate(quiz.date)}</span>
+            {isEditingDate ? (
+              <input
+                type="date"
+                value={resolvedDate || quiz.date}
+                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => {
+                  onUpdateCustomDate(quiz.id, e.target.value);
+                  setIsEditingDate(false);
+                }}
+                onBlur={() => setIsEditingDate(false)}
+                autoFocus
+                style={{
+                  fontSize: '0.75rem',
+                  padding: '2px 4px',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: 'var(--radius-sm)',
+                  outline: 'none',
+                  backgroundColor: 'var(--bg-surface)',
+                  color: 'var(--text-primary)'
+                }}
+              />
+            ) : (
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsEditingDate(true);
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  cursor: 'pointer',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                  backgroundColor: 'rgba(0, 0, 0, 0.03)',
+                  transition: 'background-color 0.2s'
+                }}
+                title="Click to edit class date"
+              >
+                <Calendar size={14} style={{ color: 'var(--color-primary)' }} />
+                <span>{formatDate(resolvedDate || quiz.date)}</span>
+                <span style={{ fontSize: '0.65rem', opacity: 0.6 }}>✏️</span>
+              </div>
+            )}
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <HelpCircle size={14} />

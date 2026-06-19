@@ -2,21 +2,127 @@ import React, { useState, useEffect } from 'react';
 import { parseQuizMarkdown } from './utils/quizParser';
 import QuizCard from './components/QuizCard';
 import ClassWorkspace from './components/ClassWorkspace';
-import { Search, GraduationCap, RefreshCw, ArrowLeft, Download, BookOpen } from 'lucide-react';
+import { Search, GraduationCap, RefreshCw, ArrowLeft, Download, BookOpen, Compass } from 'lucide-react';
 import TerminologyView from './components/TerminologyView';
+import ResearchView from './components/ResearchView';
 
 export default function App() {
   const [manifest, setManifest] = useState([]);
-  const [history, setHistory] = useState({});
+  const [history, setHistory] = useState(() => {
+    const saved = localStorage.getItem('course_solve_history');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error('Failed to parse history from localStorage', e);
+      }
+    }
+    return {};
+  });
+  const [customDates, setCustomDates] = useState(() => {
+    const saved = localStorage.getItem('course_custom_dates');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error('Failed to parse custom dates from localStorage', e);
+      }
+    }
+    // Prepopulate Day 5 with June 20, 2026 as default override due to leaf
+    return {
+      'day5_day_5_introduction_to_hld_components': '2026-06-20'
+    };
+  });
   const [activeQuiz, setActiveQuiz] = useState(null);
+
+  // Helper to advance a date string YYYY-MM-DD to the next valid Tuesday-Saturday course day
+  const getNextValidDate = (dateStr) => {
+    if (!dateStr) return '';
+    try {
+      const [year, month, day] = dateStr.split('-').map(Number);
+      const date = new Date(year, month - 1, day);
+      
+      // Advance by 1 day at a time until we hit Tuesday-Saturday
+      // (getDay(): 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat)
+      do {
+        date.setDate(date.getDate() + 1);
+      } while (date.getDay() === 0 || date.getDay() === 1);
+      
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const d = String(date.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    } catch (e) {
+      console.error('Error generating next date for', dateStr, e);
+      return dateStr;
+    }
+  };
+
+  // Helper to extract the day index sequence number from the quiz ID
+  const getQuizDayNumber = (quiz) => {
+    const match = quiz.id.match(/^day(\d+)_/i);
+    if (match) {
+      return parseInt(match[1], 10);
+    }
+    return 999;
+  };
+
+  // Compute resolved dates for all manifest items sequentially
+  const getResolvedDates = () => {
+    if (manifest.length === 0) return {};
+    
+    // Sort manifest by their actual Day sequence to propagate changes in logical order
+    const sortedQuizzes = [...manifest].sort((a, b) => getQuizDayNumber(a) - getQuizDayNumber(b));
+    
+    const resolved = {};
+    let lastDate = null;
+    
+    for (let i = 0; i < sortedQuizzes.length; i++) {
+      const quiz = sortedQuizzes[i];
+      let dateVal = null;
+      
+      if (customDates[quiz.id]) {
+        dateVal = customDates[quiz.id];
+      } else if (history[quiz.id]?.completedAt) {
+        dateVal = history[quiz.id].completedAt;
+      } else if (i === 0) {
+        dateVal = quiz.date;
+      } else {
+        dateVal = getNextValidDate(lastDate);
+      }
+      
+      resolved[quiz.id] = dateVal;
+      lastDate = dateVal;
+    }
+    
+    return resolved;
+  };
+
+  const resolvedDates = getResolvedDates();
+
+  const handleUpdateCustomDate = (quizId, newDate) => {
+    const pwd = prompt("Enter password to update class date:");
+    if (pwd === null) return; // User cancelled
+    if (pwd !== "7799250107@Ai") {
+      alert("Incorrect password. Date modification denied.");
+      return;
+    }
+    const updatedCustomDates = {
+      ...customDates,
+      [quizId]: newDate
+    };
+    setCustomDates(updatedCustomDates);
+    localStorage.setItem('course_custom_dates', JSON.stringify(updatedCustomDates));
+  };
   const [questions, setQuestions] = useState([]);
   const [quizIntro, setQuizIntro] = useState('');
-  const [view, setView] = useState('dashboard'); // 'dashboard', 'workspace', 'classes', 'terminology'
+  const [view, setView] = useState('dashboard'); // 'dashboard', 'workspace', 'classes', 'terminology', 'research'
   const [filterTopic, setFilterTopic] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [viewBeforeTerminology, setViewBeforeTerminology] = useState('dashboard');
+  const [viewBeforeResearch, setViewBeforeResearch] = useState('dashboard');
 
   const handleOpenTerminology = () => {
     setViewBeforeTerminology(view);
@@ -25,6 +131,15 @@ export default function App() {
 
   const handleCloseTerminology = () => {
     setView(viewBeforeTerminology);
+  };
+
+  const handleOpenResearch = () => {
+    setViewBeforeResearch(view);
+    setView('research');
+  };
+
+  const handleCloseResearch = () => {
+    setView(viewBeforeResearch);
   };
 
   // Load manifest on mount
@@ -79,12 +194,21 @@ export default function App() {
   };
 
   const handleSubmitQuizAnswer = (quizId, updatedProgress) => {
+    const todayStr = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
+    const updatedProgressWithDate = {
+      ...updatedProgress,
+      completedAt: updatedProgress.completed
+        ? (history[quizId]?.completedAt || todayStr)
+        : null
+    };
+
     const updatedHistory = {
       ...history,
-      [quizId]: updatedProgress
+      [quizId]: updatedProgressWithDate
     };
 
     setHistory(updatedHistory);
+    localStorage.setItem('course_solve_history', JSON.stringify(updatedHistory));
   };
 
   const handleBackToDashboard = () => {
@@ -98,8 +222,13 @@ export default function App() {
   };
 
   const handleResetProgress = () => {
-    if (window.confirm('Are you sure you want to clear your solve history? This will reset all your scores.')) {
+    if (window.confirm('Are you sure you want to clear your solve history? This will reset all your scores and custom dates.')) {
       setHistory({});
+      setCustomDates({
+        'day5_day_5_introduction_to_hld_components': '2026-06-20'
+      });
+      localStorage.removeItem('course_solve_history');
+      localStorage.removeItem('course_custom_dates');
     }
   };
 
@@ -173,6 +302,24 @@ export default function App() {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <button 
+              onClick={handleOpenResearch}
+              className="btn-scaler btn-scaler-secondary"
+              style={{ 
+                padding: '6px 14px', 
+                fontSize: '0.78rem', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '6px',
+                border: '1px solid var(--color-primary)',
+                color: 'var(--color-primary)',
+                backgroundColor: 'transparent',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              <Compass size={13} /> Research Papers
+            </button>
+            <button 
               onClick={handleOpenTerminology}
               className="btn-scaler btn-scaler-secondary"
               style={{ 
@@ -224,7 +371,7 @@ export default function App() {
       </header>
 
       {/* Main Container */}
-      <div style={{ flex: 1, overflowY: (view === 'dashboard' || view === 'classes') ? 'auto' : 'hidden' }}>
+      <div style={{ flex: 1, overflowY: (view === 'dashboard' || view === 'classes' || view === 'research') ? 'auto' : 'hidden' }}>
         {error && (
           <div style={{ maxWidth: '1200px', margin: '24px auto 0', background: 'var(--color-danger-bg)', border: '1px solid var(--color-danger-text)', padding: '16px 20px', borderRadius: 'var(--radius-md)', color: 'var(--color-danger-text)', fontSize: '0.9rem' }}>
             {error}
@@ -400,6 +547,8 @@ export default function App() {
                       <QuizCard
                         key={quiz.id}
                         quiz={quiz}
+                        resolvedDate={resolvedDates[quiz.id]}
+                        onUpdateCustomDate={handleUpdateCustomDate}
                         historyItem={history[quiz.id]}
                         onSelect={handleSelectQuiz}
                       />
@@ -418,6 +567,8 @@ export default function App() {
             {view === 'workspace' && activeQuiz && (
               <ClassWorkspace
                 quiz={activeQuiz}
+                resolvedDate={resolvedDates[activeQuiz.id]}
+                onUpdateCustomDate={handleUpdateCustomDate}
                 questions={questions}
                 quizIntro={quizIntro}
                 manifest={manifest}
@@ -431,6 +582,12 @@ export default function App() {
             {view === 'terminology' && (
               <TerminologyView 
                 onBack={handleCloseTerminology}
+              />
+            )}
+
+            {view === 'research' && (
+              <ResearchView 
+                onBack={handleCloseResearch}
               />
             )}
           </>
