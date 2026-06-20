@@ -51,8 +51,8 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Understanding High Level Design (HLD) importance and key components (Frontend, Backend, Database, APIs).",
     "file": "day5_day_5_introduction_to_hld_components.md",
-    "questionCount": 3,
-    "resourceCount": 0
+    "questionCount": 28,
+    "resourceCount": 1
   },
   {
     "id": "day6_day_6_data_exchange_api_architectures",

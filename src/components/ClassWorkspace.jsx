@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProblemListTable from './ProblemListTable';
 import QuestionSolver from './QuestionSolver';
-import { ArrowLeft, CheckCircle, ChevronLeft, ChevronRight, HelpCircle, Bell, GraduationCap, BookOpen, ChevronDown } from 'lucide-react';
+import { ArrowLeft, CheckCircle, ChevronLeft, ChevronRight, HelpCircle, Bell, GraduationCap, BookOpen, ChevronDown, RotateCcw } from 'lucide-react';
 
 export default function ClassWorkspace({ 
   quiz, 
@@ -682,6 +682,40 @@ export default function ClassWorkspace({
             )}
           </div>
         </div>
+
+        {/* Action buttons on the right */}
+        {answersRecord.length > 0 && (
+          <div>
+            <button
+              onClick={() => {
+                if (window.confirm("Are you sure you want to reset your progress for this specific class? This will clear your answers for this class only.")) {
+                  onSubmitAnswer(quiz.id, {
+                    completed: false,
+                    score: 0,
+                    total: questions.length,
+                    answersRecord: []
+                  });
+                  setActiveTab('All');
+                }
+              }}
+              className="btn-scaler btn-scaler-secondary"
+              style={{
+                padding: '6px 14px',
+                fontSize: '0.78rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                border: '1px solid var(--color-danger)',
+                color: 'var(--color-danger)',
+                backgroundColor: 'transparent',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              <RotateCcw size={13} /> Reset Class Progress
+            </button>
+          </div>
+        )}
 
       </div>
 
