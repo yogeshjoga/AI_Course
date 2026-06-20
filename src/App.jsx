@@ -224,16 +224,7 @@ export default function App() {
     }
   };
 
-  const handleResetProgress = () => {
-    if (window.confirm('Are you sure you want to clear your solve history? This will reset all your scores and custom dates.')) {
-      setHistory({});
-      setCustomDates({
-        'day5_day_5_introduction_to_hld_components': '2026-06-20'
-      });
-      localStorage.removeItem('course_solve_history');
-      localStorage.removeItem('course_custom_dates');
-    }
-  };
+
 
   // Fixed course modules list requested by user in exact order
   const availableTopics = [
@@ -360,15 +351,6 @@ export default function App() {
             >
               <Download size={13} /> Download Syllabus
             </a>
-            {(view === 'dashboard' || view === 'classes') && Object.keys(history).length > 0 && (
-              <button 
-                className="btn-scaler btn-scaler-secondary" 
-                onClick={handleResetProgress}
-                style={{ padding: '6px 12px', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '6px' }}
-              >
-                <RefreshCw size={12} /> Clear Progress
-              </button>
-            )}
           </div>
         </div>
       </header>
