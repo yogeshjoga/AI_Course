@@ -5,6 +5,7 @@ import ClassWorkspace from './components/ClassWorkspace';
 import { Search, GraduationCap, RefreshCw, ArrowLeft, Download, BookOpen, Compass } from 'lucide-react';
 import TerminologyView from './components/TerminologyView';
 import ResearchView from './components/ResearchView';
+import ModuleResourcesView from './components/ModuleResourcesView';
 
 export default function App() {
   const [manifest, setManifest] = useState([]);
@@ -118,6 +119,7 @@ export default function App() {
   const [quizIntro, setQuizIntro] = useState('');
   const [view, setView] = useState('dashboard'); // 'dashboard', 'workspace', 'classes', 'terminology', 'research'
   const [filterTopic, setFilterTopic] = useState('All');
+  const [classesSubtab, setClassesSubtab] = useState('Classes'); // 'Classes' or 'Resources'
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -214,6 +216,7 @@ export default function App() {
   const handleBackToDashboard = () => {
     setActiveQuiz(null);
     setQuestions([]);
+    setClassesSubtab('Classes');
     if (filterTopic === 'All') {
       setView('dashboard');
     } else {
@@ -482,6 +485,7 @@ export default function App() {
                   <button 
                     onClick={() => {
                       setFilterTopic('All');
+                      setClassesSubtab('Classes');
                       setView('dashboard');
                     }}
                     style={{
@@ -510,56 +514,80 @@ export default function App() {
                     </div>
                     
                     {/* Search Box */}
-                    <div style={{ position: 'relative', width: '100%', maxWidth: '300px' }}>
-                      <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                      <input
-                        type="text"
-                        placeholder="Search classes..."
-                        value={searchQuery}
-                        onChange={e => setSearchQuery(e.target.value)}
-                        style={{
-                          width: '100%',
-                          padding: '10px 12px 10px 36px',
-                          backgroundColor: 'var(--bg-surface)',
-                          border: '1px solid var(--border-color)',
-                          borderRadius: 'var(--radius-md)',
-                          color: 'var(--text-primary)',
-                          fontSize: '0.88rem',
-                          outline: 'none'
-                        }}
-                      />
-                    </div>
+                    {classesSubtab === 'Classes' && (
+                      <div style={{ position: 'relative', width: '100%', maxWidth: '300px' }}>
+                        <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                        <input
+                          type="text"
+                          placeholder="Search classes..."
+                          value={searchQuery}
+                          onChange={e => setSearchQuery(e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '10px 12px 10px 36px',
+                            backgroundColor: 'var(--bg-surface)',
+                            border: '1px solid var(--border-color)',
+                            borderRadius: 'var(--radius-md)',
+                            color: 'var(--text-primary)',
+                            fontSize: '0.88rem',
+                            outline: 'none'
+                          }}
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                {/* Classes Grid */}
-                {manifest.filter(q => q.topic === filterTopic && (
-                  searchQuery === '' || 
-                  q.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                  q.description.toLowerCase().includes(searchQuery.toLowerCase())
-                )).length > 0 ? (
-                  <div className="grid-container" style={{ marginTop: '24px' }}>
-                    {manifest.filter(q => q.topic === filterTopic && (
-                      searchQuery === '' || 
-                      q.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                      q.description.toLowerCase().includes(searchQuery.toLowerCase())
-                    )).map(quiz => (
-                      <QuizCard
-                        key={quiz.id}
-                        quiz={quiz}
-                        resolvedDate={resolvedDates[quiz.id]}
-                        onUpdateCustomDate={handleUpdateCustomDate}
-                        historyItem={history[quiz.id]}
-                        onSelect={handleSelectQuiz}
-                      />
-                    ))}
+                {/* Module Level Subtabs */}
+                <div className="scaler-subtabs" style={{ marginBottom: '24px', borderBottom: '1px solid var(--border-color)', display: 'flex', gap: '8px', flexShrink: 0 }}>
+                  <div 
+                    className={`subtab-item${classesSubtab === 'Classes' ? ' active' : ''}`}
+                    onClick={() => setClassesSubtab('Classes')}
+                    style={{ padding: '8px 16px', cursor: 'pointer', fontWeight: '600', fontSize: '0.9rem' }}
+                  >
+                    Classes
                   </div>
+                  <div 
+                    className={`subtab-item${classesSubtab === 'Resources' ? ' active' : ''}`}
+                    onClick={() => setClassesSubtab('Resources')}
+                    style={{ padding: '8px 16px', cursor: 'pointer', fontWeight: '600', fontSize: '0.9rem' }}
+                  >
+                    Module Resources
+                  </div>
+                </div>
+
+                {/* Conditional rendering based on active subtab */}
+                {classesSubtab === 'Classes' ? (
+                  manifest.filter(q => q.topic === filterTopic && (
+                    searchQuery === '' || 
+                    q.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    q.description.toLowerCase().includes(searchQuery.toLowerCase())
+                  )).length > 0 ? (
+                    <div className="grid-container" style={{ marginTop: '24px' }}>
+                      {manifest.filter(q => q.topic === filterTopic && (
+                        searchQuery === '' || 
+                        q.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        q.description.toLowerCase().includes(searchQuery.toLowerCase())
+                      )).map(quiz => (
+                        <QuizCard
+                          key={quiz.id}
+                          quiz={quiz}
+                          resolvedDate={resolvedDates[quiz.id]}
+                          onUpdateCustomDate={handleUpdateCustomDate}
+                          historyItem={history[quiz.id]}
+                          onSelect={handleSelectQuiz}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{ backgroundColor: 'var(--bg-surface)', border: '1.5px dashed var(--border-color)', padding: '60px 40px', textAlign: 'center', borderRadius: 'var(--radius-lg)', marginTop: '24px' }}>
+                      <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+                        No classes found matching your search.
+                      </p>
+                    </div>
+                  )
                 ) : (
-                  <div style={{ backgroundColor: 'var(--bg-surface)', border: '1.5px dashed var(--border-color)', padding: '60px 40px', textAlign: 'center', borderRadius: 'var(--radius-lg)', marginTop: '24px' }}>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-                      No classes found matching your search.
-                    </p>
-                  </div>
+                  <ModuleResourcesView topic={filterTopic} />
                 )}
               </div>
             )}
