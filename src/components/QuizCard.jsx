@@ -7,6 +7,10 @@ export default function QuizCard({ quiz, resolvedDate, onUpdateCustomDate, histo
   const score = historyItem?.score;
   const total = historyItem?.total;
   
+  // Calculate solved questions statistics
+  const solvedCount = historyItem?.answersRecord?.filter(r => r.isCorrect).length || 0;
+  const progressPercent = quiz.questionCount > 0 ? (solvedCount / quiz.questionCount) * 100 : 0;
+
   // Format topic badge
   let badgeClass = 'topic-default';
   const cleanTopic = quiz.topic.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -52,26 +56,41 @@ export default function QuizCard({ quiz, resolvedDate, onUpdateCustomDate, histo
           <span className={`topic-badge ${badgeClass}`}>{quiz.topic}</span>
           
           {/* Status Badge */}
-          {isCompleted ? (
+          {isCompleted || solvedCount === quiz.questionCount ? (
             <span style={{ 
               display: 'inline-flex', 
               alignItems: 'center', 
               gap: '4px',
               background: 'rgba(16, 185, 129, 0.15)', 
-              color: '#34d399',
+              color: 'var(--color-success)',
               border: '1px solid rgba(16, 185, 129, 0.3)',
               padding: '2px 8px',
               borderRadius: 'var(--radius-full)',
               fontSize: '0.75rem',
               fontWeight: '600'
             }}>
-              <Check size={12} /> {score}/{total} Correct
+              <Check size={12} /> {solvedCount}/{quiz.questionCount} Correct
+            </span>
+          ) : solvedCount > 0 ? (
+            <span style={{ 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: '4px',
+              background: 'rgba(245, 158, 11, 0.15)', 
+              color: '#ca8a04',
+              border: '1px solid rgba(245, 158, 11, 0.3)',
+              padding: '2px 8px',
+              borderRadius: 'var(--radius-full)',
+              fontSize: '0.75rem',
+              fontWeight: '600'
+            }}>
+              In Progress
             </span>
           ) : (
             <span style={{ 
-              background: 'rgba(255, 255, 255, 0.05)', 
+              background: 'rgba(0, 0, 0, 0.05)', 
               color: 'var(--text-muted)',
-              border: '1px solid rgba(255, 255, 255, 0.05)',
+              border: '1px solid var(--border-color)',
               padding: '2px 8px',
               borderRadius: 'var(--radius-full)',
               fontSize: '0.75rem',
@@ -91,6 +110,27 @@ export default function QuizCard({ quiz, resolvedDate, onUpdateCustomDate, histo
         <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '20px', display: '-webkit-box', WebkitLineClamp: '2', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
           {quiz.description}
         </p>
+
+        {/* Dynamic Class-Level Progress Bar */}
+        <div style={{ marginTop: '12px', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px', fontSize: '0.72rem', fontWeight: '700' }}>
+            <span style={{ color: solvedCount === quiz.questionCount ? 'var(--color-success)' : solvedCount > 0 ? '#ca8a04' : 'var(--text-muted)' }}>
+              {solvedCount === quiz.questionCount ? '🎉 Completed' : solvedCount > 0 ? 'In Progress' : 'Unstarted'}
+            </span>
+            <span style={{ color: 'var(--text-secondary)' }}>
+              {solvedCount}/{quiz.questionCount} Solved ({Math.round(progressPercent)}%)
+            </span>
+          </div>
+          <div style={{ width: '100%', height: '6px', backgroundColor: '#f1f5f9', borderRadius: '3px', overflow: 'hidden' }}>
+            <div style={{ 
+              width: `${progressPercent}%`, 
+              height: '100%', 
+              backgroundColor: solvedCount === quiz.questionCount ? 'var(--color-success)' : 'var(--color-primary)',
+              borderRadius: '3px',
+              transition: 'width 0.4s ease'
+            }} />
+          </div>
+        </div>
       </div>
 
       {/* Footer Info */}

@@ -6,6 +6,7 @@ import { Search, GraduationCap, RefreshCw, ArrowLeft, Download, BookOpen, Compas
 import TerminologyView from './components/TerminologyView';
 import ResearchView from './components/ResearchView';
 import ModuleResourcesView from './components/ModuleResourcesView';
+import CustomModal from './components/CustomModal';
 
 export default function App() {
   const [manifest, setManifest] = useState([]);
@@ -102,24 +103,60 @@ export default function App() {
   const resolvedDates = getResolvedDates();
 
   const handleUpdateCustomDate = (quizId, newDate) => {
-    const pwd = prompt("Enter password to update class date:");
-    if (pwd === null) return; // User cancelled
-    if (pwd !== "7799250107@Ai") {
-      alert("Incorrect password. Date modification denied.");
-      return;
-    }
-    const updatedCustomDates = {
-      ...customDates,
-      [quizId]: newDate
-    };
-    setCustomDates(updatedCustomDates);
-    localStorage.setItem('course_custom_dates', JSON.stringify(updatedCustomDates));
+    triggerCustomModal({
+      type: 'prompt',
+      inputType: 'password',
+      title: 'Security Verification Required',
+      message: 'To modify the scheduled date for this class, please enter the administrator password:',
+      placeholder: 'Enter administrator password...',
+      onConfirm: (pwd) => {
+        if (pwd !== "7799250107@Ai") {
+          setTimeout(() => {
+            triggerCustomModal({
+              type: 'alert',
+              title: 'Access Denied',
+              message: 'Incorrect password. Date modification request has been denied.'
+            });
+          }, 300);
+          return;
+        }
+        const updatedCustomDates = {
+          ...customDates,
+          [quizId]: newDate
+        };
+        setCustomDates(updatedCustomDates);
+        localStorage.setItem('course_custom_dates', JSON.stringify(updatedCustomDates));
+      }
+    });
   };
   const [questions, setQuestions] = useState([]);
   const [quizIntro, setQuizIntro] = useState('');
   const [view, setView] = useState('dashboard'); // 'dashboard', 'workspace', 'classes', 'terminology', 'research'
   const [filterTopic, setFilterTopic] = useState('All');
   const [classesSubtab, setClassesSubtab] = useState('Classes'); // 'Classes' or 'Resources'
+  const [modalConfig, setModalConfig] = useState({
+    isOpen: false,
+    type: 'alert',
+    title: '',
+    message: '',
+    placeholder: '',
+    inputType: 'text',
+    onConfirm: null,
+    onCancel: null
+  });
+
+  const triggerCustomModal = (config) => {
+    setModalConfig({
+      isOpen: true,
+      type: config.type || 'alert',
+      title: config.title || 'Notification',
+      message: config.message || '',
+      placeholder: config.placeholder || 'Enter value...',
+      inputType: config.inputType || 'text',
+      onConfirm: config.onConfirm || null,
+      onCancel: config.onCancel || null
+    });
+  };
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -187,8 +224,11 @@ export default function App() {
       setActiveQuiz(quiz);
       setView('workspace');
     } catch (err) {
-      setError(err.message);
-      alert(`Error loading quiz: ${err.message}`);
+      triggerCustomModal({
+        type: 'alert',
+        title: 'Error Loading Quiz',
+        message: `An error occurred while loading this quiz:\n${err.message}`
+      });
       console.error(err);
     } finally {
       setLoading(false);
@@ -603,6 +643,24 @@ export default function App() {
           </>
         )}
       </div>
+
+      {/* Custom overlay modal for system dialogs */}
+      <CustomModal
+        isOpen={modalConfig.isOpen}
+        type={modalConfig.type}
+        title={modalConfig.title}
+        message={modalConfig.message}
+        inputType={modalConfig.inputType}
+        placeholder={modalConfig.placeholder}
+        onConfirm={(val) => {
+          if (modalConfig.onConfirm) modalConfig.onConfirm(val);
+          setModalConfig(prev => ({ ...prev, isOpen: false }));
+        }}
+        onCancel={() => {
+          if (modalConfig.onCancel) modalConfig.onCancel();
+          setModalConfig(prev => ({ ...prev, isOpen: false }));
+        }}
+      />
 
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ProblemListTable from './ProblemListTable';
 import QuestionSolver from './QuestionSolver';
 import { ArrowLeft, CheckCircle, ChevronLeft, ChevronRight, HelpCircle, Bell, GraduationCap, BookOpen, ChevronDown, RotateCcw } from 'lucide-react';
+import CustomModal from './CustomModal';
 
 export default function ClassWorkspace({ 
   quiz, 
@@ -19,6 +20,7 @@ export default function ClassWorkspace({
   const [activeSubtab, setActiveSubtab] = useState('Assignment'); // 'Assignment' or 'Resources'
   const [openSectionIndex, setOpenSectionIndex] = useState(0); // For resources accordion
   const [isEditingDate, setIsEditingDate] = useState(false);
+  const [resetModalOpen, setResetModalOpen] = useState(false);
 
   // Helper to parse markdown tables
   const parseMarkdownTable = (introText) => {
@@ -687,17 +689,7 @@ export default function ClassWorkspace({
         {answersRecord.length > 0 && (
           <div>
             <button
-              onClick={() => {
-                if (window.confirm("Are you sure you want to reset your progress for this specific class? This will clear your answers for this class only.")) {
-                  onSubmitAnswer(quiz.id, {
-                    completed: false,
-                    score: 0,
-                    total: questions.length,
-                    answersRecord: []
-                  });
-                  setActiveTab('All');
-                }
-              }}
+              onClick={() => setResetModalOpen(true)}
               className="btn-scaler btn-scaler-secondary"
               style={{
                 padding: '6px 14px',
@@ -883,6 +875,25 @@ export default function ClassWorkspace({
           </div>
         </div>
       )}
+
+      {/* Custom styled modal for resetting class progress */}
+      <CustomModal
+        isOpen={resetModalOpen}
+        type="confirm"
+        title="⚠️ WARNING: Reset Progress"
+        message="This will permanently delete all your solved answers and score data for this class. You will have to solve these class MCQs again from the beginning."
+        onConfirm={() => {
+          onSubmitAnswer(quiz.id, {
+            completed: false,
+            score: 0,
+            total: questions.length,
+            answersRecord: []
+          });
+          setActiveTab('All');
+          setResetModalOpen(false);
+        }}
+        onCancel={() => setResetModalOpen(false)}
+      />
 
     </div>
   );
