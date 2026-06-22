@@ -2,11 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { parseQuizMarkdown } from './utils/quizParser';
 import QuizCard from './components/QuizCard';
 import ClassWorkspace from './components/ClassWorkspace';
-import { Search, GraduationCap, RefreshCw, ArrowLeft, Download, BookOpen, Compass } from 'lucide-react';
+import { Search, GraduationCap, RefreshCw, ArrowLeft, Download, BookOpen, Compass, Coffee, Gift, Sparkles } from 'lucide-react';
 import TerminologyView from './components/TerminologyView';
 import ResearchView from './components/ResearchView';
 import ModuleResourcesView from './components/ModuleResourcesView';
 import CustomModal from './components/CustomModal';
+
+// Register course holidays here (Format: YYYY-MM-DD : "Holiday Name")
+const HOLIDAYS = {
+  '2026-01-01': "New Year's Day",
+  '2026-01-26': "Republic Day",
+  '2026-03-06': "Holi",
+  '2026-08-15': "Independence Day",
+  '2026-10-02': "Gandhi Jayanti",
+  '2026-10-20': "Dussehra",
+  '2026-11-08': "Diwali",
+  '2026-12-25': "Christmas Day"
+};
 
 export default function App() {
   const [manifest, setManifest] = useState([]);
@@ -264,6 +276,59 @@ export default function App() {
     }
   };
 
+  // Helper to determine today's banner info (class, holiday, weekoff, welcome)
+  const getBannerInfo = () => {
+    const today = new Date();
+    const y = today.getFullYear();
+    const m = String(today.getMonth() + 1).padStart(2, '0');
+    const d = String(today.getDate()).padStart(2, '0');
+    const todayStr = `${y}-${m}-${d}`;
+    const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday...
+
+    // 1. Check if today is a registered holiday
+    if (HOLIDAYS[todayStr]) {
+      return {
+        type: 'holiday',
+        icon: Gift,
+        title: `Holiday: ${HOLIDAYS[todayStr]}`,
+        subtitle: "Today is a scheduled course holiday. Enjoy your time off, refresh, and review key concepts at your own pace!",
+        gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
+      };
+    }
+
+    // 2. Check if there is a class scheduled for today in the manifest (resolvedDates)
+    const todaysClass = manifest.find(quiz => resolvedDates[quiz.id] === todayStr);
+    if (todaysClass) {
+      return {
+        type: 'class',
+        icon: Sparkles,
+        title: `Today's Class: ${todaysClass.title}`,
+        subtitle: `🕒 Timing: ${todaysClass.timing} | Welcome back! Live session is active today. Let's study and build something amazing together.`,
+        gradient: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)'
+      };
+    }
+
+    // 3. Check if Sunday (0) or Monday (1) weekoff
+    if (dayOfWeek === 0 || dayOfWeek === 1) {
+      return {
+        type: 'weekoff',
+        icon: Coffee,
+        title: "Course Weekoff (Sunday & Monday)",
+        subtitle: "Hope you are having a restful weekoff! Live classes run Tuesday to Saturday. Spend some time reviewing terminology or previous quizzes.",
+        gradient: 'linear-gradient(135deg, #4f46e5 0%, #312e81 100%)'
+      };
+    }
+
+    // 4. Default welcome banner
+    return {
+      type: 'welcome',
+      icon: GraduationCap,
+      title: "Welcome back to your AI Learning Hub!",
+      subtitle: "Review terminology lists, study research papers, and solve MCQs to master HLD, Python, FastAPI, and Agentic AI workflows.",
+      gradient: 'linear-gradient(135deg, #475569 0%, #1e293b 100%)'
+    };
+  };
+
 
 
   // Fixed course modules list requested by user in exact order
@@ -423,6 +488,59 @@ export default function App() {
             {view === 'dashboard' && (
               <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 24px' }}>
                 
+                {/* Dynamic Welcome Banner */}
+                {(() => {
+                  const banner = getBannerInfo();
+                  const Icon = banner.icon;
+                  return (
+                    <div style={{
+                      background: banner.gradient,
+                      color: '#ffffff',
+                      borderRadius: '12px',
+                      padding: '24px',
+                      marginBottom: '32px',
+                      boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '20px',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}>
+                      <div style={{
+                        position: 'absolute',
+                        top: '-30%',
+                        right: '-5%',
+                        width: '180px',
+                        height: '180px',
+                        borderRadius: '50%',
+                        background: 'rgba(255, 255, 255, 0.12)',
+                        filter: 'blur(20px)',
+                        pointerEvents: 'none'
+                      }} />
+                      
+                      <div style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        borderRadius: '10px',
+                        padding: '12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
+                      }}>
+                        <Icon size={28} />
+                      </div>
+                      <div>
+                        <h2 style={{ fontSize: '1.3rem', fontWeight: '800', margin: '0 0 4px 0', letterSpacing: '-0.02em', color: '#ffffff' }}>
+                          {banner.title}
+                        </h2>
+                        <p style={{ fontSize: '0.88rem', margin: 0, opacity: 0.9, lineHeight: '1.5' }}>
+                          {banner.subtitle}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })()}
+
                 {/* Intro Section */}
                 <div style={{ marginBottom: '32px' }}>
                   <h1 style={{ fontSize: '2.2rem', marginBottom: '8px', fontWeight: '800', color: '#1e293b' }}>
