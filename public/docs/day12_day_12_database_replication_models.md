@@ -1,15 +1,15 @@
 ---
-title: "Day 11 - Database Replication Models"
+title: "Day 12 - Database Replication Models"
 topic: "HLD"
 date: "2026-06-27"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Comparing Synchronous vs Asynchronous replication, replication lag, multi-leader, and leaderless setups."
 ---
 
-# Day 11 - Database Replication Models
+# Day 12 - Database Replication Models
 Class Timing: 9:00 AM - 10:00 AM IST
 
-Welcome to the daily assessment for **Day 11 - Database Replication Models**.
+Welcome to the daily assessment for **Day 12 - Database Replication Models**.
 Please attempt all questions below. Explanations will unlock after submission.
 
 ---

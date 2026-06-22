@@ -1,15 +1,15 @@
 ---
-title: "Day 9 - Cache Systems & Messaging Baselines"
+title: "Day 10 - Cache Systems & Messaging Baselines"
 topic: "Databases"
 date: "2026-06-25"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Deep dive into caching with Redis and message queue systems like Kafka."
 ---
 
-# Day 9 - Cache Systems & Messaging Baselines
+# Day 10 - Cache Systems & Messaging Baselines
 Class Timing: 9:00 AM - 10:00 AM IST
 
-Welcome to the daily assessment for **Day 9 - Cache Systems & Messaging Baselines**.
+Welcome to the daily assessment for **Day 10 - Cache Systems & Messaging Baselines**.
 Please attempt all questions below. Explanations will unlock after submission.
 
 ---

@@ -1,15 +1,15 @@
 ---
-title: "Day 15 - Designing WhatsApp: Part 1"
+title: "Day 16 - Designing WhatsApp: Part 1"
 topic: "HLD"
 date: "2026-07-03"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Designing high-level real-time messaging architecture, user presence, and connection flows."
 ---
 
-# Day 15 - Designing WhatsApp: Part 1
+# Day 16 - Designing WhatsApp: Part 1
 Class Timing: 9:00 AM - 10:00 AM IST
 
-Welcome to the daily assessment for **Day 15 - Designing WhatsApp: Part 1**.
+Welcome to the daily assessment for **Day 16 - Designing WhatsApp: Part 1**.
 Please attempt all questions below. Explanations will unlock after submission.
 
 ---

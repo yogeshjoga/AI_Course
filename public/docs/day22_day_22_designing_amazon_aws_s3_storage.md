@@ -1,15 +1,15 @@
 ---
-title: "Day 21 - Designing Amazon AWS S3 Storage"
+title: "Day 22 - Designing Amazon AWS S3 Storage"
 topic: "HLD"
 date: "2026-07-11"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Designing highly-durable object storage (AWS S3) with metadata databases, data partitioning, and replicas."
 ---
 
-# Day 21 - Designing Amazon AWS S3 Storage
+# Day 22 - Designing Amazon AWS S3 Storage
 Class Timing: 9:00 AM - 10:00 AM IST
 
-Welcome to the daily assessment for **Day 21 - Designing Amazon AWS S3 Storage**.
+Welcome to the daily assessment for **Day 22 - Designing Amazon AWS S3 Storage**.
 Please attempt all questions below. Explanations will unlock after submission.
 
 ---

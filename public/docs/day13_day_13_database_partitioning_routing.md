@@ -1,15 +1,15 @@
 ---
-title: "Day 12 - Database Partitioning & Routing"
+title: "Day 13 - Database Partitioning & Routing"
 topic: "HLD"
 date: "2026-06-30"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Understanding partitioning keys, secondary indexes, rebalancing, and request routing."
 ---
 
-# Day 12 - Database Partitioning & Routing
+# Day 13 - Database Partitioning & Routing
 Class Timing: 9:00 AM - 10:00 AM IST
 
-Welcome to the daily assessment for **Day 12 - Database Partitioning & Routing**.
+Welcome to the daily assessment for **Day 13 - Database Partitioning & Routing**.
 Please attempt all questions below. Explanations will unlock after submission.
 
 ---

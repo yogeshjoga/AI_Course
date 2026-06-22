@@ -89,8 +89,12 @@ const generateManifest = () => {
       console.log(`✅ Indexed: ${file} [Topic: ${topic}] [Questions: ${questionCount}]`);
     });
 
-    // Sort quizzes by date ascending
-    manifest.sort((a, b) => new Date(a.date) - new Date(b.date));
+    // Sort quizzes by day number ascending
+    const getDayNumber = (id) => {
+      const match = id.match(/^day(\d+)_/i);
+      return match ? parseInt(match[1], 10) : 999;
+    };
+    manifest.sort((a, b) => getDayNumber(a.id) - getDayNumber(b.id));
 
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
     console.log(`🎉 Manifest compiled successfully! Saved ${manifest.length} quizzes to ${manifestPath}`);
