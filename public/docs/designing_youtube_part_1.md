@@ -1,12 +1,12 @@
 ---
-title: "Day 18 - Designing YouTube: Part 1"
+title: "Designing YouTube: Part 1"
 topic: "HLD"
 date: "2026-07-07"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Designing high-level video upload pipelines, encoding/transcoding architectures."
 ---
 
-# Day 18 - Designing YouTube: Part 1
+# Designing YouTube: Part 1
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 18 - Designing YouTube: Part 1**.

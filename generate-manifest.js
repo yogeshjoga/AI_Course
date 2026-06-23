@@ -53,22 +53,34 @@ const countResources = (body) => {
 
 const generateManifest = () => {
   try {
-    const files = fs.readdirSync(docsDir);
+    const sequencePath = path.join(docsDir, 'sequence.json');
+    if (!fs.existsSync(sequencePath)) {
+      throw new Error(`sequence.json not found at ${sequencePath}`);
+    }
+
+    const sequence = JSON.parse(fs.readFileSync(sequencePath, 'utf-8'));
     const manifest = [];
 
-    files.forEach(file => {
-      if (!file.endsWith('.md')) return;
-
+    sequence.forEach((file, index) => {
       const filePath = path.join(docsDir, file);
+      if (!fs.existsSync(filePath)) {
+        console.log(`⚠️ Warning: file ${file} listed in sequence.json does not exist.`);
+        return;
+      }
+
       const content = fs.readFileSync(filePath, 'utf-8');
-      
       const { metadata, rawBody } = parseFrontmatter(content);
       const questionCount = countQuestions(rawBody);
       const resourceCount = countResources(rawBody);
 
-      // Construct a default metadata structure if not provided in frontmatter
       const id = file.replace('.md', '');
-      const title = metadata.title || id.replace(/[_-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      const dayNumber = index + 1;
+
+      // Clean "Day X - " prefix if any from title
+      let cleanTitle = metadata.title || id.replace(/[_-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      cleanTitle = cleanTitle.replace(/^Day\s*\d+\s*-\s*/i, '').trim();
+
+      const title = `Day ${dayNumber} - ${cleanTitle}`;
       const topic = metadata.topic || 'General';
       const date = metadata.date || new Date().toISOString().split('T')[0];
       const description = metadata.description || `Class MCQ test for ${topic}`;
@@ -77,6 +89,7 @@ const generateManifest = () => {
       manifest.push({
         id,
         title,
+        dayNumber,
         topic,
         date,
         timing,
@@ -86,15 +99,11 @@ const generateManifest = () => {
         resourceCount
       });
 
-      console.log(`✅ Indexed: ${file} [Topic: ${topic}] [Questions: ${questionCount}]`);
+      console.log(`✅ Indexed: ${file} [Day: ${dayNumber}] [Topic: ${topic}] [Questions: ${questionCount}]`);
     });
 
-    // Sort quizzes by day number ascending
-    const getDayNumber = (id) => {
-      const match = id.match(/^day(\d+)_/i);
-      return match ? parseInt(match[1], 10) : 999;
-    };
-    manifest.sort((a, b) => getDayNumber(a.id) - getDayNumber(b.id));
+    // Sort by day number ascending
+    manifest.sort((a, b) => a.dayNumber - b.dayNumber);
 
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
     console.log(`🎉 Manifest compiled successfully! Saved ${manifest.length} quizzes to ${manifestPath}`);

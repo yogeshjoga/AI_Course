@@ -1,12 +1,12 @@
 ---
-title: "Day 21 - Designing Uber/Ola Ride-Hailing: Part 2"
+title: "Designing Uber/Ola Ride-Hailing: Part 2"
 topic: "HLD"
 date: "2026-07-10"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Ride matching algorithms, trip state management, database write scaling, and ETA computation."
 ---
 
-# Day 21 - Designing Uber/Ola Ride-Hailing: Part 2
+# Designing Uber/Ola Ride-Hailing: Part 2
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 21 - Designing Uber/Ola Ride-Hailing: Part 2**.

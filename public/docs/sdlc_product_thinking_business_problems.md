@@ -1,5 +1,5 @@
 ---
-title: "Day 4 - SDLC, Product Thinking, & Business Problems"
+title: "SDLC, Product Thinking, & Business Problems"
 topic: "Intro Module"
 date: "2026-06-18"
 timing: "9:00 AM - 10:00 AM IST"

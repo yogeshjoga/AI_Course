@@ -1,12 +1,12 @@
 ---
-title: "Day 5 - Introduction to HLD & Components"
+title: "Introduction to HLD & Components"
 topic: "HLD"
 date: "2026-06-19"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Understanding High Level Design (HLD) importance and key components (Frontend, Backend, Database, APIs)."
 ---
 
-# Day 5 - Introduction to HLD & Components
+# Introduction to HLD & Components
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 5 - Introduction to HLD & Components**.

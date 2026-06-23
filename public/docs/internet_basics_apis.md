@@ -1,12 +1,12 @@
 ---
-title: "Day 3 - Internet Basics & APIs"
+title: "Internet Basics & APIs"
 topic: "Intro Module"
 date: "2026-06-17"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Understanding browsers, client-server architectures, DNS, and APIs."
 ---
 
-# Day 3 - Internet Basics & APIs
+# Internet Basics & APIs
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 3 - Internet Basics & APIs**.

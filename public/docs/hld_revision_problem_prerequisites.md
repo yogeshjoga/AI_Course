@@ -1,12 +1,12 @@
 ---
-title: "Day 15 - HLD Revision & Problem Prerequisites"
+title: "HLD Revision & Problem Prerequisites"
 topic: "HLD"
 date: "2026-07-02"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Comprehensive HLD review session before solving complex system design challenges."
 ---
 
-# Day 15 - HLD Revision & Problem Prerequisites
+# HLD Revision & Problem Prerequisites
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 15 - HLD Revision & Problem Prerequisites**.

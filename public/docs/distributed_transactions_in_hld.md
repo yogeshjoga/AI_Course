@@ -1,12 +1,12 @@
 ---
-title: "Day 14 - Distributed Transactions in HLD"
+title: "Distributed Transactions in HLD"
 topic: "Databases"
 date: "2026-07-01"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Deep dive into transaction management and ACID properties in high-level distributed systems."
 ---
 
-# Day 14 - Distributed Transactions in HLD
+# Distributed Transactions in HLD
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 14 - Distributed Transactions in HLD**.

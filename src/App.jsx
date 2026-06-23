@@ -44,7 +44,7 @@ export default function App() {
     }
     // Prepopulate Day 5 with June 20, 2026 as default override due to leaf
     return {
-      'day5_day_5_introduction_to_hld_components': '2026-06-20'
+      'introduction_to_hld_components': '2026-06-20'
     };
   });
   const [activeQuiz, setActiveQuiz] = useState(null);
@@ -74,11 +74,7 @@ export default function App() {
 
   // Helper to extract the day index sequence number from the quiz ID
   const getQuizDayNumber = (quiz) => {
-    const match = quiz.id.match(/^day(\d+)_/i);
-    if (match) {
-      return parseInt(match[1], 10);
-    }
-    return 999;
+    return quiz.dayNumber || 999;
   };
 
   // Compute resolved dates for all manifest items sequentially

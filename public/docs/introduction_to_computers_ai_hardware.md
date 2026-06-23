@@ -1,12 +1,12 @@
 ---
-title: "Day 2 - Introduction to Computers & AI Hardware"
+title: "Introduction to Computers & AI Hardware"
 topic: "Intro Module"
 date: "2026-06-16"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Understanding CPUs, GPUs, TPUs, VRAMs, NPUs, CUDA Cores, and NVIDIA GPU architectures."
 ---
 
-# Day 2 - Introduction to Computers & AI Hardware
+# Introduction to Computers & AI Hardware
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 2 - Introduction to Computers & AI Hardware**.

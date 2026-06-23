@@ -1,12 +1,12 @@
 ---
-title: "Day 9 - Schema Design & SQL Databases"
+title: "Schema Design & SQL Databases"
 topic: "Databases"
 date: "2026-06-24"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Introduction to schema, ACID compliance, SQL databases, and PostgreSQL."
 ---
 
-# Day 9 - Schema Design & SQL Databases
+# Schema Design & SQL Databases
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 9 - Schema Design & SQL Databases**.

@@ -1,12 +1,12 @@
 ---
-title: "Day 8 - HLD Problem Solving Prerequisites"
+title: "HLD Problem Solving Prerequisites"
 topic: "HLD"
 date: "2026-06-23"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Learn HLD problem-solving basics, Back-of-the-Envelope (BOE) calculations, and design assumptions."
 ---
 
-# Day 8 - HLD Problem Solving Prerequisites
+# HLD Problem Solving Prerequisites
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 8 - HLD Problem Solving Prerequisites**.

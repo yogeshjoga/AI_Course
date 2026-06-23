@@ -1,12 +1,12 @@
 ---
-title: "Day 11 - Scaling, Load Balancer, CDN, & CAP/PAELC"
+title: "Scaling, Load Balancer, CDN, & CAP/PAELC"
 topic: "HLD"
 date: "2026-06-26"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Understanding CDN, Load Balancers, CAP and PAELC Theorems, and service discovery."
 ---
 
-# Day 11 - Scaling, Load Balancer, CDN, & CAP/PAELC
+# Scaling, Load Balancer, CDN, & CAP/PAELC
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 11 - Scaling, Load Balancer, CDN, & CAP/PAELC**.

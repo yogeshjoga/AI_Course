@@ -1,12 +1,12 @@
 ---
-title: "Day 7 - Data Exchange & API Architectures"
+title: "Data Exchange & API Architectures"
 topic: "HLD"
 date: "2026-06-20"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Understanding data exchange types, REST APIs, WebSockets, HTTP methods, and JSON."
 ---
 
-# Day 7 - Data Exchange & API Architectures
+# Data Exchange & API Architectures
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 7 - Data Exchange & API Architectures**.

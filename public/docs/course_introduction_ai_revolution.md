@@ -1,12 +1,12 @@
 ---
-title: "Day 1 - Course Introduction & AI Revolution"
+title: "Course Introduction & AI Revolution"
 topic: "Intro Module"
 date: "2026-06-13"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Introduction to the course, the AI revolution, and the career roadmap."
 ---
 
-# Day 1 - Course Introduction & AI Revolution
+# Course Introduction & AI Revolution
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 1 - Course Introduction & AI Revolution**.

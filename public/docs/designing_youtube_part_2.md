@@ -1,12 +1,12 @@
 ---
-title: "Day 19 - Designing YouTube: Part 2"
+title: "Designing YouTube: Part 2"
 topic: "HLD"
 date: "2026-07-08"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Designing YouTube content delivery (CDN), video streaming protocols, caching, and view-count scaling."
 ---
 
-# Day 19 - Designing YouTube: Part 2
+# Designing YouTube: Part 2
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 19 - Designing YouTube: Part 2**.

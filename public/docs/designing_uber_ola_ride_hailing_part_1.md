@@ -1,12 +1,12 @@
 ---
-title: "Day 20 - Designing Uber/Ola Ride-Hailing: Part 1"
+title: "Designing Uber/Ola Ride-Hailing: Part 1"
 topic: "HLD"
 date: "2026-07-09"
 timing: "9:00 AM - 10:00 AM IST"
 description: "High-level architecture for ride-hailing, geo-spatial indexing (H3, S2), and real-time driver tracking."
 ---
 
-# Day 20 - Designing Uber/Ola Ride-Hailing: Part 1
+# Designing Uber/Ola Ride-Hailing: Part 1
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 20 - Designing Uber/Ola Ride-Hailing: Part 1**.

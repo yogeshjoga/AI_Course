@@ -1,12 +1,12 @@
 ---
-title: "Day 17 - Designing WhatsApp: Part 2"
+title: "Designing WhatsApp: Part 2"
 topic: "HLD"
 date: "2026-07-04"
 timing: "9:00 AM - 10:00 AM IST"
 description: "Designing database schema for messages, media storage, group chats, and message delivery states."
 ---
 
-# Day 17 - Designing WhatsApp: Part 2
+# Designing WhatsApp: Part 2
 Class Timing: 9:00 AM - 10:00 AM IST
 
 Welcome to the daily assessment for **Day 17 - Designing WhatsApp: Part 2**.
