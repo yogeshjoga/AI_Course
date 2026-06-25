@@ -73,15 +73,15 @@
   },
   {
     "id": "data_exchange_api_architectures",
-    "title": "Day 7 - Data Exchange & API Architectures",
+    "title": "Day 7 - REST APIs, FastAPI, API Design & Agentic AI",
     "dayNumber": 7,
     "topic": "HLD",
     "date": "2026-06-25",
     "timing": "9:00 AM - 10:00 AM IST",
-    "description": "Understanding data exchange types, REST APIs, WebSockets, HTTP methods, and JSON.",
+    "description": "Architectural thinking for REST APIs, WebSockets, Webhooks, FastAPI, and Agentic AI APIs.",
     "file": "data_exchange_api_architectures.md",
-    "questionCount": 3,
-    "resourceCount": 0
+    "questionCount": 40,
+    "resourceCount": 1
   },
   {
     "id": "hld_problem_solving_prerequisites",
