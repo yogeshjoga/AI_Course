@@ -34,18 +34,21 @@ export default function App() {
     return {};
   });
   const [customDates, setCustomDates] = useState(() => {
+    const defaultOverrides = {
+      'introduction_to_hld_components': '2026-06-20',
+      'data_exchange_api_architectures': '2026-06-25'
+    };
     const saved = localStorage.getItem('course_custom_dates');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        // Merge defaults so new hardcoded overrides take effect if not already saved
+        return { ...defaultOverrides, ...parsed };
       } catch (e) {
         console.error('Failed to parse custom dates from localStorage', e);
       }
     }
-    // Prepopulate Day 5 with June 20, 2026 as default override due to leaf
-    return {
-      'introduction_to_hld_components': '2026-06-20'
-    };
+    return defaultOverrides;
   });
   const [activeQuiz, setActiveQuiz] = useState(null);
 
