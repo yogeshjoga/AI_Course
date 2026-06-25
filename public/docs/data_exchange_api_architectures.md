@@ -43,7 +43,13 @@ Answer:
 
 ---
 
-Q3. Consider this code: `public User getUser(long id)`. Can a mobile application directly call this method?
+Q3. Consider this code: 
+
+```java
+public User getUser(long id)
+```
+
+Can a mobile application directly call this method?
 
 A. Yes
 B. No
@@ -58,13 +64,40 @@ Methods live inside backend applications. They become accessible only after expo
 
 Q4. Which architecture is correct?
 
-A. Mobile App -> API -> Backend Method
-B. Mobile App -> Java Method
-C. Mobile App -> Database
-D. Browser -> CPU
+A. 
+```text
+Mobile App
+   ↓
+  API
+   ↓
+Backend Method
+```
+B. 
+```text
+Mobile App
+   ↓
+Java Method
+```
+C. 
+```text
+Mobile App
+   ↓
+Database
+```
+D. 
+```text
+Browser -> CPU
+```
 
 Answer:
-✅ A. Mobile App -> API -> Backend Method
+✅ A. 
+```text
+Mobile App
+   ↓
+  API
+   ↓
+Backend Method
+```
 
 ---
 
@@ -72,37 +105,37 @@ Answer:
 
 Q5. Which URI follows REST best practices?
 
-A. /getAllUsers
-B. /FetchUsers
-C. /users
-D. /doUserList
+A. `/getAllUsers`
+B. `/FetchUsers`
+C. `/users`
+D. `/doUserList`
 
 Answer:
-✅ C. /users
+✅ C. `/users`
 
 ---
 
 Q6. Which URI gets a single user?
 
-A. /users
-B. /users/123
-C. /users?id=123
-D. Both B and C are valid, but /users/123 is the preferred REST resource style.
+A. `/users`
+B. `/users/123`
+C. `/users?id=123`
+D. Both B and C are valid, but `/users/123` is the preferred REST resource style.
 
 Answer:
-✅ D. Both B and C are valid, but /users/123 is the preferred REST resource style.
+✅ D. Both B and C are valid, but `/users/123` is the preferred REST resource style.
 
 ---
 
 Q7. Which URI creates a user?
 
-A. GET /users
-B. POST /users
-C. DELETE /users
-D. PATCH /users
+A. `GET /users`
+B. `POST /users`
+C. `DELETE /users`
+D. `PATCH /users`
 
 Answer:
-✅ B. POST /users
+✅ B. `POST /users`
 
 ---
 
@@ -110,13 +143,13 @@ Answer:
 
 Q8. Which value is a Path Variable in `/users/123`?
 
-A. users
-B. 123
-C. /
-D. GET
+A. `users`
+B. `123`
+C. `/`
+D. `GET`
 
 Answer:
-✅ B. 123
+✅ B. `123`
 
 ---
 
@@ -136,25 +169,25 @@ Answer:
 
 Q10. Which request searches users?
 
-A. /users/india
-B. /users?country=India
-C. /users=India
-D. /India/users
+A. `/users/india`
+B. `/users?country=India`
+C. `/users=India`
+D. `/India/users`
 
 Answer:
-✅ B. /users?country=India
+✅ B. `/users?country=India`
 
 ---
 
 Q11. Which request supports pagination?
 
-A. /users?page=1&size=20
-B. /users/20
-C. /20/users
-D. /users?page
+A. `/users?page=1&size=20`
+B. `/users/20`
+C. `/20/users`
+D. `/users?page`
 
 Answer:
-✅ A. /users?page=1&size=20
+✅ A. `/users?page=1&size=20`
 
 ---
 
@@ -186,11 +219,29 @@ Answer:
 
 Q14. Which JSON is better?
 
-A. {"a":"John", "b":"India"}
-B. {"name":"John", "country":"India"}
+A. 
+```json
+{
+  "a": "John",
+  "b": "India"
+}
+```
+B. 
+```json
+{
+  "name": "John",
+  "country": "India"
+}
+```
 
 Answer:
-✅ B. {"name":"John", "country":"India"}
+✅ B. 
+```json
+{
+  "name": "John",
+  "country": "India"
+}
+```
 
 ---
 
@@ -258,39 +309,73 @@ Answer:
 
 ### Section 7 – FastAPI
 
-Q20. Which decorator creates a GET API? `@app.____("/users")`
+Q20. Which decorator creates a GET API? 
 
-A. get
-B. create
-C. read
-D. fetch
+```python
+@app.____("/users")
+```
+
+A. `get`
+B. `create`
+C. `read`
+D. `fetch`
 
 Answer:
-✅ A. get
+✅ A. `get`
 
 ---
 
 Q21. Which decorator creates a POST API?
 
-A. @app.post
-B. @app.create
-C. @app.save
-D. @app.add
+A. 
+```python
+@app.post
+```
+B. 
+```python
+@app.create
+```
+C. 
+```python
+@app.save
+```
+D. 
+```python
+@app.add
+```
 
 Answer:
-✅ A. @app.post
+✅ A. 
+```python
+@app.post
+```
 
 ---
 
 Q22. Which FastAPI decorator deletes a user?
 
-A. @app.delete("/users/{id}")
-B. @app.remove()
-C. @app.destroy()
-D. @app.erase()
+A. 
+```python
+@app.delete("/users/{id}")
+```
+B. 
+```python
+@app.remove()
+```
+C. 
+```python
+@app.destroy()
+```
+D. 
+```python
+@app.erase()
+```
 
 Answer:
-✅ A. @app.delete("/users/{id}")
+✅ A. 
+```python
+@app.delete("/users/{id}")
+```
 
 ---
 
@@ -298,25 +383,25 @@ Answer:
 
 Q23. Which endpoint is RESTful?
 
-A. /createUser
-B. /users
-C. /getUsers
-D. /doLogin
+A. `/createUser`
+B. `/users`
+C. `/getUsers`
+D. `/doLogin`
 
 Answer:
-✅ B. /users
+✅ B. `/users`
 
 ---
 
 Q24. Which endpoint follows versioning?
 
-A. /users
-B. /api/v1/users
-C. /v/users
-D. /first/users
+A. `/users`
+B. `/api/v1/users`
+C. `/v/users`
+D. `/first/users`
 
 Answer:
-✅ B. /api/v1/users
+✅ B. `/api/v1/users`
 
 ---
 

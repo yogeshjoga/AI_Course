@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Check, AlertCircle, HelpCircle } from 'lucide-react';
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css';
+import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-json';
 
 export default function QuestionSolver({ question, questionIdx, answersRecord, onSubmitAnswer, totalQuestions, onNextQuestion }) {
   const record = answersRecord.find(r => r.questionIndex === questionIdx);
@@ -31,18 +36,52 @@ export default function QuestionSolver({ question, questionIdx, answersRecord, o
   const renderTextContent = (text) => {
     if (!text) return '';
     
-    let escaped = text
+    let blocks = [];
+    let textWithPlaceholders = text.replace(/```([a-zA-Z0-9]+)?\r?\n([\s\S]*?)```/g, (match, lang, code) => {
+      blocks.push({ lang, code });
+      return `___CODE_BLOCK_${blocks.length - 1}___`;
+    });
+
+    let escaped = textWithPlaceholders
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
 
-    escaped = escaped.replace(/```(?:[a-zA-Z0-9]+)?\r?\n([\s\S]*?)```/g, (match, code) => {
-      return `<pre><code>${code.trim()}</code></pre>`;
-    });
-
     escaped = escaped.replace(/`([^`]+)`/g, '<code>$1</code>');
     escaped = escaped.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     escaped = escaped.replace(/\n/g, '<br />');
+
+    blocks.forEach((block, index) => {
+      const language = (block.lang || 'text').trim().toLowerCase();
+      let highlightedCode = block.code.trim();
+      
+      try {
+        if (Prism.languages[language]) {
+          highlightedCode = Prism.highlight(highlightedCode, Prism.languages[language], language);
+        } else {
+          highlightedCode = highlightedCode
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+        }
+      } catch (e) {
+        highlightedCode = highlightedCode
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+      }
+
+      const blockHtml = `
+        <div class="code-block-wrapper" style="margin: 16px 0; border-radius: 6px; overflow: hidden; border: 1px solid var(--border-color); background: #2d2d2d;">
+          <div class="code-block-header" style="background: #1e1e1e; color: #a0a0a0; padding: 6px 12px; font-size: 0.75rem; font-family: monospace; text-transform: uppercase; border-bottom: 1px solid #333;">
+            ${language === 'text' ? 'Code Snippet' : language}
+          </div>
+          <pre style="margin: 0; padding: 16px; font-size: 0.9rem; overflow-x: auto; background: transparent;"><code class="language-${language}">${highlightedCode}</code></pre>
+        </div>
+      `;
+
+      escaped = escaped.replace(`___CODE_BLOCK_${index}___`, blockHtml);
+    });
 
     return <div dangerouslySetInnerHTML={{ __html: escaped }} />;
   };

@@ -141,12 +141,18 @@ export function parseQuizMarkdown(mdContent) {
     }
 
     // If it doesn't match options, answer, explanation, and we are not in explanation mode
-    // it must be the question body (e.g. details between the header and options)
-    if (trimmedLine !== '' && trimmedLine !== '---' && currentQuestion.options.length === 0) {
-      if (currentQuestion.questionText) {
-        currentQuestion.questionText += '\n' + trimmedLine;
+    // it must be either question body or continuation of the last option.
+    if (trimmedLine !== '' && trimmedLine !== '---') {
+      if (currentQuestion.options.length === 0) {
+        if (currentQuestion.questionText) {
+          currentQuestion.questionText += '\n' + line;
+        } else {
+          currentQuestion.questionText = line;
+        }
       } else {
-        currentQuestion.questionText = trimmedLine;
+        // Append to the last option to support multiline options (like codeblocks)
+        const lastOption = currentQuestion.options[currentQuestion.options.length - 1];
+        lastOption.text += '\n' + line;
       }
     }
   }
