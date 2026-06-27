@@ -387,7 +387,7 @@ export default function App() {
   );
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+    <div className="app-root-container" style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
       
       {/* Navbar header */}
       <header className="header-glass" style={{ flexShrink: 0, height: '65px' }}>

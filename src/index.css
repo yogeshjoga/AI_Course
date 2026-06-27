@@ -560,3 +560,159 @@ pre code {
   background-color: #f8fafc;
 }
 
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  html, body, #root {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .app-root-container,
+  .class-workspace-root {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+  }
+
+  .scaler-workspace-container,
+  .scaler-assignment-content,
+  .scaler-assignment-content > div:first-child {
+    display: block !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    flex: none !important;
+  }
+
+  .scaler-assignment-container {
+    display: flex !important;
+    flex-direction: column-reverse !important;
+    height: auto !important;
+    overflow: visible !important;
+    flex: none !important;
+  }
+
+  .scaler-sidebar {
+    display: flex !important;
+    width: 100%;
+    flex-direction: row;
+    height: auto;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 16px;
+    justify-content: flex-start;
+  }
+
+  .sidebar-item {
+    width: auto;
+    padding: 8px 16px;
+    flex-direction: row;
+    white-space: nowrap;
+  }
+
+  .sidebar-item-status-icon {
+    position: static;
+    margin-left: 8px;
+  }
+
+  .scaler-split-workspace {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    overflow: visible !important;
+    flex: none !important;
+  }
+
+  .scaler-description-pane,
+  .scaler-interactive-pane {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    padding: 20px;
+  }
+
+  .scaler-interactive-pane {
+    border-top: 1px solid var(--border-color);
+    border-left: none;
+  }
+
+  /* Assignment split layout fixes */
+  .scaler-assignment-container {
+    flex-direction: column-reverse !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .scaler-assignment-content {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .scaler-assignment-content > div:first-child {
+    overflow-y: visible !important;
+  }
+
+  .scaler-subtabs {
+    padding: 0 16px;
+    gap: 16px;
+    overflow-x: auto;
+  }
+
+  .subtab-item {
+    white-space: nowrap;
+  }
+
+  .glass-panel {
+    padding: 24px !important;
+  }
+
+  /* Header mobile alignment fixes */
+  .header-glass {
+    height: auto !important;
+  }
+  
+  .header-glass > div {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    height: auto !important;
+    padding: 16px !important;
+  }
+
+  /* Logo text adjustment */
+  .header-glass > div > div:first-child span {
+    font-size: 1.1rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Buttons container wrapping */
+  .header-glass > div > div:nth-child(2) {
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .header-glass .btn-scaler {
+    font-size: 0.75rem !important;
+    padding: 6px 10px !important;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  /* Grid container for resources */
+  .grid-container,
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .scaler-workspace-footer {
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 12px;
+    height: auto;
+    align-items: flex-start;
+  }
+}

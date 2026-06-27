@@ -612,7 +612,7 @@ export default function ClassWorkspace({
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 65px)', backgroundColor: 'var(--bg-main)' }}>
+    <div className="class-workspace-root" style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 65px)', backgroundColor: 'var(--bg-main)' }}>
       
       {/* Workspace Header Panel */}
       <div style={{ background: '#ffffff', borderBottom: '1px solid var(--border-color)', padding: '12px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
@@ -729,7 +729,7 @@ export default function ClassWorkspace({
 
       {activeSubtab === 'Assignment' ? (
         /* Main Split Layout for Assignment Solver */
-        <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+        <div className="scaler-assignment-container" style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
           
           {/* Left Vertical Question Sidebar */}
           <div className="scaler-sidebar">
@@ -762,7 +762,7 @@ export default function ClassWorkspace({
           </div>
 
           {/* Content Pane */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+          <div className="scaler-assignment-content" style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             
             {/* Tab Body */}
             <div style={{ flex: 1, overflowY: 'auto' }}>

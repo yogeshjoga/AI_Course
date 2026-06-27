@@ -102,10 +102,10 @@
     "topic": "HLD",
     "date": "2026-06-27",
     "timing": "9:00 AM - 10:00 AM IST",
-    "description": "Back of the Envelope Estimations, API Design Principles, and High-Level Design Architecture.",
+    "description": "Architect-Level MCQs on HLD Design Thinking, Requirements, BOE, APIs, and AI Agent Architecture.",
     "file": "boe_api_hld_design.md",
-    "questionCount": 3,
-    "resourceCount": 1
+    "questionCount": 40,
+    "resourceCount": 0
   },
   {
     "id": "schema_design_sql_databases",

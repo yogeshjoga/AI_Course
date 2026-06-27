@@ -40,6 +40,21 @@ export default function ModuleResourcesView({ topic }) {
     ],
     'HLD': [
       {
+        title: "AI Agent Building - HLD Concepts Roadmap",
+        author: "Course Instructor",
+        type: "Architecture Roadmap",
+        format: "High-Resolution Image",
+        downloadUrl: "/assets/hld_roadmap.jpg",
+        coverColor: "#8b5cf6",
+        description: "A comprehensive visual roadmap detailing the journey from Idea -> Architecture -> Scale -> Intelligence for building AI Agents. Covers BOE calculations, functional and non-functional requirements, data layers, and agent memory loops.",
+        learnings: [
+          "End-to-End System Design workflow for intelligent agents",
+          "Distinguishing between traditional systems and AI Agent systems",
+          "Understanding the Observability and Security stack requirements",
+          "Visualizing the components of Intent, Planner, Memory, and Tool Execution"
+        ]
+      },
+      {
         title: "Designing Data-Intensive Applications",
         author: "Martin Kleppmann",
         type: "Essential Reference Book",
