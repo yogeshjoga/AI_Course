@@ -639,6 +639,21 @@ pre code {
     border-left: none;
   }
 
+  /* Terminology layout fixes */
+  .terminology-container {
+    flex-direction: column !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .terminology-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    max-height: 35vh !important;
+    overflow-y: auto !important;
+  }
+
   /* Assignment split layout fixes */
   .scaler-assignment-container {
     flex-direction: column-reverse !important;

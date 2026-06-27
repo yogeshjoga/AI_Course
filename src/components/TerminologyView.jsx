@@ -1108,7 +1108,7 @@ const LinearFlowLayout = ({ nodes, labels }) => {
       padding: '16px 8px', 
       overflowX: 'auto',
       width: '100%',
-      justifyContent: nodes.length <= 3 ? 'center' : 'flex-start'
+      justifyContent: 'flex-start'
     }}>
       {nodes.map((node, idx) => {
         const isLast = idx === nodes.length - 1;
@@ -1684,7 +1684,7 @@ export default function TerminologyView({ onBack }) {
   }, [filteredTerms, selectedTerm]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 65px)', backgroundColor: 'var(--bg-main)' }}>
+    <div className="scaler-split-workspace" style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 65px)', backgroundColor: 'var(--bg-main)' }}>
       <style>{`
         .term-sidebar-item {
           padding: 12px 16px;
@@ -1749,10 +1749,10 @@ export default function TerminologyView({ onBack }) {
       </div>
 
       {/* Main Split Layout */}
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+      <div className="terminology-container" style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         
         {/* Left Terms List Sidebar */}
-        <div style={{ 
+        <div className="terminology-sidebar" style={{ 
           width: '320px', 
           backgroundColor: '#ffffff', 
           borderRight: '1px solid var(--border-color)', 

@@ -1,8 +1,46 @@
 import React, { useState } from 'react';
 import { Book, FileText, ArrowRight, ExternalLink, Library, Download, CheckCircle, Lock } from 'lucide-react';
+import PdfViewerModal from './PdfViewerModal';
+
+const hldPdfFiles = [
+  "NoSQL Contd.pdf",
+  "NoSQL Continued.pdf",
+  "System Design - Caching 1.pdf",
+  "System Design - Caching Contd..docx.pdf",
+  "System Design - Caching Contd.pdf",
+  "System Design - Case Study - Design Hotstar.pdf",
+  "System Design - Case Study - Design Uber.pdf",
+  "System Design - Case Study - Elastic Search.pdf",
+  "System Design - Case Study - Messaging.pdf",
+  "System Design - Case Study -Typeahead.pdf",
+  "System Design - Microservices 1.pdf",
+  "System Design - Microservices 2.pdf",
+  "System Design - NoSQL Internals - LSM Trees.pdf",
+  "System Design - Popular Interview Questions.pdf",
+  "System Design - S3 + Quad trees (nearest neighbors).pdf",
+  "System Design - SQL vs NoSQL.pdf",
+  "System Design - Zookeeper + Kafka.pdf",
+  "System Design 101 & Consistent Hashing.pdf"
+];
+
+const generatedHldPdfs = hldPdfFiles.map(filename => ({
+  title: filename.replace('.pdf', '').replace('.docx', ''),
+  author: "Course Instructor",
+  type: "HLD PDF Note",
+  format: "PDF Document",
+  downloadUrl: `/hld_notes/${filename}`,
+  coverColor: "#e11d48",
+  description: `Class notes and architectural diagrams covering ${filename.replace('.pdf', '').replace('.docx', '')}.`,
+  learnings: [
+    "Review core concepts discussed during the live session.",
+    "Understand architectural diagrams and flows.",
+    "Examine tradeoffs between different system design approaches."
+  ]
+}));
 
 export default function ModuleResourcesView({ topic }) {
   const [activeResourceIdx, setActiveResourceIdx] = useState(0);
+  const [previewState, setPreviewState] = useState({ isOpen: false, url: '', title: '' });
 
   // High-quality Books & Reference Material dataset for each module
   const resourcesData = {
@@ -83,7 +121,8 @@ export default function ModuleResourcesView({ topic }) {
           "Designing a video streaming platform (YouTube-scale transcoding and CDN delivery)",
           "Web crawler and notification service architectures"
         ]
-      }
+      },
+      ...generatedHldPdfs
     ],
     'Databases': [
       {
@@ -271,7 +310,15 @@ export default function ModuleResourcesView({ topic }) {
     <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '32px', minHeight: '420px', marginTop: '24px' }}>
       
       {/* Sidebar - Reference Materials Selector */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', borderRight: '1px solid var(--border-color)', paddingRight: '24px' }}>
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        gap: '12px', 
+        borderRight: '1px solid var(--border-color)', 
+        paddingRight: '16px', 
+        maxHeight: 'calc(100vh - 180px)', 
+        overflowY: 'auto' 
+      }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#64748b', fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>
           <Library size={14} />
           <span>Reference Library</span>
@@ -279,10 +326,32 @@ export default function ModuleResourcesView({ topic }) {
         
         {currentResources.map((res, idx) => {
           const isActive = idx === activeResourceIdx;
+          const isYogeshReference = res.type === "HLD PDF Note";
+          const prevRes = idx > 0 ? currentResources[idx - 1] : null;
+          const isFirstYogeshReference = isYogeshReference && (!prevRes || prevRes.type !== "HLD PDF Note");
+
           return (
-            <button
-              key={idx}
-              onClick={() => setActiveResourceIdx(idx)}
+            <React.Fragment key={idx}>
+              {isFirstYogeshReference && (
+                <div style={{ 
+                  marginTop: '16px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px', 
+                  color: '#8b5cf6', 
+                  fontSize: '0.75rem', 
+                  fontWeight: '800', 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '0.05em', 
+                  borderBottom: '1px solid #e2e8f0', 
+                  paddingBottom: '8px', 
+                  marginBottom: '4px' 
+                }}>
+                  Yogesh Reference PDFs
+                </div>
+              )}
+              <button
+                onClick={() => setActiveResourceIdx(idx)}
               style={{
                 width: '100%',
                 padding: '16px 14px',
@@ -333,6 +402,7 @@ export default function ModuleResourcesView({ topic }) {
                 </span>
               </div>
             </button>
+            </React.Fragment>
           );
         })}
       </div>
@@ -395,30 +465,40 @@ export default function ModuleResourcesView({ topic }) {
 
         {/* View / Download Button Link */}
         <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '24px', display: 'flex', justifyContent: 'flex-start' }}>
-          <a
-            href={currentResources[activeResourceIdx].downloadUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-scaler btn-scaler-primary"
-            style={{
-              padding: '12px 24px',
-              fontSize: '0.88rem',
-              fontWeight: '700',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              textDecoration: 'none',
-              cursor: 'pointer'
-            }}
-          >
-            <Download size={16} />
-            <span>Access Book / Guide Reference</span>
-            <ExternalLink size={14} />
-          </a>
+          {currentResources[activeResourceIdx].downloadUrl.endsWith('.pdf') && currentResources[activeResourceIdx].downloadUrl.startsWith('/') ? (
+            <button
+              onClick={() => setPreviewState({
+                isOpen: true, 
+                url: currentResources[activeResourceIdx].downloadUrl,
+                title: currentResources[activeResourceIdx].title
+              })}
+              className="btn-scaler btn-scaler-primary"
+              style={{ padding: '12px 24px', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+            >
+              <ExternalLink size={18} /> View PDF Inline
+            </button>
+          ) : (
+            <a
+              href={currentResources[activeResourceIdx].downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-scaler btn-scaler-primary"
+              style={{ padding: '12px 24px', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+            >
+              <Download size={16} />
+              <span>Access Book / Guide Reference</span>
+              <ExternalLink size={14} />
+            </a>
+          )}
         </div>
-
       </div>
 
+      <PdfViewerModal 
+        isOpen={previewState.isOpen}
+        pdfUrl={previewState.url}
+        title={previewState.title}
+        onClose={() => setPreviewState({ ...previewState, isOpen: false })}
+      />
     </div>
   );
 }
