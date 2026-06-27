@@ -10,7 +10,7 @@ export default function ProblemListTable({ questions, answersRecord, onSolveQues
   };
 
   return (
-    <div style={{ backgroundColor: 'transparent', overflow: 'hidden' }}>
+    <div style={{ backgroundColor: 'transparent', overflowX: 'auto', overflowY: 'hidden' }}>
       <table style={{ width: '100%', borderCollapse: 'collapse', border: 'none' }}>
         <thead>
           <tr>
