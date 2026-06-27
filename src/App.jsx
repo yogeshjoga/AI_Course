@@ -298,6 +298,21 @@ export default function App() {
     // 2. Check if there is a class scheduled for today in the manifest (resolvedDates)
     const todaysClass = manifest.find(quiz => resolvedDates[quiz.id] === todayStr);
     if (todaysClass) {
+      const currentHour = today.getHours();
+      const currentMinute = today.getMinutes();
+      const isPastTenThirty = currentHour > 10 || (currentHour === 10 && currentMinute >= 30);
+
+      if (isPastTenThirty) {
+        return {
+          type: 'class',
+          icon: Sparkles,
+          title: `Today's Class: ${todaysClass.title}`,
+          subtitle: `🕒 Timing: ${todaysClass.timing} | Session was completed, please wait some time for updating MCQ questions and reference documents.`,
+          gradient: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+          tag: 'Completed'
+        };
+      }
+
       return {
         type: 'class',
         icon: Sparkles,
@@ -529,6 +544,21 @@ export default function App() {
                         <Icon size={28} />
                       </div>
                       <div>
+                        {banner.tag && (
+                          <div style={{ 
+                            display: 'inline-block',
+                            backgroundColor: 'rgba(255, 255, 255, 0.25)', 
+                            padding: '3px 8px', 
+                            borderRadius: '4px', 
+                            fontSize: '0.7rem', 
+                            fontWeight: '700', 
+                            marginBottom: '6px',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.5px'
+                          }}>
+                            {banner.tag}
+                          </div>
+                        )}
                         <h2 style={{ fontSize: '1.3rem', fontWeight: '800', margin: '0 0 4px 0', letterSpacing: '-0.02em', color: '#ffffff' }}>
                           {banner.title}
                         </h2>
