@@ -116,7 +116,7 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Introduction to schema, ACID compliance, SQL databases, and PostgreSQL.",
     "file": "schema_design_sql_databases.md",
-    "questionCount": 3,
+    "questionCount": 60,
     "resourceCount": 0
   },
   {
