@@ -10,10 +10,9 @@
   "boe_api_hld_design.md",
   "schema_design_sql_databases.md",
   "cache_systems_messaging_baselines.md",
-  "scaling_load_balancer_cdn_cap_paelc.md",
-  "database_replication_models.md",
-  "database_partitioning_routing.md",
-  "distributed_transactions_in_hld.md",
+
+
+
   "hld_revision_problem_prerequisites.md",
   "designing_whatsapp_part_1.md",
   "designing_whatsapp_part_2.md",
