@@ -128,7 +128,7 @@
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Deep dive into caching with Redis and message queue systems like Kafka.",
     "file": "cache_systems_messaging_baselines.md",
-    "questionCount": 3,
+    "questionCount": 60,
     "resourceCount": 0
   },
   {
