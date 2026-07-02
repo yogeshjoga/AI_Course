@@ -1,7 +1,40 @@
 import React, { useState } from 'react';
 import { Book, FileText, ArrowRight, ExternalLink, Library, Download, CheckCircle, Lock } from 'lucide-react';
 import PdfViewerModal from './PdfViewerModal';
+import ImageViewerModal from './ImageViewerModal';
 
+const imageFiles = [
+  "agentic-HLD.png",
+  "cache-mq.png",
+  "day-1.png",
+  "day-2.png",
+  "day-2a.png",
+  "day-3.png",
+  "day-4.png",
+  "day-5.png",
+  "day-6.png",
+  "day-7.png",
+  "day-8.png",
+  "day-9.png",
+  "day-10.png",
+  "day-11.png",
+  "day-12.png",
+  "hld_roadmap.jpg"
+];
+
+const generatedCheatsheets = imageFiles.map(filename => ({
+  title: filename.replace('.png', '').replace('.jpg', '').replace('-', ' ').toUpperCase() + " Cheatsheet",
+  author: "Course Instructor",
+  type: "Cheatsheet",
+  format: "High-Resolution Image",
+  downloadUrl: `/assets/${filename}`,
+  coverColor: "#10b981",
+  description: `Visual reference and quick cheatsheet for ${filename.replace('.png', '').replace('.jpg', '').replace('-', ' ')}.`,
+  learnings: [
+    "Quickly review visual architecture.",
+    "Easily recall concepts for interviews."
+  ]
+}));
 const hldPdfFiles = [
   "NoSQL Contd.pdf",
   "NoSQL Continued.pdf",
@@ -41,6 +74,7 @@ const generatedHldPdfs = hldPdfFiles.map(filename => ({
 export default function ModuleResourcesView({ topic }) {
   const [activeResourceIdx, setActiveResourceIdx] = useState(0);
   const [previewState, setPreviewState] = useState({ isOpen: false, url: '', title: '' });
+  const [imagePreviewState, setImagePreviewState] = useState({ isOpen: false, url: '', title: '' });
 
   // High-quality Books & Reference Material dataset for each module
   const resourcesData = {
@@ -122,7 +156,8 @@ export default function ModuleResourcesView({ topic }) {
           "Web crawler and notification service architectures"
         ]
       },
-      ...generatedHldPdfs
+      ...generatedHldPdfs,
+      ...generatedCheatsheets
     ],
     'Databases': [
       {
@@ -477,6 +512,18 @@ export default function ModuleResourcesView({ topic }) {
             >
               <ExternalLink size={18} /> View PDF Inline
             </button>
+          ) : currentResources[activeResourceIdx].downloadUrl.match(/\.(png|jpg|jpeg)$/i) && currentResources[activeResourceIdx].downloadUrl.startsWith('/') ? (
+            <button
+              onClick={() => setImagePreviewState({
+                isOpen: true, 
+                url: currentResources[activeResourceIdx].downloadUrl,
+                title: currentResources[activeResourceIdx].title
+              })}
+              className="btn-scaler btn-scaler-primary"
+              style={{ padding: '12px 24px', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', backgroundColor: '#10b981' }}
+            >
+              <ExternalLink size={18} /> View Cheatsheet Image
+            </button>
           ) : (
             <a
               href={currentResources[activeResourceIdx].downloadUrl}
@@ -498,6 +545,13 @@ export default function ModuleResourcesView({ topic }) {
         pdfUrl={previewState.url}
         title={previewState.title}
         onClose={() => setPreviewState({ ...previewState, isOpen: false })}
+      />
+
+      <ImageViewerModal 
+        isOpen={imagePreviewState.isOpen}
+        imageUrl={imagePreviewState.url}
+        title={imagePreviewState.title}
+        onClose={() => setImagePreviewState({ ...imagePreviewState, isOpen: false })}
       />
     </div>
   );

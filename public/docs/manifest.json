@@ -133,14 +133,14 @@
   },
   {
     "id": "hld_revision_problem_prerequisites",
-    "title": "Day 12 - HLD Revision & Problem Prerequisites",
+    "title": "Day 12 - Talk to Data Agent HLD",
     "dayNumber": 12,
     "topic": "HLD",
     "date": "2026-07-02",
     "timing": "9:00 AM - 10:00 AM IST",
     "description": "Comprehensive HLD review session before solving complex system design challenges.",
     "file": "hld_revision_problem_prerequisites.md",
-    "questionCount": 3,
+    "questionCount": 40,
     "resourceCount": 0
   },
   {

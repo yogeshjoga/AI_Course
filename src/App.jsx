@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { parseQuizMarkdown } from './utils/quizParser';
 import QuizCard from './components/QuizCard';
 import ClassWorkspace from './components/ClassWorkspace';
-import { Search, GraduationCap, RefreshCw, ArrowLeft, Download, BookOpen, Compass, Coffee, Gift, Sparkles } from 'lucide-react';
+import { Search, GraduationCap, RefreshCw, ArrowLeft, Download, BookOpen, Compass, Coffee, Gift, Sparkles, Image as ImageIcon } from 'lucide-react';
 import TerminologyView from './components/TerminologyView';
 import ResearchView from './components/ResearchView';
 import ModuleResourcesView from './components/ModuleResourcesView';
 import CustomModal from './components/CustomModal';
+import CheatsheetsModal from './components/CheatsheetsModal';
 
 // Register course holidays here (Format: YYYY-MM-DD : "Holiday Name")
 const HOLIDAYS = {
@@ -51,7 +52,7 @@ export default function App() {
     return defaultOverrides;
   });
   const [activeQuiz, setActiveQuiz] = useState(null);
-
+  const [isCheatsheetsOpen, setIsCheatsheetsOpen] = useState(false);
   // Helper to advance a date string YYYY-MM-DD to the next valid Tuesday-Saturday course day
   const getNextValidDate = (dateStr) => {
     if (!dateStr) return '';
@@ -450,6 +451,24 @@ export default function App() {
             >
               <BookOpen size={13} /> Course Terminology
             </button>
+            <button 
+              onClick={() => setIsCheatsheetsOpen(true)}
+              className="btn-scaler btn-scaler-secondary"
+              style={{ 
+                padding: '6px 14px', 
+                fontSize: '0.78rem', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '6px',
+                border: '1px solid var(--color-primary)',
+                color: 'var(--color-primary)',
+                backgroundColor: 'transparent',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              <ImageIcon size={13} /> Cheatsheets
+            </button>
             <a 
               href="/syllabus.pdf"
               download="Agentic_AI_Course_Syllabus.pdf"
@@ -778,9 +797,15 @@ export default function App() {
 
             {view === 'terminology' && (
               <TerminologyView 
-                onBack={handleCloseTerminology}
+                isOpen={isTerminologyOpen}
+                onClose={handleCloseTerminology}
               />
             )}
+
+            <CheatsheetsModal 
+              isOpen={isCheatsheetsOpen}
+              onClose={() => setIsCheatsheetsOpen(false)}
+            />
 
             {view === 'research' && (
               <ResearchView 
