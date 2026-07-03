@@ -1,19 +1,4 @@
----
-title: "WhatsApp HLD + AI Agents"
-topic: "HLD"
-date: "2026-07-03"
-timing: "9:00 AM - 10:00 AM IST"
-description: "Designing high-level real-time messaging architecture, user presence, and AI integrations."
----
-
-# WhatsApp HLD + AI Agents
-Class Timing: 9:00 AM - 10:00 AM IST
-
-Welcome to the daily assessment for **Day 13 - WhatsApp HLD + AI Agents**.
-Please attempt all questions below. Explanations will unlock after submission.
-
-
-
+raw_text = """
 Q1. WhatsApp is primarily a
 
 A. Database
@@ -24,7 +9,7 @@ C. Web Browser
 
 D. Search Engine
 
-**Answer:** B
+✅ Answer: B
 
 Explanation:
 WhatsApp is a real-time communication platform.
@@ -39,7 +24,7 @@ C. FTP
 
 D. Offline Sync
 
-**Answer:** B
+✅ Answer: B
 
 Q3. Which protocol enables real-time communication?
 
@@ -51,7 +36,7 @@ C. SMTP
 
 D. FTP
 
-**Answer:** B
+✅ Answer: B
 
 Q4. Which feature is NOT part of WhatsApp?
 
@@ -63,7 +48,7 @@ C. Video Calls
 
 D. SQL Query Builder
 
-**Answer:** D
+✅ Answer: D
 
 Q5. Which component receives a user's message first?
 
@@ -75,7 +60,7 @@ C. Redis
 
 D. Kafka
 
-**Answer:** B
+✅ Answer: B
 
 Q6. Before designing WhatsApp HLD, what should you identify first?
 
@@ -87,7 +72,7 @@ C. Redis
 
 D. Docker
 
-**Answer:** B
+✅ Answer: B
 
 Q7. Which is a Functional Requirement?
 
@@ -99,7 +84,7 @@ C. 99.99% Availability
 
 D. Scalability
 
-**Answer:** A
+✅ Answer: A
 
 Q8. Which is a Non-Functional Requirement?
 
@@ -111,7 +96,7 @@ C. High Availability
 
 D. Delete Chat
 
-**Answer:** C
+✅ Answer: C
 
 Q9. Which HLD step comes before APIs?
 
@@ -123,7 +108,7 @@ C. Redis
 
 D. Kubernetes
 
-**Answer:** A
+✅ Answer: A
 
 Q10. BOE helps estimate
 
@@ -135,7 +120,7 @@ C. UI
 
 D. CSS
 
-**Answer:** B
+✅ Answer: B
 
 Q11. DAU stands for
 
@@ -147,7 +132,7 @@ C. Database Access Unit
 
 D. Data API User
 
-**Answer:** A
+✅ Answer: A
 
 Q12. Formula for RPS?
 
@@ -159,7 +144,7 @@ C. Storage × Users
 
 D. API × DB
 
-**Answer:** A
+✅ Answer: A
 
 Q13. Which metric determines server capacity?
 
@@ -171,7 +156,7 @@ C. CSS
 
 D. Docker
 
-**Answer:** A
+✅ Answer: A
 
 Q14. Which calculation estimates storage?
 
@@ -183,7 +168,7 @@ C. Cache × API
 
 D. Queue × Topics
 
-**Answer:** A
+✅ Answer: A
 
 Q15. WhatsApp primarily stores
 
@@ -195,7 +180,7 @@ C. Media
 
 D. All of the Above
 
-**Answer:** D
+✅ Answer: D
 
 Q16. Which table stores users?
 
@@ -207,7 +192,7 @@ C. messages
 
 D. media
 
-**Answer:** A
+✅ Answer: A
 
 Q17. Which table stores conversations?
 
@@ -219,7 +204,7 @@ C. media
 
 D. cache
 
-**Answer:** B
+✅ Answer: B
 
 Q18. Which table stores individual messages?
 
@@ -231,7 +216,7 @@ C. groups
 
 D. API
 
-**Answer:** B
+✅ Answer: B
 
 Q19. Which relationship exists? Conversation -> Messages
 
@@ -243,7 +228,7 @@ C. M:N
 
 D. None
 
-**Answer:** B
+✅ Answer: B
 
 Q20. Message table should contain
 
@@ -255,7 +240,7 @@ C. message
 
 D. All of the Above
 
-**Answer:** D
+✅ Answer: D
 
 Q21. Which API sends messages?
 
@@ -267,7 +252,7 @@ C. DELETE /messages
 
 D. PATCH /messages
 
-**Answer:** B
+✅ Answer: B
 
 Q22. Which API retrieves chat history?
 
@@ -279,7 +264,7 @@ C. DELETE /messages
 
 D. PATCH /messages
 
-**Answer:** A
+✅ Answer: A
 
 Q23. Which API deletes a message?
 
@@ -291,7 +276,7 @@ C. GET /messages
 
 D. PATCH /messages
 
-**Answer:** A
+✅ Answer: A
 
 Q24. Which API uploads media?
 
@@ -303,7 +288,7 @@ C. DELETE /media
 
 D. PATCH /media
 
-**Answer:** A
+✅ Answer: A
 
 Q25. Which HTTP method updates a profile?
 
@@ -315,7 +300,7 @@ C. DELETE
 
 D. OPTIONS
 
-**Answer:** A
+✅ Answer: A
 
 Q26. Which data is best suited for Redis?
 
@@ -327,7 +312,7 @@ C. Online Status
 
 D. All of the Above
 
-**Answer:** D
+✅ Answer: D
 
 Q27. Why cache chat history?
 
@@ -339,7 +324,7 @@ C. Better User Experience
 
 D. All of the Above
 
-**Answer:** D
+✅ Answer: D
 
 Q28. Which storage is temporary?
 
@@ -351,7 +336,7 @@ C. MySQL
 
 D. Oracle
 
-**Answer:** B
+✅ Answer: B
 
 Q29. Cache mainly improves
 
@@ -363,7 +348,7 @@ C. HTML
 
 D. CSS
 
-**Answer:** A
+✅ Answer: A
 
 Q30. Cache stores
 
@@ -375,7 +360,7 @@ C. Images Only
 
 D. Logs
 
-**Answer:** A
+✅ Answer: A
 
 Q31. Which technology is best for processing media uploads?
 
@@ -387,7 +372,7 @@ C. SQS
 
 D. All of the Above
 
-**Answer:** D
+✅ Answer: D
 
 Q32. Why use Message Queues?
 
@@ -399,7 +384,7 @@ C. Background Jobs
 
 D. All of the Above
 
-**Answer:** D
+✅ Answer: D
 
 Q33. Which task should be asynchronous?
 
@@ -411,7 +396,7 @@ C. Notification
 
 D. All of the Above
 
-**Answer:** D
+✅ Answer: D
 
 Q34. Kafka mainly handles
 
@@ -423,7 +408,7 @@ C. HTML
 
 D. CSS
 
-**Answer:** A
+✅ Answer: A
 
 Q35. RabbitMQ mainly handles
 
@@ -435,7 +420,7 @@ C. Browser
 
 D. Database
 
-**Answer:** A
+✅ Answer: A
 
 Q36. AI Support Agent should
 
@@ -447,7 +432,7 @@ C. Generate Response
 
 D. All of the Above
 
-**Answer:** D
+✅ Answer: D
 
 Q37. AI Order Tracking Agent needs
 
@@ -459,7 +444,7 @@ C. LLM
 
 D. All of the Above
 
-**Answer:** D
+✅ Answer: D
 
 Q38. AI Group Moderator should
 
@@ -471,7 +456,7 @@ C. Welcome New Members
 
 D. All of the Above
 
-**Answer:** D
+✅ Answer: D
 
 Q39. Which component decides which AI Agent should handle the request?
 
@@ -483,7 +468,7 @@ C. Redis
 
 D. Browser
 
-**Answer:** A
+✅ Answer: A
 
 Q40. Which statement represents an AI Solution Architect?
 
@@ -495,4 +480,32 @@ C. "I understand how APIs, Databases, Cache, Queues, LLMs, Planner Agents, Memor
 
 D. "I know React."
 
-**Answer:** C
+✅ Answer: C
+"""
+
+import re
+
+# Format answers
+formatted = re.sub(r'✅\s*Answer:\s*([A-D])', r'**Answer:** \1', raw_text, flags=re.IGNORECASE)
+
+md_path = r'E:\Gen AI Online Batch Morning tue-sat\AI_Course\public\docs\designing_whatsapp_part_1.md'
+
+frontmatter = '''---
+title: "WhatsApp HLD + AI Agents"
+topic: "HLD"
+date: "2026-07-03"
+timing: "9:00 AM - 10:00 AM IST"
+description: "Designing high-level real-time messaging architecture, user presence, and AI integrations."
+---
+
+# WhatsApp HLD + AI Agents
+Class Timing: 9:00 AM - 10:00 AM IST
+
+Welcome to the daily assessment for **Day 13 - WhatsApp HLD + AI Agents**.
+Please attempt all questions below. Explanations will unlock after submission.
+
+'''
+
+with open(md_path, 'w', encoding='utf-8') as out:
+    out.write(frontmatter + '\n' + formatted)
+print('Successfully wrote 40 questions for Day 13.')

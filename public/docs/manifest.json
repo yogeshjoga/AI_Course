@@ -145,14 +145,14 @@
   },
   {
     "id": "designing_whatsapp_part_1",
-    "title": "Day 13 - Designing WhatsApp: Part 1",
+    "title": "Day 13 - WhatsApp HLD + AI Agents",
     "dayNumber": 13,
     "topic": "HLD",
     "date": "2026-07-03",
     "timing": "9:00 AM - 10:00 AM IST",
-    "description": "Designing high-level real-time messaging architecture, user presence, and connection flows.",
+    "description": "Designing high-level real-time messaging architecture, user presence, and AI integrations.",
     "file": "designing_whatsapp_part_1.md",
-    "questionCount": 3,
+    "questionCount": 40,
     "resourceCount": 0
   },
   {
