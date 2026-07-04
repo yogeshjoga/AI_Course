@@ -35,6 +35,28 @@ const generatedCheatsheets = imageFiles.map(filename => ({
     "Easily recall concepts for interviews."
   ]
 }));
+
+const referenceNotes = [
+  "topic_1_rag_vector_db.md",
+  "topic_2_mcp_tool_calling.md",
+  "topic_3_cache_mq_optimization.md",
+  "topic_4_multi_agent_architect.md"
+];
+
+const generatedReferenceNotes = referenceNotes.map((filename, index) => ({
+  title: `Agentic AI Notes - Topic ${index + 1}`,
+  author: "Course Instructor",
+  type: "Reference Note",
+  format: "Markdown Document",
+  downloadUrl: `/hld_notes/${filename}`,
+  coverColor: "#8b5cf6",
+  description: `Quick reference notes on ${filename.replace('topic_', '').replace('.md', '').replace(/_/g, ' ')}.`,
+  learnings: [
+    "Quickly revise core topics from the Day 14 MCQs.",
+    "Understand the architecture and technology choices."
+  ]
+}));
+
 const hldPdfFiles = [
   "NoSQL Contd.pdf",
   "NoSQL Continued.pdf",
@@ -157,7 +179,8 @@ export default function ModuleResourcesView({ topic }) {
         ]
       },
       ...generatedHldPdfs,
-      ...generatedCheatsheets
+      ...generatedCheatsheets,
+      ...generatedReferenceNotes
     ],
     'Databases': [
       {

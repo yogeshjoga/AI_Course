@@ -157,14 +157,14 @@
   },
   {
     "id": "designing_whatsapp_part_2",
-    "title": "Day 14 - Designing WhatsApp: Part 2",
+    "title": "Day 14 - WhatsApp E-Commerce Agentic AI Pipeline",
     "dayNumber": 14,
     "topic": "HLD",
     "date": "2026-07-04",
     "timing": "9:00 AM - 10:00 AM IST",
-    "description": "Designing database schema for messages, media storage, group chats, and message delivery states.",
+    "description": "Designing end-to-end Agentic AI pipelines with RAG, MCP, Multi-Agent systems, and Caching.",
     "file": "designing_whatsapp_part_2.md",
-    "questionCount": 3,
+    "questionCount": 80,
     "resourceCount": 0
   },
   {
