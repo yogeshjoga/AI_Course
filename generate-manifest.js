@@ -80,7 +80,8 @@ const generateManifest = () => {
       let cleanTitle = metadata.title || id.replace(/[_-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
       cleanTitle = cleanTitle.replace(/^Day\s*\d+\s*-\s*/i, '').trim();
 
-      const title = `Day ${dayNumber} - ${cleanTitle}`;
+      const isReference = metadata.isReference === 'true' || metadata.isReference === true;
+      const title = isReference ? cleanTitle : `Day ${dayNumber} - ${cleanTitle}`;
       const topic = metadata.topic || 'General';
       const date = metadata.date || new Date().toISOString().split('T')[0];
       const description = metadata.description || `Class MCQ test for ${topic}`;
@@ -92,11 +93,11 @@ const generateManifest = () => {
         dayNumber,
         topic,
         date,
-        timing,
         description,
         file,
         questionCount,
-        resourceCount
+        resourceCount,
+        isReference
       });
 
       console.log(`✅ Indexed: ${file} [Day: ${dayNumber}] [Topic: ${topic}] [Questions: ${questionCount}]`);

@@ -47,7 +47,10 @@ export default function QuizCard({ quiz, resolvedDate, onUpdateCustomDate, histo
         flexDirection: 'column', 
         justifyContent: 'space-between',
         cursor: 'pointer',
-        height: '100%'
+        height: '100%',
+        backgroundColor: quiz.isReference ? 'rgba(139, 92, 246, 0.04)' : undefined,
+        borderColor: quiz.isReference ? 'rgba(139, 92, 246, 0.2)' : undefined,
+        boxShadow: quiz.isReference ? '0 4px 12px rgba(139, 92, 246, 0.05)' : undefined
       }}
     >
       <div>
@@ -101,6 +104,13 @@ export default function QuizCard({ quiz, resolvedDate, onUpdateCustomDate, histo
           )}
         </div>
 
+        {/* Extra Quiz Headline */}
+        {quiz.isReference && (
+          <div style={{ color: '#7c3aed', fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <span>✨</span> This is an extra practice quiz, not a class
+          </div>
+        )}
+
         {/* Title */}
         <h3 style={{ fontSize: '1.2rem', marginBottom: '10px', fontWeight: '700' }}>
           {quiz.title}
@@ -136,52 +146,54 @@ export default function QuizCard({ quiz, resolvedDate, onUpdateCustomDate, histo
       {/* Footer Info */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', borderTop: '1px solid #eef2f6', paddingTop: '14px', marginTop: '12px' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '0.78rem', color: 'var(--text-muted)', alignItems: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            {isEditingDate ? (
-              <input
-                type="date"
-                value={resolvedDate || quiz.date}
-                onClick={(e) => e.stopPropagation()}
-                onChange={(e) => {
-                  onUpdateCustomDate(quiz.id, e.target.value);
-                  setIsEditingDate(false);
-                }}
-                onBlur={() => setIsEditingDate(false)}
-                autoFocus
-                style={{
-                  fontSize: '0.75rem',
-                  padding: '2px 4px',
-                  border: '1px solid var(--border-color)',
-                  borderRadius: 'var(--radius-sm)',
-                  outline: 'none',
-                  backgroundColor: 'var(--bg-surface)',
-                  color: 'var(--text-primary)'
-                }}
-              />
-            ) : (
-              <div
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsEditingDate(true);
-                }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  cursor: 'pointer',
-                  padding: '2px 6px',
-                  borderRadius: '4px',
-                  backgroundColor: 'rgba(0, 0, 0, 0.03)',
-                  transition: 'background-color 0.2s'
-                }}
-                title="Click to edit class date"
-              >
-                <Calendar size={14} style={{ color: 'var(--color-primary)' }} />
-                <span>{formatDate(resolvedDate || quiz.date)}</span>
-                <span style={{ fontSize: '0.65rem', opacity: 0.6 }}>✏️</span>
-              </div>
-            )}
-          </div>
+          {!quiz.isReference && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+              {isEditingDate ? (
+                <input
+                  type="date"
+                  value={resolvedDate || quiz.date}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) => {
+                    onUpdateCustomDate(quiz.id, e.target.value);
+                    setIsEditingDate(false);
+                  }}
+                  onBlur={() => setIsEditingDate(false)}
+                  autoFocus
+                  style={{
+                    fontSize: '0.75rem',
+                    padding: '2px 4px',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: 'var(--radius-sm)',
+                    outline: 'none',
+                    backgroundColor: 'var(--bg-surface)',
+                    color: 'var(--text-primary)'
+                  }}
+                />
+              ) : (
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsEditingDate(true);
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    cursor: 'pointer',
+                    padding: '2px 6px',
+                    borderRadius: '4px',
+                    backgroundColor: 'rgba(0, 0, 0, 0.03)',
+                    transition: 'background-color 0.2s'
+                  }}
+                  title="Click to edit class date"
+                >
+                  <Calendar size={14} style={{ color: 'var(--color-primary)' }} />
+                  <span>{formatDate(resolvedDate || quiz.date)}</span>
+                  <span style={{ fontSize: '0.65rem', opacity: 0.6 }}>✏️</span>
+                </div>
+              )}
+            </div>
+          )}
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <HelpCircle size={14} />
             <span>{quiz.questionCount} Questions</span>
@@ -192,7 +204,7 @@ export default function QuizCard({ quiz, resolvedDate, onUpdateCustomDate, histo
               {quiz.resourceCount || 0} Resources
             </span>
           </div>
-          {quiz.timing && (
+          {!quiz.isReference && quiz.timing && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontWeight: '500', color: 'var(--color-primary)' }}>
               <span>🕒</span>
               <span>{quiz.timing}</span>

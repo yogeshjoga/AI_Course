@@ -184,6 +184,20 @@ export default function ModuleResourcesView({ topic }) {
     ],
     'Databases': [
       {
+        title: "dbdiagram.io - Database Schema Designer",
+        author: "Holistics Data",
+        type: "Interactive Tool",
+        format: "Web Application",
+        downloadUrl: "https://dbdiagram.io/",
+        coverColor: "#2563eb",
+        description: "A free, simple tool to draw ER diagrams by just writing code. Designed for developers and data analysts to quickly map out schema relationships and export to various SQL dialects.",
+        learnings: [
+          "Visualize database schemas and cardinality (1:N, N:N, 1:1)",
+          "Export designs directly to PostgreSQL, MySQL, and SQL Server",
+          "Easily share and collaborate on database architectures"
+        ]
+      },
+      {
         title: "Database Internals: A Deep Dive into How Distributed Data Systems Work",
         author: "Alex Petrov",
         type: "Advanced Reference Book",

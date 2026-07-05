@@ -5,11 +5,11 @@
     "dayNumber": 1,
     "topic": "Intro Module",
     "date": "2026-06-13",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Introduction to the course, the AI revolution, and the career roadmap.",
     "file": "course_introduction_ai_revolution.md",
     "questionCount": 15,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   },
   {
     "id": "introduction_to_computers_ai_hardware",
@@ -17,11 +17,11 @@
     "dayNumber": 2,
     "topic": "Intro Module",
     "date": "2026-06-16",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Understanding CPUs, GPUs, TPUs, VRAMs, NPUs, CUDA Cores, and NVIDIA GPU architectures.",
     "file": "introduction_to_computers_ai_hardware.md",
     "questionCount": 21,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   },
   {
     "id": "internet_basics_apis",
@@ -29,11 +29,11 @@
     "dayNumber": 3,
     "topic": "Intro Module",
     "date": "2026-06-17",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Understanding browsers, client-server architectures, DNS, and APIs.",
     "file": "internet_basics_apis.md",
     "questionCount": 40,
-    "resourceCount": 1
+    "resourceCount": 1,
+    "isReference": false
   },
   {
     "id": "sdlc_product_thinking_business_problems",
@@ -41,11 +41,11 @@
     "dayNumber": 4,
     "topic": "Intro Module",
     "date": "2026-06-18",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Deep dive into Software Development Lifecycle, Product Thinking, and solving Business Problems.",
     "file": "sdlc_product_thinking_business_problems.md",
     "questionCount": 40,
-    "resourceCount": 4
+    "resourceCount": 4,
+    "isReference": false
   },
   {
     "id": "introduction_to_hld_components",
@@ -53,11 +53,11 @@
     "dayNumber": 5,
     "topic": "HLD",
     "date": "2026-06-19",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Understanding High Level Design (HLD) importance and key components (Frontend, Backend, Database, APIs).",
     "file": "introduction_to_hld_components.md",
     "questionCount": 28,
-    "resourceCount": 1
+    "resourceCount": 1,
+    "isReference": false
   },
   {
     "id": "hld_mindset_building",
@@ -65,11 +65,11 @@
     "dayNumber": 6,
     "topic": "HLD",
     "date": "2026-06-22",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Architect-Level thinking questions training students on problem-solving mindsets and Agentic AI HLD structures.",
     "file": "hld_mindset_building.md",
     "questionCount": 25,
-    "resourceCount": 2
+    "resourceCount": 2,
+    "isReference": false
   },
   {
     "id": "data_exchange_api_architectures",
@@ -77,11 +77,11 @@
     "dayNumber": 7,
     "topic": "HLD",
     "date": "2026-06-25",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Architectural thinking for REST APIs, WebSockets, Webhooks, FastAPI, and Agentic AI APIs.",
     "file": "data_exchange_api_architectures.md",
     "questionCount": 40,
-    "resourceCount": 1
+    "resourceCount": 1,
+    "isReference": false
   },
   {
     "id": "hld_problem_solving_prerequisites",
@@ -89,11 +89,11 @@
     "dayNumber": 8,
     "topic": "HLD",
     "date": "2026-06-23",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Transition from developer to system architect: Functional vs Non-Functional requirements, BOE, DAU, RPS, Scaling, and CAP Theorem.",
     "file": "hld_problem_solving_prerequisites.md",
     "questionCount": 40,
-    "resourceCount": 1
+    "resourceCount": 1,
+    "isReference": false
   },
   {
     "id": "boe_api_hld_design",
@@ -101,11 +101,11 @@
     "dayNumber": 9,
     "topic": "HLD",
     "date": "2026-06-27",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Architect-Level MCQs on HLD Design Thinking, Requirements, BOE, APIs, and AI Agent Architecture.",
     "file": "boe_api_hld_design.md",
     "questionCount": 40,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   },
   {
     "id": "schema_design_sql_databases",
@@ -113,11 +113,11 @@
     "dayNumber": 10,
     "topic": "Databases",
     "date": "2026-06-24",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Introduction to schema, ACID compliance, SQL databases, and PostgreSQL.",
     "file": "schema_design_sql_databases.md",
     "questionCount": 60,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   },
   {
     "id": "cache_systems_messaging_baselines",
@@ -125,106 +125,118 @@
     "dayNumber": 11,
     "topic": "Databases",
     "date": "2026-06-25",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Deep dive into caching with Redis and message queue systems like Kafka.",
     "file": "cache_systems_messaging_baselines.md",
     "questionCount": 60,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
+  },
+  {
+    "id": "schema_design_reference",
+    "title": "Schema Design & Cardinality (Reference Quiz)",
+    "dayNumber": 12,
+    "topic": "Databases",
+    "date": "2026-07-05",
+    "description": "Practice schema relationships, cardinality, and ER diagrams.",
+    "file": "schema_design_reference.md",
+    "questionCount": 40,
+    "resourceCount": 0,
+    "isReference": true
   },
   {
     "id": "hld_revision_problem_prerequisites",
-    "title": "Day 12 - Talk to Data Agent HLD",
-    "dayNumber": 12,
+    "title": "Day 13 - Talk to Data Agent HLD",
+    "dayNumber": 13,
     "topic": "HLD",
     "date": "2026-07-02",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Comprehensive HLD review session before solving complex system design challenges.",
     "file": "hld_revision_problem_prerequisites.md",
     "questionCount": 40,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   },
   {
     "id": "designing_whatsapp_part_1",
-    "title": "Day 13 - WhatsApp HLD + AI Agents",
-    "dayNumber": 13,
+    "title": "Day 14 - WhatsApp HLD + AI Agents",
+    "dayNumber": 14,
     "topic": "HLD",
     "date": "2026-07-03",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Designing high-level real-time messaging architecture, user presence, and AI integrations.",
     "file": "designing_whatsapp_part_1.md",
     "questionCount": 40,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   },
   {
     "id": "designing_whatsapp_part_2",
-    "title": "Day 14 - WhatsApp E-Commerce Agentic AI Pipeline",
-    "dayNumber": 14,
+    "title": "Day 15 - WhatsApp E-Commerce Agentic AI Pipeline",
+    "dayNumber": 15,
     "topic": "HLD",
     "date": "2026-07-04",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Designing end-to-end Agentic AI pipelines with RAG, MCP, Multi-Agent systems, and Caching.",
     "file": "designing_whatsapp_part_2.md",
     "questionCount": 80,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   },
   {
     "id": "designing_youtube_part_1",
-    "title": "Day 15 - Designing YouTube: Part 1",
-    "dayNumber": 15,
+    "title": "Day 16 - Designing YouTube: Part 1",
+    "dayNumber": 16,
     "topic": "HLD",
     "date": "2026-07-07",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Designing high-level video upload pipelines, encoding/transcoding architectures.",
     "file": "designing_youtube_part_1.md",
     "questionCount": 3,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   },
   {
     "id": "designing_youtube_part_2",
-    "title": "Day 16 - Designing YouTube: Part 2",
-    "dayNumber": 16,
+    "title": "Day 17 - Designing YouTube: Part 2",
+    "dayNumber": 17,
     "topic": "HLD",
     "date": "2026-07-08",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Designing YouTube content delivery (CDN), video streaming protocols, caching, and view-count scaling.",
     "file": "designing_youtube_part_2.md",
     "questionCount": 3,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   },
   {
     "id": "designing_uber_ola_ride_hailing_part_1",
-    "title": "Day 17 - Designing Uber/Ola Ride-Hailing: Part 1",
-    "dayNumber": 17,
+    "title": "Day 18 - Designing Uber/Ola Ride-Hailing: Part 1",
+    "dayNumber": 18,
     "topic": "HLD",
     "date": "2026-07-09",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "High-level architecture for ride-hailing, geo-spatial indexing (H3, S2), and real-time driver tracking.",
     "file": "designing_uber_ola_ride_hailing_part_1.md",
     "questionCount": 3,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   },
   {
     "id": "designing_uber_ola_ride_hailing_part_2",
-    "title": "Day 18 - Designing Uber/Ola Ride-Hailing: Part 2",
-    "dayNumber": 18,
+    "title": "Day 19 - Designing Uber/Ola Ride-Hailing: Part 2",
+    "dayNumber": 19,
     "topic": "HLD",
     "date": "2026-07-10",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Ride matching algorithms, trip state management, database write scaling, and ETA computation.",
     "file": "designing_uber_ola_ride_hailing_part_2.md",
     "questionCount": 3,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   },
   {
     "id": "designing_amazon_aws_s3_storage",
-    "title": "Day 19 - Designing Amazon AWS S3 Storage",
-    "dayNumber": 19,
+    "title": "Day 20 - Designing Amazon AWS S3 Storage",
+    "dayNumber": 20,
     "topic": "HLD",
     "date": "2026-07-11",
-    "timing": "9:00 AM - 10:00 AM IST",
     "description": "Designing highly-durable object storage (AWS S3) with metadata databases, data partitioning, and replicas.",
     "file": "designing_amazon_aws_s3_storage.md",
     "questionCount": 3,
-    "resourceCount": 0
+    "resourceCount": 0,
+    "isReference": false
   }
 ]
