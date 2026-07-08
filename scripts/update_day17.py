@@ -1,4 +1,6 @@
----
+file_path = r'E:\Gen AI Online Batch Morning tue-sat\AI_Course\public\docs\designing_uber_ola_ride_hailing_part_1.md'
+
+new_content = """---
 title: "Enterprise Agentic AI Architecture Design"
 topic: "HLD"
 date: "2026-07-10"
@@ -63,3 +65,9 @@ Explanation:
 
 A Planner Agent or Router Agent is responsible for receiving the initial request, understanding the context, and orchestrating downstream API calls or delegating to sub-agents.
 
+"""
+
+with open(file_path, 'w', encoding='utf-8') as f:
+    f.write(new_content)
+
+print("Updated Day 17 successfully.")

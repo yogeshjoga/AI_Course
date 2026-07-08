@@ -19,6 +19,7 @@ const imageFiles = [
   "day-10.png",
   "day-11.png",
   "day-12.png",
+  "day-16.png",
   "hld_roadmap.jpg"
 ];
 
@@ -398,9 +399,16 @@ export default function ModuleResourcesView({ topic }) {
         
         {currentResources.map((res, idx) => {
           const isActive = idx === activeResourceIdx;
-          const isYogeshReference = res.type === "HLD PDF Note";
           const prevRes = idx > 0 ? currentResources[idx - 1] : null;
+          
+          const isYogeshReference = res.type === "HLD PDF Note";
           const isFirstYogeshReference = isYogeshReference && (!prevRes || prevRes.type !== "HLD PDF Note");
+          
+          const isCheatsheet = res.type === "Cheatsheet";
+          const isFirstCheatsheet = isCheatsheet && (!prevRes || prevRes.type !== "Cheatsheet");
+
+          const isReferenceNote = res.type === "Reference Note";
+          const isFirstReferenceNote = isReferenceNote && (!prevRes || prevRes.type !== "Reference Note");
 
           return (
             <React.Fragment key={idx}>
@@ -420,6 +428,42 @@ export default function ModuleResourcesView({ topic }) {
                   marginBottom: '4px' 
                 }}>
                   Yogesh Reference PDFs
+                </div>
+              )}
+              {isFirstCheatsheet && (
+                <div style={{ 
+                  marginTop: '16px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px', 
+                  color: '#10b981', 
+                  fontSize: '0.75rem', 
+                  fontWeight: '800', 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '0.05em', 
+                  borderBottom: '1px solid #e2e8f0', 
+                  paddingBottom: '8px', 
+                  marginBottom: '4px' 
+                }}>
+                  High Quality Cheatsheets
+                </div>
+              )}
+              {isFirstReferenceNote && (
+                <div style={{ 
+                  marginTop: '16px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '8px', 
+                  color: '#3b82f6', 
+                  fontSize: '0.75rem', 
+                  fontWeight: '800', 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '0.05em', 
+                  borderBottom: '1px solid #e2e8f0', 
+                  paddingBottom: '8px', 
+                  marginBottom: '4px' 
+                }}>
+                  Topic Reference Notes
                 </div>
               )}
               <button

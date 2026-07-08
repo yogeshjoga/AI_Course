@@ -1,4 +1,6 @@
----
+file_path = r'E:\Gen AI Online Batch Morning tue-sat\AI_Course\public\docs\designing_uber_ola_ride_hailing_part_2.md'
+
+new_content = """---
 title: "Design Thinking & Architecture Tools"
 topic: "HLD"
 date: "2026-07-10"
@@ -63,3 +65,9 @@ Explanation:
 
 draw.io is a versatile, free-form diagramming tool heavily used by engineers to create detailed class diagrams, UML diagrams, and complete system architecture blueprints.
 
+"""
+
+with open(file_path, 'w', encoding='utf-8') as f:
+    f.write(new_content)
+
+print("Updated Day 18 specifically for dbdiagram, whimsical, and draw.io.")
