@@ -20,6 +20,8 @@ const imageFiles = [
   "day-11.png",
   "day-12.png",
   "day-16.png",
+  "day-17.png",
+  "day-18.png",
   "hld_roadmap.jpg"
 ];
 

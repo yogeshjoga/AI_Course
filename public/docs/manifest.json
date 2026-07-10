@@ -197,9 +197,9 @@
     "dayNumber": 17,
     "topic": "HLD",
     "date": "2026-07-10",
-    "description": "From Traditional Software to AI Native Software: Moving past 'Where do I call ChatGPT?' to 'Where should AI exist inside my architecture?'",
+    "description": "From Traditional Software to AI Native Software: Understanding Planner Agents, Memory, RAG, and Workflow Engines.",
     "file": "designing_uber_ola_ride_hailing_part_1.md",
-    "questionCount": 3,
+    "questionCount": 40,
     "resourceCount": 0,
     "isReference": false
   },
