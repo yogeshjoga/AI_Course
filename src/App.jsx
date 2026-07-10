@@ -37,7 +37,8 @@ export default function App() {
   const [customDates, setCustomDates] = useState(() => {
     const defaultOverrides = {
       'introduction_to_hld_components': '2026-06-20',
-      'data_exchange_api_architectures': '2026-06-25'
+      'data_exchange_api_architectures': '2026-06-25',
+      'python_intro_to_coding': '2026-07-14'
     };
     const saved = localStorage.getItem('course_custom_dates');
     if (saved) {
@@ -352,12 +353,12 @@ export default function App() {
     'Intro Module',
     'HLD',
     'Databases',
-    'Python',
-    'FastAPI',
+    'Python with FastAPI',
     'Intro to LLMs, ML, DL, DS',
     'AI Agents with memory',
     'Agentic AI workflows',
-    'Capstone Project'
+    'Capstone Project',
+    'AI Eco-Systems'
   ];
 
   // Helper to get custom color for module markers
@@ -366,12 +367,12 @@ export default function App() {
     if (clean.includes('intro module')) return '#3b82f6';    // Blue-slate
     if (clean.includes('hld')) return '#1a73e8';             // Blue
     if (clean.includes('database')) return '#ea580c';        // Orange
-    if (clean.includes('python')) return '#a16207';           // Yellow-gold
-    if (clean.includes('fastapi')) return '#0891b2';          // Cyan
+    if (clean.includes('python with fastapi')) return '#0891b2'; // Cyan
     if (clean.includes('llm') || clean.includes('ml')) return '#db2777'; // Pink
     if (clean.includes('memory') || clean.includes('agents')) return '#6366f1'; // Indigo
     if (clean.includes('workflows')) return '#be185d';        // Fuchsia
     if (clean.includes('capstone')) return '#10b981';         // Emerald
+    if (clean.includes('eco-systems')) return '#8b5cf6';      // Purple
     return '#4b5563';                                         // Gray
   };
 

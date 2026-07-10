@@ -16,5 +16,14 @@
   "designing_whatsapp_part_2.md",
   "designing_youtube_part_1.md",
   "designing_uber_ola_ride_hailing_part_1.md",
-  "designing_uber_ola_ride_hailing_part_2.md"
+  "designing_uber_ola_ride_hailing_part_2.md",
+  "python_intro_to_coding.md",
+  "python_datatypes.md",
+  "python_loops.md",
+  "python_data_structures.md",
+  "python_libs_pydantic.md",
+  "fastapi_basics.md",
+  "fastapi_api_design.md",
+  "api_testing_postman.md",
+  "mcp_openmcp_design.md"
 ]

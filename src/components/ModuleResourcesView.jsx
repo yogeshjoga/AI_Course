@@ -231,7 +231,7 @@ export default function ModuleResourcesView({ topic }) {
         ]
       }
     ],
-    'Python': [
+    'Python with FastAPI': [
       {
         title: "Fluent Python: Clear, Concise, and Effective Programming",
         author: "Luciano Ramalho",
@@ -261,9 +261,7 @@ export default function ModuleResourcesView({ topic }) {
           "Structuring packages and modules cleanly",
           "Best practices for debugging, optimization, and unit testing"
         ]
-      }
-    ],
-    'FastAPI': [
+      },
       {
         title: "FastAPI Complete Documentation & Production Blueprints",
         author: "Tiangolo (FastAPI Creator)",

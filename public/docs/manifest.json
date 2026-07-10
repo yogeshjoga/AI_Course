@@ -214,5 +214,113 @@
     "questionCount": 3,
     "resourceCount": 0,
     "isReference": false
+  },
+  {
+    "id": "python_intro_to_coding",
+    "title": "Day 19 - Intro to Coding (Python)",
+    "dayNumber": 19,
+    "topic": "Python with FastAPI",
+    "date": "2026-07-15",
+    "description": "Basic introduction to programming concepts and Python syntax.",
+    "file": "python_intro_to_coding.md",
+    "questionCount": 3,
+    "resourceCount": 0,
+    "isReference": false
+  },
+  {
+    "id": "python_datatypes",
+    "title": "Day 20 - Datatypes & Variables",
+    "dayNumber": 20,
+    "topic": "Python with FastAPI",
+    "date": "2026-07-15",
+    "description": "Understanding integers, strings, floats, booleans, and variable assignment.",
+    "file": "python_datatypes.md",
+    "questionCount": 3,
+    "resourceCount": 0,
+    "isReference": false
+  },
+  {
+    "id": "python_loops",
+    "title": "Day 21 - Loops & Control Flow",
+    "dayNumber": 21,
+    "topic": "Python with FastAPI",
+    "date": "2026-07-15",
+    "description": "Mastering if-else statements, for loops, and while loops.",
+    "file": "python_loops.md",
+    "questionCount": 3,
+    "resourceCount": 0,
+    "isReference": false
+  },
+  {
+    "id": "python_data_structures",
+    "title": "Day 22 - Data Structures",
+    "dayNumber": 22,
+    "topic": "Python with FastAPI",
+    "date": "2026-07-15",
+    "description": "Working with Lists, Dictionaries, Tuples, and Sets in Python.",
+    "file": "python_data_structures.md",
+    "questionCount": 3,
+    "resourceCount": 0,
+    "isReference": false
+  },
+  {
+    "id": "python_libs_pydantic",
+    "title": "Day 23 - Python Libs for AI & Pydantic",
+    "dayNumber": 23,
+    "topic": "Python with FastAPI",
+    "date": "2026-07-15",
+    "description": "Essential Python libraries for AI data manipulation and data validation using Pydantic.",
+    "file": "python_libs_pydantic.md",
+    "questionCount": 3,
+    "resourceCount": 0,
+    "isReference": false
+  },
+  {
+    "id": "fastapi_basics",
+    "title": "Day 24 - FastAPI Basics",
+    "dayNumber": 24,
+    "topic": "Python with FastAPI",
+    "date": "2026-07-15",
+    "description": "Introduction to FastAPI, routing, and asynchronous web servers.",
+    "file": "fastapi_basics.md",
+    "questionCount": 3,
+    "resourceCount": 0,
+    "isReference": false
+  },
+  {
+    "id": "fastapi_api_design",
+    "title": "Day 25 - API Design",
+    "dayNumber": 25,
+    "topic": "Python with FastAPI",
+    "date": "2026-07-15",
+    "description": "Designing RESTful APIs, request methods, query parameters, and JSON payloads.",
+    "file": "fastapi_api_design.md",
+    "questionCount": 3,
+    "resourceCount": 0,
+    "isReference": false
+  },
+  {
+    "id": "api_testing_postman",
+    "title": "Day 26 - API Testing with Postman",
+    "dayNumber": 26,
+    "topic": "Python with FastAPI",
+    "date": "2026-07-15",
+    "description": "Testing and documenting your FastAPI endpoints using Postman.",
+    "file": "api_testing_postman.md",
+    "questionCount": 3,
+    "resourceCount": 0,
+    "isReference": false
+  },
+  {
+    "id": "mcp_openmcp_design",
+    "title": "Day 27 - MCP & openMCP Design",
+    "dayNumber": 27,
+    "topic": "Python with FastAPI",
+    "date": "2026-07-15",
+    "description": "Model Context Protocol architecture, building standard tools, and integrating with openMCP.",
+    "file": "mcp_openmcp_design.md",
+    "questionCount": 3,
+    "resourceCount": 0,
+    "isReference": false
   }
 ]
