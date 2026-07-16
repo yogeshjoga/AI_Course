@@ -1,4 +1,6 @@
----
+file_path = r'E:\Gen AI Online Batch Morning tue-sat\AI_Course\public\docs\designing_uber_ola_ride_hailing_part_2.md'
+
+new_content = """---
 title: "Design Thinking & Architecture Tools"
 topic: "HLD"
 date: "2026-07-10"
@@ -21,3 +23,9 @@ Please check the **Cheatsheets Library** in the Module Resources tab for your Da
 - **draw.io** for complex UML diagrams and structural architectures.
 
 Take this time to practice drawing out your own High Level Designs using these tools!
+"""
+
+with open(file_path, 'w', encoding='utf-8') as f:
+    f.write(new_content)
+
+print("Updated Day 18 successfully to remove MCQs.")

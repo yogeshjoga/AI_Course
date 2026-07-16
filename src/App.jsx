@@ -219,9 +219,8 @@ export default function App() {
       const text = await response.text();
       
       const parsedQuestions = parseQuizMarkdown(text);
-      if (parsedQuestions.length === 0) {
-        throw new Error('No valid questions could be parsed from this file. Check the format.');
-      }
+      // We allow parsedQuestions to be empty (e.g. for purely informational reference sessions)
+
       
       // Extract intro block (everything between frontmatter and the first Q1. / ## Question 1)
       const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---/;

@@ -1,4 +1,6 @@
----
+file_path = r'E:\Gen AI Online Batch Morning tue-sat\AI_Course\public\docs\python_ide_env_setup.md'
+
+new_content = """---
 title: "Coding IDE & Env Setup (UV Package Management)"
 topic: "Python with FastAPI"
 date: "2026-07-15"
@@ -21,3 +23,9 @@ Welcome to **Day 20 - Coding IDE & Env Setup**.
 4. **UV Package Management**: Replacing traditional `pip` with `uv` for lightning-fast environment creation and dependency resolution.
 
 Make sure your environment is fully working before moving on to tomorrow's coding lessons!
+"""
+
+with open(file_path, 'w', encoding='utf-8') as f:
+    f.write(new_content)
+
+print("Updated Day 20 successfully to remove MCQs.")
